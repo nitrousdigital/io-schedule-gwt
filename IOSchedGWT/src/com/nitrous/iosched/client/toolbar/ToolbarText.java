@@ -8,9 +8,6 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class ToolbarText extends Composite {
 	private Label l;
-	public ToolbarText(String text) {
-		this(text, 185);
-	}
 	public ToolbarText(String text, int width) {
 		l = new Label(text);
 		l.setStyleName("toolbarText");

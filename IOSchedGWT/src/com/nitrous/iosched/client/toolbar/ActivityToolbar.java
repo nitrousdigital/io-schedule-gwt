@@ -70,8 +70,12 @@ public class ActivityToolbar extends Composite implements Toolbar {
 			toolbarTitle.setText(title);
 		}
 	}
+	
 	protected ToolbarText initToolbarLabel(String label) {
-		toolbarTitle = new ToolbarText(label);
+		return initToolbarLabel(label, 185);
+	}
+	protected ToolbarText initToolbarLabel(String label, int width) {
+		toolbarTitle = new ToolbarText(label, width);
 		return toolbarTitle;
 	}
 

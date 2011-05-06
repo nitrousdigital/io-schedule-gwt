@@ -11,13 +11,13 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.nitrous.iosched.client.images.Images;
-import com.nitrous.iosched.client.toolbar.ActivityToolbar;
+import com.nitrous.iosched.client.toolbar.SessionSelectionToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledWidget;
 
 public class SessionTrackSelectionView extends Composite implements ToolbarEnabledWidget {
 	private static final Images images = GWT.create(Images.class);
-	private ActivityToolbar toolbar = new ActivityToolbar("Session Tracks");
+	private SessionSelectionToolbar toolbar = new SessionSelectionToolbar();
 	private ActivityController controller;
 	public SessionTrackSelectionView(int width) {
 		width -= 20;
