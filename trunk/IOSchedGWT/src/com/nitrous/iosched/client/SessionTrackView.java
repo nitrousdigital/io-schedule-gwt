@@ -21,6 +21,11 @@ import com.nitrous.iosched.client.toolbar.SessionTrackViewToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledWidget;
 
+/**
+ * Displays the sessions for a selected track
+ * @author Nick
+ *
+ */
 public class SessionTrackView extends Composite implements ToolbarEnabledWidget, Refreshable {
 	private SessionTrackViewToolbar toolbar = new SessionTrackViewToolbar();
 	private SessionTrack track;
