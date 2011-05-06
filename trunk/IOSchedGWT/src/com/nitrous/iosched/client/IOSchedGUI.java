@@ -108,8 +108,8 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 	}
 	
 	public void refresh() {
-		if (currentView == map) {
-			map.reset();
+		if (currentView != null && currentView instanceof Refreshable) {
+			((Refreshable)currentView).onRefresh();
 		}
 	}
 	public void search() {
@@ -123,7 +123,7 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 	
 	public void showMap() {
 		viewDeckPanel.showWidget(1);
-		map.reset();
+		map.onRefresh();
 		currentView = map;
 		showToolbar(currentView);
 	}

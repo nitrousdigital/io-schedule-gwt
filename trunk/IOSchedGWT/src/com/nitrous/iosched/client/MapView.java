@@ -6,7 +6,7 @@ import com.nitrous.iosched.client.toolbar.ActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledWidget;
 
-public class MapView extends Composite implements ToolbarEnabledWidget {
+public class MapView extends Composite implements ToolbarEnabledWidget, Refreshable {
 	private ActivityToolbar toolbar = new ActivityToolbar("Map");
 	private HTML iframe;
 	private static final String html = "<iframe src=\"http://www.google.com/events/io/2011/embed.html#level1\" width=\"100%\" height=\"100%\"></iframe>"; 
@@ -14,10 +14,10 @@ public class MapView extends Composite implements ToolbarEnabledWidget {
 		iframe = new HTML();
 		iframe.setSize(width+"px", height+"px");
 		initWidget(iframe);
-		reset();
+		onRefresh();
 	}
 
-	public void reset() {
+	public void onRefresh() {
 		iframe.setHTML(html);
 	}
 	

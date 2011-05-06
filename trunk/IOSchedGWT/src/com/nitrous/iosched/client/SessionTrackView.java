@@ -17,7 +17,7 @@ import com.nitrous.iosched.client.toolbar.SessionTrackViewToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledWidget;
 
-public class SessionTrackView extends Composite implements ToolbarEnabledWidget {
+public class SessionTrackView extends Composite implements ToolbarEnabledWidget, Refreshable {
 	private SessionTrackViewToolbar toolbar = new SessionTrackViewToolbar();
 	private SessionTrack track;
 	private VerticalPanel layout;
@@ -38,7 +38,7 @@ public class SessionTrackView extends Composite implements ToolbarEnabledWidget 
 	public void showSessionTrack(SessionTrack track) {
 		toolbar.setTitle(track.toString());
 		setTrack(track);
-		refresh();
+		onRefresh();
 	}
 
 	public void setTrack(SessionTrack track) {
@@ -51,7 +51,7 @@ public class SessionTrackView extends Composite implements ToolbarEnabledWidget 
 		msg.setStyleName(isError ? "sessionErrorMessage" : "sessionMessage");
 		layout.add(msg);
 	}
-	public void refresh() {
+	public void onRefresh() {
 		showMessage("Loading, Please wait...", false);
 		// load all sessions in JSON format
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, "http://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od6/public/values?alt=json");
