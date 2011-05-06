@@ -69,12 +69,11 @@ h1 {
     color: #205aaf;
 }
 .toolbarFill {
-	/*
 	background-image:url('images/toolbar_bg.png');
     background-repeat:repeat-x;
-    */
-    /* old browsers */
+    /* old browsers
     background: #EFEFEF;
+    */
      
     /* firefox */
     background: -moz-linear-gradient(top, #EFEFEF 0%, #d6d7d6 100%);
