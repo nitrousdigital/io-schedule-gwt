@@ -1,10 +1,16 @@
 package com.nitrous.iosched.client;
 
+import java.util.Calendar;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.TreeSet;
+
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.Response;
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
@@ -79,12 +85,37 @@ public class SessionTrackView extends Composite implements ToolbarEnabledWidget,
 		Feed feed = data.getFeed();
 		JsArray<FeedEntry> entries = feed.getEntries();
 		if (entries != null) {
-			for (int i = 0 ; i < entries.length(); i++) {
+			// sort
+			TreeSet<FeedEntry> sorted = new TreeSet<FeedEntry>(feedSorter);			
+			for (int i = 0 ; i < entries.length(); i++) {				
 				FeedEntry entry = entries.get(i);
+				sorted.add(entry);
+			}
+			// display
+			for (FeedEntry entry : sorted) {
 				if (track == null || SessionTrack.All.equals(track) || track.toString().equalsIgnoreCase(entry.getSessionTrack())) {
 					addSession(entry);
 				}
 			}
+		}
+	}
+
+	private static final FeedEntryComparator feedSorter = new FeedEntryComparator();
+	private static class FeedEntryComparator implements Comparator<FeedEntry> {
+		public int compare(FeedEntry entry, FeedEntry other) {
+			// 1st sort by date/time
+			Date entryDate = entry.getStartDateTime();
+			Date otherDate = other.getStartDateTime();
+			int result = Long.valueOf(entryDate.getTime()).compareTo(Long.valueOf(otherDate.getTime()));
+			if (result == 0) {
+				// 2nd sort by title
+				result = entry.getTitle().compareTo(other.getTitle());
+				if (result == 0) {
+					// last resort sort by ID
+					result = entry.getId().compareTo(other.getId());
+				}
+			}
+			return result;
 		}
 	}
 	

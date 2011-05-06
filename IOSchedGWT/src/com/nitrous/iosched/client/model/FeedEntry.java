@@ -1,6 +1,9 @@
 package com.nitrous.iosched.client.model;
 
+import java.util.Date;
+
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.i18n.client.DateTimeFormat;
 
 /**
  * The entries loaded from a session feed using the URL http://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od6/public/values?alt=json
@@ -8,8 +11,31 @@ import com.google.gwt.core.client.JavaScriptObject;
  *
  */
 public final class FeedEntry extends JavaScriptObject {
+	private static final DateTimeFormat format = DateTimeFormat.getFormat("EEEE MMMM dd hh:mmaa");
 	protected FeedEntry() {
 	}
+	
+	public Date getStartDateTime() {
+		Date startTime = getStartDateTimeNative();
+		if (startTime == null) {
+			// Wednesday May 11
+			String date = getSessionDate();
+			// 4:15pm-5:15pm
+			String time = getSessionTime();
+			String dateTime = date + " " + time;
+			dateTime = dateTime.substring(0, dateTime.indexOf("-"));
+			startTime = format.parse(dateTime);
+			setStartDateTimeNative(startTime);
+		}
+		return startTime;
+	}
+
+	private native Date getStartDateTimeNative() /*-{
+		return this.startDateTime;
+	}-*/;
+	private native void setStartDateTimeNative(Date startDateTime) /*-{
+		this.startDateTime = startDateTime;
+	}-*/;
 	
 	/**
 	 * @return Example "2011-05-04T00:15:01.165Z"
@@ -23,6 +49,13 @@ public final class FeedEntry extends JavaScriptObject {
 	 */
 	public native String getTitle() /*-{
 		return this.title.$t;
+	}-*/;
+	
+	/**
+	 * @return A unique ID for this entry. Example "https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od6/public/values/d180g"
+	 */
+	public native String getId() /*-{
+		return this.id.$t;
 	}-*/;
 	
 	/**
@@ -55,7 +88,7 @@ public final class FeedEntry extends JavaScriptObject {
 	}-*/;
 	
 	/**
-	 * @return Session time. Eexample "4:15pm-5:15pm"
+	 * @return Session time. Example "4:15pm-5:15pm"
 	 */
 	public native String getSessionTime() /*-{
 		return this.gsx$sessiontime.$t;
