@@ -1,6 +1,5 @@
 package com.nitrous.iosched.client;
 
-import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.TreeSet;
@@ -10,7 +9,6 @@ import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.Response;
-import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;

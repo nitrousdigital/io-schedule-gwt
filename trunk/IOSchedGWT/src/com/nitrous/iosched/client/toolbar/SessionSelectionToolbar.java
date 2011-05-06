@@ -2,10 +2,10 @@ package com.nitrous.iosched.client.toolbar;
 
 import com.google.gwt.user.client.ui.Widget;
 
-public class SessionTrackViewToolbar extends ActivityToolbar {
+public class SessionSelectionToolbar extends ActivityToolbar {
 
-	public SessionTrackViewToolbar() {
-		super("Sessions");
+	public SessionSelectionToolbar() {
+		super("Session Tracks");
 	}
 
 	/**
@@ -16,9 +16,7 @@ public class SessionTrackViewToolbar extends ActivityToolbar {
 	protected Widget[] initWidgets(String toolbarLabel) {
 		return new Widget[]{
 				initHomeButton(),
-				initBackButton(),
-				initToolbarLabel(toolbarLabel, 143),
-				initRefreshButton(),
+				initToolbarLabel(toolbarLabel, 230),
 				initSearchButton()
 		};
 	}
