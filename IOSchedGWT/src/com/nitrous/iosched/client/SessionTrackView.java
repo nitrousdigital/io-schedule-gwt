@@ -5,7 +5,6 @@ import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.Response;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
@@ -45,7 +44,15 @@ public class SessionTrackView extends Composite implements ToolbarEnabledWidget 
 	public void setTrack(SessionTrack track) {
 		this.track = track;
 	}
+	
+	private void showMessage(String message, boolean isError) {
+		onClear();
+		Label msg = new Label(message);
+		msg.setStyleName(isError ? "sessionErrorMessage" : "sessionMessage");
+		layout.add(msg);
+	}
 	public void refresh() {
+		showMessage("Loading, Please wait...", false);
 		// load all sessions in JSON format
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, "http://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od6/public/values?alt=json");
 		try {
@@ -67,8 +74,8 @@ public class SessionTrackView extends Composite implements ToolbarEnabledWidget 
 	}
 	
 	private void loadSessionData(String json) {
-		SessionData data = SessionData.eval(json);
 		onClear();
+		SessionData data = SessionData.eval(json);
 		Feed feed = data.getFeed();
 		JsArray<FeedEntry> entries = feed.getEntries();
 		if (entries != null) {
@@ -102,7 +109,7 @@ public class SessionTrackView extends Composite implements ToolbarEnabledWidget 
 	}
 	
 	private void showError(String error) {
-		Window.alert(error);
+		showMessage("<font color=\"#d72525\">" + error + "</font>", true);
 	}
 	
 	public Toolbar getToolbar() {
