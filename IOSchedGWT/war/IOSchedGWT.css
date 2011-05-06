@@ -43,6 +43,15 @@ h1 {
 .icongrid {
 	margin:0px;
 }
+.sessionTrackText {
+    font-family: 'Droid Sans',Arial,helvetica;
+    font-size: 16px;
+    color: #000000;
+    cursor: pointer;
+}
+.sessionTrackSwatch {
+    cursor: pointer;
+}
 .iconText {
     font-family: 'Droid Sans',Arial,helvetica;
     font-size: 13px;
@@ -72,4 +81,7 @@ h1 {
 .iconBackground {
     background-image:url('images/noise.png');
     background-repeat:repeat-x repeat-y;
+}
+.deckPanel {
+	overflow-y: auto;
 }
