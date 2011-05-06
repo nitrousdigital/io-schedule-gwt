@@ -18,7 +18,7 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 	// views
 	private ScheduleView schedule;
 	private MapView map;
-	private SessionView sessions;
+	private SessionTrackView sessions;
 	private StarredView starred;
 	private SandBoxView sandbox;
 	private BulletinView bulletin;
@@ -40,6 +40,7 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 		
 		int clientHeight = 402;
 		viewDeckPanel = new DeckPanel();
+		viewDeckPanel.setStyleName("deckPanel");
 		viewDeckPanel.setSize(WIDTH+"px", clientHeight+"px");
 		layout.add(viewDeckPanel, 0, 49);
 		
@@ -57,7 +58,7 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 		viewDeckPanel.add(schedule);
 		
 		// 3
-		sessions = new SessionView(WIDTH, clientHeight);
+		sessions = new SessionTrackView(WIDTH, clientHeight);
 		viewDeckPanel.add(sessions);
 
 		// 4
