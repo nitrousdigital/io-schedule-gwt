@@ -18,7 +18,10 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 	// views
 	private ScheduleView schedule;
 	private MapView map;
-	private SessionTrackView sessions;
+	
+	private SessionTrackSelectionView sessionSelection;
+	private SessionTrackView sessionTrackView;
+	
 	private StarredView starred;
 	private SandBoxView sandbox;
 	private BulletinView bulletin;
@@ -58,8 +61,9 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 		viewDeckPanel.add(schedule);
 		
 		// 3
-		sessions = new SessionTrackView(WIDTH, clientHeight);
-		viewDeckPanel.add(sessions);
+		sessionSelection = new SessionTrackSelectionView(WIDTH);
+		sessionSelection.setController(this);
+		viewDeckPanel.add(sessionSelection);
 
 		// 4
 		starred = new StarredView(WIDTH, clientHeight);
@@ -73,7 +77,17 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 		bulletin = new BulletinView(WIDTH, clientHeight);
 		viewDeckPanel.add(bulletin);
 		
+		// 7 - displays sessions within the selected selection track
+		sessionTrackView = new SessionTrackView(WIDTH);
+		viewDeckPanel.add(sessionTrackView);
+		
 		home();
+	}
+	
+	public void back() {
+		if (currentView == sessionTrackView) {
+			showSessions();
+		}
 	}
 	
 	public void home() {
@@ -116,7 +130,7 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 	
 	public void showSessions() {
 		viewDeckPanel.showWidget(3);
-		currentView = sessions;
+		currentView = sessionSelection;
 		showToolbar(currentView);
 	}
 	public void showStarred() {
@@ -132,6 +146,12 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 	public void showBulletin() {
 		viewDeckPanel.showWidget(6);
 		currentView = bulletin;
+		showToolbar(currentView);
+	}
+	public void showSessionTrack(SessionTrack track) {
+		sessionTrackView.showSessionTrack(track);
+		viewDeckPanel.showWidget(7);
+		currentView = sessionTrackView;
 		showToolbar(currentView);
 	}
 

@@ -7,8 +7,12 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class ToolbarText extends Composite {
+	private Label l;
 	public ToolbarText(String text) {
-		Label l = new Label(text);
+		this(text, 185);
+	}
+	public ToolbarText(String text, int width) {
+		l = new Label(text);
 		l.setStyleName("toolbarText");
 		
 		VerticalPanel layout = new VerticalPanel();
@@ -17,7 +21,10 @@ public class ToolbarText extends Composite {
 		layout.setStyleName("toolbarFill");
 		layout.setHeight("44px");
 		layout.add(l);
-		layout.setWidth("185px");
+		layout.setWidth(width+"px");
 		initWidget(layout);
+	}
+	public void setText(String text) {
+		l.setText(text);
 	}
 }

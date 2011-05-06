@@ -13,6 +13,8 @@ public interface Images extends ClientBundle {
 	ImageResource refresh();
 	@Source("search.png")
 	ImageResource search();
+	@Source("back.png")
+	ImageResource back();
 	
 	// color bar
 	@Source("colors.png")
