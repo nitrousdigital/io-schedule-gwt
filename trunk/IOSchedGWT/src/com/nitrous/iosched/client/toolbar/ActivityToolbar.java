@@ -11,17 +11,35 @@ import com.nitrous.iosched.client.images.Images;
 public class ActivityToolbar extends Composite implements Toolbar {
 	
 	private static Images images = GWT.create(Images.class);
-	private Image homeBtn = new Image(images.home());
-	private Image refreshBtn = new Image(images.refresh());
-	private Image searchBtn = new Image(images.search());
-
 	private ToolbarController toolbarController;
+	protected ToolbarText toolbarTitle;
 	
 	public ActivityToolbar(String label) {
 		HorizontalPanel toolbar = new HorizontalPanel();
 		initWidget(toolbar);
 		
-		toolbar.add(homeBtn);
+		Widget[] widgets = initWidgets(label);
+		for (Widget w : widgets) {
+			toolbar.add(w);
+		}
+	}
+	
+	/**
+	 * Build the widgets to add to the toolbar
+	 * @param toolbarLabel The label for the toolbar
+	 * @return The widgets to add to the toolbar
+	 */
+	protected Widget[] initWidgets(String toolbarLabel) {
+		return new Widget[]{
+				initHomeButton(),
+				initToolbarLabel(toolbarLabel),
+				initRefreshButton(),
+				initSearchButton()
+		};
+	}
+	
+	protected Widget initHomeButton() {
+		Image homeBtn = new Image(images.home());
 		homeBtn.addClickHandler(new com.google.gwt.event.dom.client.ClickHandler(){
 			public void onClick(ClickEvent event) {
 				if (toolbarController != null) {
@@ -29,11 +47,36 @@ public class ActivityToolbar extends Composite implements Toolbar {
 				}
 			}
 		});
-		
-		ToolbarText text = new ToolbarText(label);
-		toolbar.add(text);
-		
-		toolbar.add(refreshBtn);
+		return  homeBtn;
+	}
+
+	protected Widget initBackButton() {
+		Image backBtn = new Image(images.back());
+		backBtn.addClickHandler(new com.google.gwt.event.dom.client.ClickHandler(){
+			public void onClick(ClickEvent event) {
+				if (toolbarController != null) {
+					toolbarController.back();
+				}
+			}
+		});
+		return  backBtn;
+	}
+	
+	/**
+	 * Modify the title of the toolbar (if one has been added to the toolbar).
+	 */
+	public void setTitle(String title) {
+		if (toolbarTitle != null) {
+			toolbarTitle.setText(title);
+		}
+	}
+	protected ToolbarText initToolbarLabel(String label) {
+		toolbarTitle = new ToolbarText(label);
+		return toolbarTitle;
+	}
+
+	protected Widget initRefreshButton() {
+		Image refreshBtn = new Image(images.refresh());
 		refreshBtn.addClickHandler(new com.google.gwt.event.dom.client.ClickHandler(){
 			public void onClick(ClickEvent event) {
 				if (toolbarController != null) {
@@ -41,8 +84,11 @@ public class ActivityToolbar extends Composite implements Toolbar {
 				}
 			}
 		});
-		
-		toolbar.add(searchBtn);
+		return refreshBtn;
+	}
+	
+	protected Widget initSearchButton() {
+		Image searchBtn = new Image(images.search());
 		searchBtn.addClickHandler(new com.google.gwt.event.dom.client.ClickHandler(){
 			public void onClick(ClickEvent event) {
 				if (toolbarController != null) {
@@ -50,8 +96,9 @@ public class ActivityToolbar extends Composite implements Toolbar {
 				}
 			}
 		});
-		
+		return searchBtn;
 	}
+
 	
 	public ToolbarController getController() {
 		return toolbarController;

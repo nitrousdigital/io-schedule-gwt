@@ -7,4 +7,5 @@ public interface ActivityController {
 	public void showStarred();
 	public void showSandbox();
 	public void showBulletin();
+	public void showSessionTrack(SessionTrack track);
 }
