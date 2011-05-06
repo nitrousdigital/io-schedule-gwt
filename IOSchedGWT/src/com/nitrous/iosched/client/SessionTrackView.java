@@ -36,6 +36,7 @@ public class SessionTrackView extends Composite implements ToolbarEnabledWidget 
 			row.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 			Label label = new Label(track.toString());
 			label.setStyleName("sessionTrackText");
+			label.setWidth((width - 40)+"px");
 			final SessionTrack clickedTrack = track;
 			label.addClickHandler(new ClickHandler(){
 				public void onClick(ClickEvent event) {
