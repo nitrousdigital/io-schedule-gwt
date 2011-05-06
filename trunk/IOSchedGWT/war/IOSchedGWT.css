@@ -52,6 +52,10 @@ h1 {
 .sessionTrackSwatch {
     cursor: pointer;
 }
+.sessionTrackRow {
+	border-bottom-style:solid;
+    border-bottom-width:1px;	
+}
 .iconText {
     font-family: 'Droid Sans',Arial,helvetica;
     font-size: 13px;
