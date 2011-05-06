@@ -17,7 +17,7 @@ public class SessionTrackViewToolbar extends ActivityToolbar {
 		return new Widget[]{
 				initHomeButton(),
 				initBackButton(),
-				initToolbarLabel(toolbarLabel, 143),
+				initToolbarLabel(toolbarLabel, 142),
 				initRefreshButton(),
 				initSearchButton()
 		};
