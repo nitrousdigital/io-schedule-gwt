@@ -31,6 +31,7 @@ public class SessionTrackView extends Composite implements ToolbarEnabledWidget 
 		for (SessionTrack track : SessionTrack.values()) {
 			HorizontalPanel row = new HorizontalPanel();
 			row.setWidth(width+"px");
+			row.setStyleName("sessionTrackRow");
 			row.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 			row.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 			Label label = new Label(track.toString());
@@ -45,6 +46,7 @@ public class SessionTrackView extends Composite implements ToolbarEnabledWidget 
 			});
 			row.add(label);
 			row.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);			
+			row.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 			Image img = getImage(track);
 			if (img != null) {
 				img.setStyleName("sessionTrackSwatch");
