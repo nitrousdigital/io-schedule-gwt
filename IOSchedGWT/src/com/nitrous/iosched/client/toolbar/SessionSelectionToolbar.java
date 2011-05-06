@@ -16,7 +16,7 @@ public class SessionSelectionToolbar extends ActivityToolbar {
 	protected Widget[] initWidgets(String toolbarLabel) {
 		return new Widget[]{
 				initHomeButton(),
-				initToolbarLabel(toolbarLabel, 230),
+				initToolbarLabel(toolbarLabel, 229),
 				initSearchButton()
 		};
 	}
