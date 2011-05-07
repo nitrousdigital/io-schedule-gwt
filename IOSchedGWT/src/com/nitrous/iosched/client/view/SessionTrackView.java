@@ -70,17 +70,17 @@ public class SessionTrackView extends Composite implements ToolbarEnabledView, R
 			builder.sendRequest(null, new RequestCallback(){
 				public void onResponseReceived(Request request, Response response) {
 					if (response.getStatusCode() != Response.SC_OK) {
-						showError("Failed to load session data: "+response.getStatusText());
+						showMessage("Failed to load session data: "+response.getStatusText(), true);
 					} else {
 						loadSessionData(response.getText());
 					}
 				}
 				public void onError(Request request, Throwable exception) {
-					showError("Failed to load session data: "+exception.getMessage());
+					showMessage("Failed to load session data: "+exception.getMessage(), true);
 				}
 			});
 		} catch (Exception ex) {
-			showError("Failed to load session data: "+ex.getMessage());
+			showMessage("Failed to load session data: "+ex.getMessage(), true);
 		}		
 	}
 	
@@ -158,10 +158,6 @@ public class SessionTrackView extends Composite implements ToolbarEnabledView, R
 	
 	private void onClear() {
 		this.layout.clear();		
-	}
-	
-	private void showError(String error) {
-		showMessage("<font color=\"#d72525\">" + error + "</font>", true);
 	}
 	
 	public Toolbar getToolbar() {

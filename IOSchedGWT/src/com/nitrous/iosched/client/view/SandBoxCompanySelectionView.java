@@ -62,17 +62,17 @@ public class SandBoxCompanySelectionView extends Composite implements ToolbarEna
 			builder.sendRequest(null, new RequestCallback(){
 				public void onResponseReceived(Request request, Response response) {
 					if (response.getStatusCode() != Response.SC_OK) {
-						showError("Failed to load sandbox data: "+response.getStatusText());
+						showMessage("Failed to load sandbox data: "+response.getStatusText(), true);
 					} else {
 						loadSandboxData(response.getText());
 					}
 				}
 				public void onError(Request request, Throwable exception) {
-					showError("Failed to load sandbox data: "+exception.getMessage());
+					showMessage("Failed to load sandbox data: "+exception.getMessage(), true);
 				}
 			});
 		} catch (Exception ex) {
-			showError("Failed to load sandbox data: "+ex.getMessage());
+			showMessage("Failed to load sandbox data: "+ex.getMessage(), true);
 		}		
 	}
 	
@@ -123,10 +123,6 @@ public class SandBoxCompanySelectionView extends Composite implements ToolbarEna
 	
 	private void onClear() {
 		this.layout.clear();		
-	}
-	
-	private void showError(String error) {
-		showMessage("<font color=\"#d72525\">" + error + "</font>", true);
 	}
 	
 	public Toolbar getToolbar() {
