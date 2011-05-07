@@ -119,7 +119,7 @@ public class ActivityMenu extends Composite implements ToolbarEnabledWidget {
 		sandboxBtn.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event) {
 				if (controller != null) {
-					controller.showSandbox();
+					controller.showSandboxSelector();
 				}
 			}
 		});
@@ -128,7 +128,7 @@ public class ActivityMenu extends Composite implements ToolbarEnabledWidget {
 		lblSandbox.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event) {
 				if (controller != null) {
-					controller.showSandbox();
+					controller.showSandboxSelector();
 				}
 			}
 		});

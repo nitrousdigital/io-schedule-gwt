@@ -56,6 +56,20 @@ h1 {
 	border-bottom-style:solid;
     border-bottom-width:1px;	
 }
+.sandboxSelectionRow {
+    border-bottom-style:solid;
+    border-bottom-width:1px;    
+}
+.sandboxSelectionRowText {
+    font-family: 'Droid Sans',Arial,helvetica;
+    font-size: 16px;
+    color: #000000;
+    cursor: pointer;
+}
+.sandboxSelectionSwatch {
+    cursor: pointer;
+}
+
 .iconText {
     font-family: 'Droid Sans',Arial,helvetica;
     font-size: 13px;
