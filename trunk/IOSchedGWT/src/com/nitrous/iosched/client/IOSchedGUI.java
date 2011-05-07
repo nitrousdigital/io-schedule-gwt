@@ -6,30 +6,45 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DeckPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.nitrous.iosched.client.images.Images;
+import com.nitrous.iosched.client.model.CompanyPod;
+import com.nitrous.iosched.client.model.SessionTrack;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarController;
-import com.nitrous.iosched.client.toolbar.ToolbarEnabledWidget;
+import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
+import com.nitrous.iosched.client.view.ActivityController;
+import com.nitrous.iosched.client.view.ActivityMenuView;
+import com.nitrous.iosched.client.view.BulletinView;
+import com.nitrous.iosched.client.view.MapView;
+import com.nitrous.iosched.client.view.Refreshable;
+import com.nitrous.iosched.client.view.SandBoxSelectionView;
+import com.nitrous.iosched.client.view.SandBoxCompanySelectionView;
+import com.nitrous.iosched.client.view.ScheduleView;
+import com.nitrous.iosched.client.view.SessionTrackSelectionView;
+import com.nitrous.iosched.client.view.SessionTrackView;
+import com.nitrous.iosched.client.view.StarredView;
 
 public class IOSchedGUI extends Composite implements ActivityController, ToolbarController {
 	private static final Images images = GWT.create(Images.class);
 	
-	private ActivityMenu rootMenu;
+	private ActivityMenuView rootMenu;
 	
 	// views
 	private ScheduleView schedule;
 	private MapView map;
 	
-	private SessionTrackSelectionView sessionSelection;
+	private SessionTrackSelectionView sessionTrackSelectionView;
 	private SessionTrackView sessionTrackView;
 	
 	private StarredView starred;
 	private SandBoxSelectionView sandboxSelectionView;
+	private SandBoxCompanySelectionView sandBoxCompanySelectionView;
+	
 	private BulletinView bulletin;
 	
 	private AbsolutePanel layout;
 	private DeckPanel viewDeckPanel;
 	private Toolbar currentToolbar;
-	private ToolbarEnabledWidget currentView;
+	private ToolbarEnabledView currentView;
 	
 	private static final int WIDTH = 316;
 	public IOSchedGUI() {		
@@ -48,7 +63,7 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 		layout.add(viewDeckPanel, 0, 49);
 		
 		// 0
-		rootMenu = new ActivityMenu(WIDTH, clientHeight);
+		rootMenu = new ActivityMenuView(WIDTH, clientHeight);
 		rootMenu.setController(this);
 		viewDeckPanel.add(rootMenu);
 			
@@ -61,9 +76,9 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 		viewDeckPanel.add(schedule);
 		
 		// 3
-		sessionSelection = new SessionTrackSelectionView(WIDTH);
-		sessionSelection.setController(this);
-		viewDeckPanel.add(sessionSelection);
+		sessionTrackSelectionView = new SessionTrackSelectionView(WIDTH);
+		sessionTrackSelectionView.setController(this);
+		viewDeckPanel.add(sessionTrackSelectionView);
 
 		// 4
 		starred = new StarredView(WIDTH, clientHeight);
@@ -82,12 +97,18 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 		sessionTrackView = new SessionTrackView(WIDTH);
 		viewDeckPanel.add(sessionTrackView);
 		
+		// 8 - displays the list of companies within a selected sandbox pod
+		sandBoxCompanySelectionView = new SandBoxCompanySelectionView(WIDTH);
+		viewDeckPanel.add(sandBoxCompanySelectionView);
+		
 		home();
 	}
 	
 	public void back() {
 		if (currentView == sessionTrackView) {
-			showSessions();
+			showSessionTrackSelector();
+		} else if (currentView == sandBoxCompanySelectionView) {
+			showSandboxSelector();
 		}
 	}
 	
@@ -97,7 +118,7 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 		showToolbar(currentView);
 	}
 	
-	private void showToolbar(ToolbarEnabledWidget widget) {
+	private void showToolbar(ToolbarEnabledView widget) {
 		if (currentToolbar != null) {
 			layout.remove(currentToolbar.getUI());
 		}
@@ -129,9 +150,9 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 		showToolbar(currentView);
 	}
 	
-	public void showSessions() {
+	public void showSessionTrackSelector() {
 		viewDeckPanel.showWidget(3);
-		currentView = sessionSelection;
+		currentView = sessionTrackSelectionView;
 		showToolbar(currentView);
 	}
 	public void showStarred() {
@@ -156,9 +177,11 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 		showToolbar(currentView);
 	}
 
-	public void showSandbox(Sandbox sandbox) {
-		// TODO Auto-generated method stub
-		
+	public void showCompanyPod(CompanyPod pod) {
+		this.sandBoxCompanySelectionView.showPodCompanies(pod);
+		viewDeckPanel.showWidget(8);
+		currentView = sandBoxCompanySelectionView;
+		showToolbar(currentView);
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.nitrous.iosched.client;
+package com.nitrous.iosched.client.view;
 
 import java.util.Comparator;
 import java.util.Date;
@@ -18,16 +18,17 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.nitrous.iosched.client.model.Feed;
 import com.nitrous.iosched.client.model.FeedEntry;
 import com.nitrous.iosched.client.model.SessionData;
+import com.nitrous.iosched.client.model.SessionTrack;
 import com.nitrous.iosched.client.toolbar.SessionTrackViewToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
-import com.nitrous.iosched.client.toolbar.ToolbarEnabledWidget;
+import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 
 /**
  * Displays the sessions for a selected track
  * @author Nick
  *
  */
-public class SessionTrackView extends Composite implements ToolbarEnabledWidget, Refreshable {
+public class SessionTrackView extends Composite implements ToolbarEnabledView, Refreshable {
 	private SessionTrackViewToolbar toolbar = new SessionTrackViewToolbar();
 	private SessionTrack track;
 	private VerticalPanel layout;

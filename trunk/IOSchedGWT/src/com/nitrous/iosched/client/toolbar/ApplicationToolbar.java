@@ -8,7 +8,7 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 import com.nitrous.iosched.client.images.Images;
 
-public class RootToolbar extends Composite implements Toolbar {
+public class ApplicationToolbar extends Composite implements Toolbar {
 	
 	private static final Images images = GWT.create(Images.class);
 	private static final Image logo = new Image(images.logo());
@@ -17,7 +17,7 @@ public class RootToolbar extends Composite implements Toolbar {
 
 	private ToolbarController toolbarController;
 	
-	public RootToolbar() {
+	public ApplicationToolbar() {
 		HorizontalPanel toolbar = new HorizontalPanel();
 		initWidget(toolbar);
 		

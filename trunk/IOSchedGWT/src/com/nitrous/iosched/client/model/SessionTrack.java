@@ -1,4 +1,4 @@
-package com.nitrous.iosched.client;
+package com.nitrous.iosched.client.model;
 
 public enum SessionTrack {
 	All("(All sessions)"),
