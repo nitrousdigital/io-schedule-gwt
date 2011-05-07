@@ -1,4 +1,4 @@
-package com.nitrous.iosched.client;
+package com.nitrous.iosched.client.view;
 
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -7,9 +7,9 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.nitrous.iosched.client.toolbar.ActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
-import com.nitrous.iosched.client.toolbar.ToolbarEnabledWidget;
+import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 
-public class StarredView extends Composite implements ToolbarEnabledWidget {
+public class StarredView extends Composite implements ToolbarEnabledView {
 	private ActivityToolbar toolbar = new ActivityToolbar("Starred");
 	public StarredView(int width, int height) {
 		VerticalPanel layout = new VerticalPanel();

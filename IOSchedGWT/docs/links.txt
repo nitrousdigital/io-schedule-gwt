@@ -17,6 +17,7 @@ SPEAKERS
 https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od7/public/basic
 
 
+https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od7/public/values?alt=json
 
 SANDBOX Atom
 ====================

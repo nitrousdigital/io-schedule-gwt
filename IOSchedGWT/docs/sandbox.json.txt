@@ -1,7 +1,4 @@
-http://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values?alt=json-in-script
-SANDBOX
-
-gdata.io.handleScriptLoaded({
+Ôªø{
    "version":"1.0",
    "encoding":"UTF-8",
    "feed":{
@@ -12,7 +9,7 @@ gdata.io.handleScriptLoaded({
          "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values"
       },
       "updated":{
-         "$t":"2011-05-04T00:15:01.165Z"
+         "$t":"2011-05-07T19:05:35.871Z"
       },
       "category":[
          {
@@ -38,7 +35,7 @@ gdata.io.handleScriptLoaded({
          {
             "rel":"self",
             "type":"application/atom+xml",
-            "href":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values?alt\u003djson-in-script"
+            "href":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values?alt\u003djson"
          }
       ],
       "author":[
@@ -63,7 +60,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/ciyn3"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -77,7 +74,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: Apps4Android, Inc., companydesc: Worldís largest developer of Android applications designed to support people with disabilities, individuals 65+ years of age, and consumers who never learned to read, companyurl: http://apps4android.org, companyproductdesc: Accessibly-designed Android applications including, TeleDroid Personal Healthcare ManagerÆ, IDEAL Access 4 CarriersÆ, IDEAL Web Access PackÆ, IDEAL Item IdentifierÆ, IDEAL MagnifierÆ, and Accessible ePub ReaderÆ, companypod: Accessibility "
+               "$t":"companyname: Apps4Android, Inc., companydesc: World‚Äôs largest developer of Android applications designed to support people with disabilities, individuals 65+ years of age, and consumers who never learned to read, companyurl: http://apps4android.org, companyproductdesc: Accessibly-designed Android applications including, TeleDroid Personal Healthcare Manager¬Æ, IDEAL Access 4 Carriers¬Æ, IDEAL Web Access Pack¬Æ, IDEAL Item Identifier¬Æ, IDEAL Magnifier¬Æ, and Accessible ePub Reader¬Æ, companypod: Accessibility "
             },
             "link":[
                {
@@ -96,13 +93,13 @@ gdata.io.handleScriptLoaded({
                "$t":""
             },
             "gsx$companydesc":{
-               "$t":"Worldís largest developer of Android applications designed to support people with disabilities, individuals 65+ years of age, and consumers who never learned to read"
+               "$t":"World‚Äôs largest developer of Android applications designed to support people with disabilities, individuals 65+ years of age, and consumers who never learned to read"
             },
             "gsx$companyurl":{
                "$t":"http://apps4android.org"
             },
             "gsx$companyproductdesc":{
-               "$t":"Accessibly-designed Android applications including, TeleDroid Personal Healthcare ManagerÆ, IDEAL Access 4 CarriersÆ, IDEAL Web Access PackÆ, IDEAL Item IdentifierÆ, IDEAL MagnifierÆ, and Accessible ePub ReaderÆ"
+               "$t":"Accessibly-designed Android applications including, TeleDroid Personal Healthcare Manager¬Æ, IDEAL Access 4 Carriers¬Æ, IDEAL Web Access Pack¬Æ, IDEAL Item Identifier¬Æ, IDEAL Magnifier¬Æ, and Accessible ePub Reader¬Æ"
             },
             "gsx$companylogo":{
                "$t":""
@@ -122,7 +119,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/ckd7g"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -181,7 +178,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/clrrx"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -240,7 +237,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/cyevm"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -299,7 +296,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/cztg3"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -358,7 +355,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/d180g"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -417,7 +414,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/d2mkx"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -476,7 +473,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/cssly"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -535,7 +532,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/cu76f"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -594,7 +591,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/cvlqs"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -653,7 +650,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/cx0b9"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -667,7 +664,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: Dell, companydesc: Dell listens to customersí feedback to provide products that enable people to create and share experiences.  See dell.com or visit Dell in 60,000+ stores globally., companyurl: http://dell.com, companyproductdesc: Streak7, Streak5 and Venue are powerful products with large high resolution displays that deliver the ultimate in social-networking, entertainment and business applications., companylogo: http://www.google.com/events/io/2011/static/img/Dell.png, companypod: Android"
+               "$t":"companyname: Dell, companydesc: Dell listens to customers‚Äô feedback to provide products that enable people to create and share experiences.  See dell.com or visit Dell in 60,000+ stores globally., companyurl: http://dell.com, companyproductdesc: Streak7, Streak5 and Venue are powerful products with large high resolution displays that deliver the ultimate in social-networking, entertainment and business applications., companylogo: http://www.google.com/events/io/2011/static/img/Dell.png, companypod: Android"
             },
             "link":[
                {
@@ -686,7 +683,7 @@ gdata.io.handleScriptLoaded({
                "$t":""
             },
             "gsx$companydesc":{
-               "$t":"Dell listens to customersí feedback to provide products that enable people to create and share experiences.  See dell.com or visit Dell in 60,000+ stores globally."
+               "$t":"Dell listens to customers‚Äô feedback to provide products that enable people to create and share experiences.  See dell.com or visit Dell in 60,000+ stores globally."
             },
             "gsx$companyurl":{
                "$t":"http://dell.com"
@@ -712,7 +709,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/d9ney"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -771,7 +768,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/db1zf"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -785,7 +782,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: eBay Mobile, companydesc: eBay Mobile is a global leader in mobile commerce, offering a seamless shopping experience for eBay users ñ anytime, anywhere., companyurl: http://mobile.ebay.com, companyproductdesc: eBay for Android Honeycomb takes advantage of fragments, widgets and active notifications in unique and compelling ways for eBay users!, companylogo: http://www.google.com/events/io/2011/static/img/eBay.png, companypod: Android"
+               "$t":"companyname: eBay Mobile, companydesc: eBay Mobile is a global leader in mobile commerce, offering a seamless shopping experience for eBay users ‚Äì anytime, anywhere., companyurl: http://mobile.ebay.com, companyproductdesc: eBay for Android Honeycomb takes advantage of fragments, widgets and active notifications in unique and compelling ways for eBay users!, companylogo: http://www.google.com/events/io/2011/static/img/eBay.png, companypod: Android"
             },
             "link":[
                {
@@ -804,7 +801,7 @@ gdata.io.handleScriptLoaded({
                "$t":""
             },
             "gsx$companydesc":{
-               "$t":"eBay Mobile is a global leader in mobile commerce, offering a seamless shopping experience for eBay users ñ anytime, anywhere."
+               "$t":"eBay Mobile is a global leader in mobile commerce, offering a seamless shopping experience for eBay users ‚Äì anytime, anywhere."
             },
             "gsx$companyurl":{
                "$t":"http://mobile.ebay.com"
@@ -830,7 +827,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/dcgjs"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -889,7 +886,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/ddv49"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -948,7 +945,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/d415a"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -1007,7 +1004,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/d5fpr"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -1066,7 +1063,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/d6ua4"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -1080,7 +1077,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: Gameloft, companydesc: A leading global publisher of digital and social games, GameloftÆ has established itself as one of the top innovators in its field since 2000., companyurl: http://www.gameloft.com, companyproductdesc: N.O.V.A. 2 HD - The ultimate sci-fi FPS!\nAsphalt 6 HD - Adrenaline-pumping driving!\nModern Combat 2 HD - Now on fronts all over the globe., companylogo: http://www.google.com/events/io/2011/static/img/Gameloft.png, companypod: Android"
+               "$t":"companyname: Gameloft, companydesc: A leading global publisher of digital and social games, Gameloft¬Æ has established itself as one of the top innovators in its field since 2000., companyurl: http://www.gameloft.com, companyproductdesc: N.O.V.A. 2 HD - The ultimate sci-fi FPS!\nAsphalt 6 HD - Adrenaline-pumping driving!\nModern Combat 2 HD - Now on fronts all over the globe., companylogo: http://www.google.com/events/io/2011/static/img/Gameloft.png, companypod: Android"
             },
             "link":[
                {
@@ -1099,7 +1096,7 @@ gdata.io.handleScriptLoaded({
                "$t":""
             },
             "gsx$companydesc":{
-               "$t":"A leading global publisher of digital and social games, GameloftÆ has established itself as one of the top innovators in its field since 2000."
+               "$t":"A leading global publisher of digital and social games, Gameloft¬Æ has established itself as one of the top innovators in its field since 2000."
             },
             "gsx$companyurl":{
                "$t":"http://www.gameloft.com"
@@ -1125,7 +1122,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/d88ul"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -1184,7 +1181,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/dkvya"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -1243,7 +1240,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/dmair"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -1302,7 +1299,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/dnp34"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -1361,7 +1358,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/dp3nl"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -1420,7 +1417,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/df9om"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -1434,7 +1431,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: Meta Watch, companydesc: Meta Watch is an advanced development group exploring technology-based opportunities for watches. It is a division of Fossil., companyurl: http://www.metawatch.org, companyproductdesc: Wearable development system (watch, remote protocol, \u0026 SDK) that enables rapid development of ìconnected watchî applications and interfaces for devices, mobile apps and web services.\n\n, companylogo: http://www.google.com/events/io/2011/static/img/MetaWatch.png, companypod: Android"
+               "$t":"companyname: Meta Watch, companydesc: Meta Watch is an advanced development group exploring technology-based opportunities for watches. It is a division of Fossil., companyurl: http://www.metawatch.org, companyproductdesc: Wearable development system &#40;watch, remote protocol, \u0026 SDK&#41; that enables rapid development of ‚Äúconnected watch‚Äù applications and interfaces for devices, mobile apps and web services.\n\n, companylogo: http://www.google.com/events/io/2011/static/img/MetaWatch.png, companypod: Android"
             },
             "link":[
                {
@@ -1459,7 +1456,7 @@ gdata.io.handleScriptLoaded({
                "$t":"http://www.metawatch.org"
             },
             "gsx$companyproductdesc":{
-               "$t":"Wearable development system (watch, remote protocol, \u0026 SDK) that enables rapid development of ìconnected watchî applications and interfaces for devices, mobile apps and web services.\n\n"
+               "$t":"Wearable development system &#40;watch, remote protocol, \u0026 SDK&#41; that enables rapid development of ‚Äúconnected watch‚Äù applications and interfaces for devices, mobile apps and web services.\n\n"
             },
             "gsx$companylogo":{
                "$t":"http://www.google.com/events/io/2011/static/img/MetaWatch.png"
@@ -1479,7 +1476,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/dgo93"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -1538,7 +1535,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/di2tg"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -1597,7 +1594,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/djhdx"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -1611,7 +1608,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: Qello, companydesc: Qello is the premier source for the highest quality and widest variety of on-demand HD concert films streamed to any digital device - anytime, companyurl: http://www.qello.com, companyproductdesc: The Qello App streams the worldís most comprehensive catalog of of HD concert films to all Android devices worldwide. , companylogo: http://www.google.com/events/io/2011/static/img/Qello.png, companypod: Android"
+               "$t":"companyname: Qello, companydesc: Qello is the premier source for the highest quality and widest variety of on-demand HD concert films streamed to any digital device - anytime, companyurl: http://www.qello.com, companyproductdesc: The Qello App streams the world‚Äôs most comprehensive catalog of of HD concert films to all Android devices worldwide. , companylogo: http://www.google.com/events/io/2011/static/img/Qello.png, companypod: Android"
             },
             "link":[
                {
@@ -1636,7 +1633,7 @@ gdata.io.handleScriptLoaded({
                "$t":"http://www.qello.com"
             },
             "gsx$companyproductdesc":{
-               "$t":"The Qello App streams the worldís most comprehensive catalog of of HD concert films to all Android devices worldwide. "
+               "$t":"The Qello App streams the world‚Äôs most comprehensive catalog of of HD concert films to all Android devices worldwide. "
             },
             "gsx$companylogo":{
                "$t":"http://www.google.com/events/io/2011/static/img/Qello.png"
@@ -1656,7 +1653,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/dw4je"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -1715,7 +1712,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/dxj3v"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -1729,7 +1726,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: Sony Ericsson Mobile Communications Inc, companydesc: Sony Ericsson offers exciting consumer experiences through phones, accessories, content and applications. Visit http://www.sonyericsson.com to find out more about Sony Ericsson., companyurl: http://www.sonyericsson.com/developer, companyproductdesc: Sony Ericsson Xperiaô PLAY is the new groundbreaking all-in-one smartphone and game console. Find all you need at sonyericsson.com/developer., companylogo: http://www.google.com/events/io/2011/static/img/SonyEricsson.png, companypod: Android"
+               "$t":"companyname: Sony Ericsson Mobile Communications Inc, companydesc: Sony Ericsson offers exciting consumer experiences through phones, accessories, content and applications. Visit http://www.sonyericsson.com to find out more about Sony Ericsson., companyurl: http://www.sonyericsson.com/developer, companyproductdesc: Sony Ericsson Xperia‚Ñ¢ PLAY is the new groundbreaking all-in-one smartphone and game console. Find all you need at sonyericsson.com/developer., companylogo: http://www.google.com/events/io/2011/static/img/SonyEricsson.png, companypod: Android"
             },
             "link":[
                {
@@ -1754,7 +1751,7 @@ gdata.io.handleScriptLoaded({
                "$t":"http://www.sonyericsson.com/developer"
             },
             "gsx$companyproductdesc":{
-               "$t":"Sony Ericsson Xperiaô PLAY is the new groundbreaking all-in-one smartphone and game console. Find all you need at sonyericsson.com/developer."
+               "$t":"Sony Ericsson Xperia‚Ñ¢ PLAY is the new groundbreaking all-in-one smartphone and game console. Find all you need at sonyericsson.com/developer."
             },
             "gsx$companylogo":{
                "$t":"http://www.google.com/events/io/2011/static/img/SonyEricsson.png"
@@ -1774,7 +1771,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/dyxo8"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -1833,7 +1830,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/e0c8p"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -1847,7 +1844,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: Vlingo, companydesc: Vlingo is the Virtual Assistant that turns your words into action. Vlingo's Company goal is to understand the userís intent and take the appropriate action. , companyurl: http://www.vlingo.com, companyproductdesc: The Vlingo Virtual Assistant turns your words into action! Vlingo combines voice recognition with its \"intent engine\" to help you quickly complete your desired action. , companylogo: http://www.google.com/events/io/2011/static/img/Vlingo.png, companypod: Android"
+               "$t":"companyname: Vlingo, companydesc: Vlingo is the Virtual Assistant that turns your words into action. Vlingo's Company goal is to understand the user‚Äôs intent and take the appropriate action. , companyurl: http://www.vlingo.com, companyproductdesc: The Vlingo Virtual Assistant turns your words into action! Vlingo combines voice recognition with its \"intent engine\" to help you quickly complete your desired action. , companylogo: http://www.google.com/events/io/2011/static/img/Vlingo.png, companypod: Android"
             },
             "link":[
                {
@@ -1866,7 +1863,7 @@ gdata.io.handleScriptLoaded({
                "$t":""
             },
             "gsx$companydesc":{
-               "$t":"Vlingo is the Virtual Assistant that turns your words into action. Vlingo's Company goal is to understand the userís intent and take the appropriate action. "
+               "$t":"Vlingo is the Virtual Assistant that turns your words into action. Vlingo's Company goal is to understand the user‚Äôs intent and take the appropriate action. "
             },
             "gsx$companyurl":{
                "$t":"http://www.vlingo.com"
@@ -1892,7 +1889,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/dqi9q"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -1951,7 +1948,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/drwu7"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -2010,7 +2007,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/dtbek"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -2069,7 +2066,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/dupz1"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -2083,7 +2080,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: Bittle, companydesc: Bittle offers the first 100% Cloud Business Intelligence solution in the world based on Google Cloud technologies (IaaS and PaaS)., companyurl: http://apps.bittle-solutions.com, companyproductdesc: Bittle's Cloud BI solution is self-service and lets organizations deploy dashboards and reporting solutions quickly and cost-effectively Ö also available in a ìWhite Labelî model., companylogo: http://www.google.com/events/io/2011/static/img/bittle.png, companypod: App Engine"
+               "$t":"companyname: Bittle, companydesc: Bittle offers the first 100% Cloud Business Intelligence solution in the world based on Google Cloud technologies (IaaS and PaaS)., companyurl: http://apps.bittle-solutions.com, companyproductdesc: Bittle's Cloud BI solution is self-service and lets organizations deploy dashboards and reporting solutions quickly and cost-effectively ‚Ä¶ also available in a ‚ÄúWhite Label‚Äù model., companylogo: http://www.google.com/events/io/2011/static/img/bittle.png, companypod: App Engine"
             },
             "link":[
                {
@@ -2108,7 +2105,7 @@ gdata.io.handleScriptLoaded({
                "$t":"http://apps.bittle-solutions.com"
             },
             "gsx$companyproductdesc":{
-               "$t":"Bittle's Cloud BI solution is self-service and lets organizations deploy dashboards and reporting solutions quickly and cost-effectively Ö also available in a ìWhite Labelî model."
+               "$t":"Bittle's Cloud BI solution is self-service and lets organizations deploy dashboards and reporting solutions quickly and cost-effectively ‚Ä¶ also available in a ‚ÄúWhite Label‚Äù model."
             },
             "gsx$companylogo":{
                "$t":"http://www.google.com/events/io/2011/static/img/bittle.png"
@@ -2128,7 +2125,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/e7d2q"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -2187,7 +2184,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/e8rn7"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -2246,7 +2243,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/ea67k"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -2305,7 +2302,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/ebks1"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -2319,7 +2316,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: Elastic Path Software, companydesc: Elastic Path Software is a provider of the industryís most flexible enterprise eCommerce platform and strategic eCommerce consulting., companyurl: http://www.elasticpath.com, companyproductdesc: Elastic Path Commerce is a robust ecommerce platform providing the flexibility that allows the Google Earth and SketchUp stores to run exclusively on App Engine., companylogo: http://www.google.com/events/io/2011/static/img/elasticpath.png, companypod: App Engine"
+               "$t":"companyname: Elastic Path Software, companydesc: Elastic Path Software is a provider of the industry‚Äôs most flexible enterprise eCommerce platform and strategic eCommerce consulting., companyurl: http://www.elasticpath.com, companyproductdesc: Elastic Path Commerce is a robust ecommerce platform providing the flexibility that allows the Google Earth and SketchUp stores to run exclusively on App Engine., companylogo: http://www.google.com/events/io/2011/static/img/elasticpath.png, companypod: App Engine"
             },
             "link":[
                {
@@ -2338,7 +2335,7 @@ gdata.io.handleScriptLoaded({
                "$t":""
             },
             "gsx$companydesc":{
-               "$t":"Elastic Path Software is a provider of the industryís most flexible enterprise eCommerce platform and strategic eCommerce consulting."
+               "$t":"Elastic Path Software is a provider of the industry‚Äôs most flexible enterprise eCommerce platform and strategic eCommerce consulting."
             },
             "gsx$companyurl":{
                "$t":"http://www.elasticpath.com"
@@ -2364,7 +2361,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/e1qt2"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -2423,7 +2420,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/e35dj"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -2482,7 +2479,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/e4jxw"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -2541,7 +2538,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/e5yid"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -2600,7 +2597,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/eilm2"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -2659,7 +2656,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/ek06j"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -2718,7 +2715,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/eleqw"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -2777,7 +2774,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/emtbd"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -2836,7 +2833,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/eczce"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -2895,7 +2892,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/eedwv"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -2909,7 +2906,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: WebFilings, companydesc: WebFilings offers the first and only end-to-end solution for external financial reporting.  The company provides a fully-integrated, cloud-based solution dedicated to meeting SEC reporting requirements., companyurl: http://www.webfilings.com, companyproductdesc: For SEC reporting professionals, WebFilings is a revolution in collaboration software for regulatory compliance, delivering the only complete, integrated solution to meet SEC reporting requirements., companylogo: http://www.google.com/events/io/2011/static/img/webfilings.png, companypod: App Engine"
+               "$t":"companyname: WebFilings, companydesc: WebFilings offers the first and only end‚Äêto‚Äêend solution for external financial reporting.  The company provides a fully‚Äêintegrated, cloud‚Äêbased solution dedicated to meeting SEC reporting requirements., companyurl: http://www.webfilings.com, companyproductdesc: For SEC reporting professionals, WebFilings is a revolution in collaboration software for regulatory compliance, delivering the only complete, integrated solution to meet SEC reporting requirements., companylogo: http://www.google.com/events/io/2011/static/img/webfilings.png, companypod: App Engine"
             },
             "link":[
                {
@@ -2928,7 +2925,7 @@ gdata.io.handleScriptLoaded({
                "$t":""
             },
             "gsx$companydesc":{
-               "$t":"WebFilings offers the first and only end-to-end solution for external financial reporting.  The company provides a fully-integrated, cloud-based solution dedicated to meeting SEC reporting requirements."
+               "$t":"WebFilings offers the first and only end‚Äêto‚Äêend solution for external financial reporting.  The company provides a fully‚Äêintegrated, cloud‚Äêbased solution dedicated to meeting SEC reporting requirements."
             },
             "gsx$companyurl":{
                "$t":"http://www.webfilings.com"
@@ -2954,7 +2951,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/eh71p"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -3013,7 +3010,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/etu5e"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -3027,7 +3024,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: Ajax.org Cloud9, companydesc: Ajax.orgís flagship Cloud9 IDE is the first commercial development as a service (DaaS) for JavaScript incorporating HTML5, and supporting Python, Ruby and PHP. Cloud9IDE enables developers to create applications anywhere, anytime and from any browser or tablet. Started with seed funding in 2010, the Amsterdam-based company has a growing team of top European developers, and is looking to expand into North America in 2011. For more information, please visit http://www.ajax.org, and http://www.cloud9IDE.com., companyurl: http://c9.io, companyproductdesc: Cloud9 IDE empowers web developers to lead the revolution of new web technologies that are taking over development beyond the web, on mobile devices and servers. As the first-ever cloud-based integrated development environment (IDE) for JavaScript developers, supporting HTML5, Python, Ruby and PHP, Cloud9 enables web developers to access, edit and share projects anywhere, anytime. Using this next generation technology, developers can build, test, debug, and deploy millions of applications., companylogo: http://www.google.com/events/io/2011/static/img/Cloud9.png, companypod: Chrome"
+               "$t":"companyname: Ajax.org Cloud9, companydesc: Ajax.org‚Äôs flagship Cloud9 IDE is the first commercial development as a service (DaaS) for JavaScript incorporating HTML5, and supporting Python, Ruby and PHP. Cloud9IDE enables developers to create applications anywhere, anytime and from any browser or tablet. Started with seed funding in 2010, the Amsterdam-based company has a growing team of top European developers, and is looking to expand into North America in 2011. For more information, please visit http://www.ajax.org, and http://www.cloud9IDE.com., companyurl: http://c9.io, companyproductdesc: Cloud9 IDE empowers web developers to lead the revolution of new web technologies that are taking over development beyond the web, on mobile devices and servers. As the first-ever cloud-based integrated development environment (IDE) for JavaScript developers, supporting HTML5, Python, Ruby and PHP, Cloud9 enables web developers to access, edit and share projects anywhere, anytime. Using this next generation technology, developers can build, test, debug, and deploy millions of applications., companylogo: http://www.google.com/events/io/2011/static/img/Cloud9.png, companypod: Chrome"
             },
             "link":[
                {
@@ -3046,7 +3043,7 @@ gdata.io.handleScriptLoaded({
                "$t":""
             },
             "gsx$companydesc":{
-               "$t":"Ajax.orgís flagship Cloud9 IDE is the first commercial development as a service (DaaS) for JavaScript incorporating HTML5, and supporting Python, Ruby and PHP. Cloud9IDE enables developers to create applications anywhere, anytime and from any browser or tablet. Started with seed funding in 2010, the Amsterdam-based company has a growing team of top European developers, and is looking to expand into North America in 2011. For more information, please visit http://www.ajax.org, and http://www.cloud9IDE.com."
+               "$t":"Ajax.org‚Äôs flagship Cloud9 IDE is the first commercial development as a service (DaaS) for JavaScript incorporating HTML5, and supporting Python, Ruby and PHP. Cloud9IDE enables developers to create applications anywhere, anytime and from any browser or tablet. Started with seed funding in 2010, the Amsterdam-based company has a growing team of top European developers, and is looking to expand into North America in 2011. For more information, please visit http://www.ajax.org, and http://www.cloud9IDE.com."
             },
             "gsx$companyurl":{
                "$t":"http://c9.io"
@@ -3072,7 +3069,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/ev8pv"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -3131,7 +3128,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/ewna8"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -3145,7 +3142,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: CBS Interactive, companydesc: CBS Interactive is the premier online content network for information and entertainment. CBS Interactive brands dive deep into the things people care most about across news, sports, entertainment, technology and business. With hundreds of millions of unique visitors from around the world each month, CBS Interactive is a global top 10 web property and the largest premium content network online., companyurl: http://www.cnet.com, companyproductdesc: 60 Minutes, Americaís number one news program is now available on the Chrome Web Store! The 60 Minutes Web app built by digital agency Fantasy Interactive features the same hard-hitting investigative reports, interviews, feature segments and profiles of people in the news that are the hallmark of the iconic broadcast show, plus original video content from 60 Minutes Overtime., companypod: Chrome"
+               "$t":"companyname: CBS Interactive, companydesc: CBS Interactive is the premier online content network for information and entertainment. CBS Interactive brands dive deep into the things people care most about across news, sports, entertainment, technology and business. With hundreds of millions of unique visitors from around the world each month, CBS Interactive is a global top 10 web property and the largest premium content network online., companyurl: http://www.cnet.com, companyproductdesc: 60 Minutes, America‚Äôs number one news program is now available on the Chrome Web Store! The 60 Minutes Web app built by digital agency Fantasy Interactive features the same hard-hitting investigative reports, interviews, feature segments and profiles of people in the news that are the hallmark of the iconic broadcast show, plus original video content from 60 Minutes Overtime., companypod: Chrome"
             },
             "link":[
                {
@@ -3170,7 +3167,7 @@ gdata.io.handleScriptLoaded({
                "$t":"http://www.cnet.com"
             },
             "gsx$companyproductdesc":{
-               "$t":"60 Minutes, Americaís number one news program is now available on the Chrome Web Store! The 60 Minutes Web app built by digital agency Fantasy Interactive features the same hard-hitting investigative reports, interviews, feature segments and profiles of people in the news that are the hallmark of the iconic broadcast show, plus original video content from 60 Minutes Overtime."
+               "$t":"60 Minutes, America‚Äôs number one news program is now available on the Chrome Web Store! The 60 Minutes Web app built by digital agency Fantasy Interactive features the same hard-hitting investigative reports, interviews, feature segments and profiles of people in the news that are the hallmark of the iconic broadcast show, plus original video content from 60 Minutes Overtime."
             },
             "gsx$companylogo":{
                "$t":""
@@ -3190,7 +3187,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/ey1up"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -3249,7 +3246,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/eo7vq"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -3263,7 +3260,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: Cooliris, companydesc: Cooliris turns digital content into immersive visual experiences that increase user engagement and discoverability. Cooliris is a venture-backed by Perkins Caufield \u0026 Byers, DAG Ventures, The Westly Group, and Deutsche Telekomís T-Venture. Cooliris is headquartered in Palo Alto., companyurl: http://www.cooliris.com, companyproductdesc: LiveShare by Cooliris is a new and hyper-personal way to communicate with friends across mobile and web through live group photo streams. Create photo groups on the fly, make them as private as you want, and see photos flow into your respective group streams in real-time., companylogo: http://www.google.com/events/io/2011/static/img/Cooliris.png, companypod: Chrome"
+               "$t":"companyname: Cooliris, companydesc: Cooliris turns digital content into immersive visual experiences that increase user engagement and discoverability. Cooliris is a venture-backed by Perkins Caufield \u0026 Byers, DAG Ventures, The Westly Group, and Deutsche Telekom‚Äôs T-Venture. Cooliris is headquartered in Palo Alto., companyurl: http://www.cooliris.com, companyproductdesc: LiveShare by Cooliris is a new and hyper-personal way to communicate with friends across mobile and web through live group photo streams. Create photo groups on the fly, make them as private as you want, and see photos flow into your respective group streams in real-time., companylogo: http://www.google.com/events/io/2011/static/img/Cooliris.png, companypod: Chrome"
             },
             "link":[
                {
@@ -3282,7 +3279,7 @@ gdata.io.handleScriptLoaded({
                "$t":""
             },
             "gsx$companydesc":{
-               "$t":"Cooliris turns digital content into immersive visual experiences that increase user engagement and discoverability. Cooliris is a venture-backed by Perkins Caufield \u0026 Byers, DAG Ventures, The Westly Group, and Deutsche Telekomís T-Venture. Cooliris is headquartered in Palo Alto."
+               "$t":"Cooliris turns digital content into immersive visual experiences that increase user engagement and discoverability. Cooliris is a venture-backed by Perkins Caufield \u0026 Byers, DAG Ventures, The Westly Group, and Deutsche Telekom‚Äôs T-Venture. Cooliris is headquartered in Palo Alto."
             },
             "gsx$companyurl":{
                "$t":"http://www.cooliris.com"
@@ -3308,7 +3305,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/epmg7"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -3367,7 +3364,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/er10k"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -3426,7 +3423,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/esfl1"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -3440,7 +3437,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: Gopherwood Studios, companydesc: Gopherwood Studios, the creators of Entanglement, is a team of developers that specializes in the creation of great HTML5 games., companyurl: http://thwack.gopherwoodstudios.com, companyproductdesc: Thwack!! is the title of Gopherwood Studios latest game and captures the spirit of the bounce and bash gameplay youíll find in this crazy pinball/mini-golf hybrid., companylogo: http://www.google.com/events/io/2011/static/img/gopherwood-studios.png, companypod: Chrome"
+               "$t":"companyname: Gopherwood Studios, companydesc: Gopherwood Studios, the creators of Entanglement, is a team of developers that specializes in the creation of great HTML5 games., companyurl: http://thwack.gopherwoodstudios.com, companyproductdesc: Thwack!! is the title of Gopherwood Studios latest game and captures the spirit of the bounce and bash gameplay you‚Äôll find in this crazy pinball/mini-golf hybrid., companylogo: http://www.google.com/events/io/2011/static/img/gopherwood-studios.png, companypod: Chrome"
             },
             "link":[
                {
@@ -3465,7 +3462,7 @@ gdata.io.handleScriptLoaded({
                "$t":"http://thwack.gopherwoodstudios.com"
             },
             "gsx$companyproductdesc":{
-               "$t":"Thwack!! is the title of Gopherwood Studios latest game and captures the spirit of the bounce and bash gameplay youíll find in this crazy pinball/mini-golf hybrid."
+               "$t":"Thwack!! is the title of Gopherwood Studios latest game and captures the spirit of the bounce and bash gameplay you‚Äôll find in this crazy pinball/mini-golf hybrid."
             },
             "gsx$companylogo":{
                "$t":"http://www.google.com/events/io/2011/static/img/gopherwood-studios.png"
@@ -3485,7 +3482,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/a59y2"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -3544,7 +3541,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/a832w"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -3603,7 +3600,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/a9hnd"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -3662,7 +3659,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/9znoe"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -3676,7 +3673,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: MOG Inc. , companydesc: MOG is the music media company with one simple goal: to perfect your music-listening experience., companyurl: http://www.mog.com, companyproductdesc: MOGís award-winning on-demand music service delivers unlimited mobile downloads and streams over 11 million songs at higher audio fidelity than any other service., companylogo: http://www.google.com/events/io/2011/static/img/mog.png, companypod: Chrome"
+               "$t":"companyname: MOG Inc. , companydesc: MOG is the music media company with one simple goal: to perfect your music-listening experience., companyurl: http://www.mog.com, companyproductdesc: MOG‚Äôs award-winning on-demand music service delivers unlimited mobile downloads and streams over 11 million songs at higher audio fidelity than any other service., companylogo: http://www.google.com/events/io/2011/static/img/mog.png, companypod: Chrome"
             },
             "link":[
                {
@@ -3701,7 +3698,7 @@ gdata.io.handleScriptLoaded({
                "$t":"http://www.mog.com"
             },
             "gsx$companyproductdesc":{
-               "$t":"MOGís award-winning on-demand music service delivers unlimited mobile downloads and streams over 11 million songs at higher audio fidelity than any other service."
+               "$t":"MOG‚Äôs award-winning on-demand music service delivers unlimited mobile downloads and streams over 11 million songs at higher audio fidelity than any other service."
             },
             "gsx$companylogo":{
                "$t":"http://www.google.com/events/io/2011/static/img/mog.png"
@@ -3721,7 +3718,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/a128v"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -3780,7 +3777,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/a2gt8"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -3839,7 +3836,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/a3vdp"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -3898,7 +3895,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/agihe"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -3912,7 +3909,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: CardinalCommerce, companydesc: CardinalCommerce's innovative technologies have helped online merchants capture business around the world. Our CentinelÆ technology offers merchants a suite of eCommerce payment options through one single point of integration, while our MAXô technology allows merchants to 'go mobile' quickly and easily to gain mobile commerce sales and bolster customer loyalty through mobile marketing., companyurl: http://www.cardinalcommerce.com, companyproductdesc: CardinalCommerce has partnered with Google to create the Google Mobile Wallet. The mobile wallet will activate 1-Click Purchasing when shopping on a mobile device accessing securely stored payment sources for a simplified consumer experience (Credit, debit, stored value and others). In addition, the wallet is able to automatically transmit loyalty rewards, retrieve and store receipt information from purchases made both online and offline as well as the users complete purchase history. The Google Wallet is designed to close the loop between online and offline while delivering a rich and seamless multi-channel experience for it's valued supporters. , companylogo: http://www.google.com/events/io/2011/static/img/cardinalcommerce.png, companypod: Commerce"
+               "$t":"companyname: CardinalCommerce, companydesc: CardinalCommerce's innovative technologies have helped online merchants capture business around the world. Our Centinel¬Æ technology offers merchants a suite of eCommerce payment options through one single point of integration, while our MAX‚Ñ¢ technology allows merchants to 'go mobile' quickly and easily to gain mobile commerce sales and bolster customer loyalty through mobile marketing., companyurl: http://www.cardinalcommerce.com, companyproductdesc: CardinalCommerce has partnered with Google to create the Google Mobile Wallet. The mobile wallet will activate 1-Click Purchasing when shopping on a mobile device accessing securely stored payment sources for a simplified consumer experience (Credit, debit, stored value and others). In addition, the wallet is able to automatically transmit loyalty rewards, retrieve and store receipt information from purchases made both online and offline as well as the users complete purchase history. The Google Wallet is designed to close the loop between online and offline while delivering a rich and seamless multi-channel experience for it's valued supporters. , companylogo: http://www.google.com/events/io/2011/static/img/cardinalcommerce.png, companypod: Commerce"
             },
             "link":[
                {
@@ -3931,7 +3928,7 @@ gdata.io.handleScriptLoaded({
                "$t":""
             },
             "gsx$companydesc":{
-               "$t":"CardinalCommerce's innovative technologies have helped online merchants capture business around the world. Our CentinelÆ technology offers merchants a suite of eCommerce payment options through one single point of integration, while our MAXô technology allows merchants to 'go mobile' quickly and easily to gain mobile commerce sales and bolster customer loyalty through mobile marketing."
+               "$t":"CardinalCommerce's innovative technologies have helped online merchants capture business around the world. Our Centinel¬Æ technology offers merchants a suite of eCommerce payment options through one single point of integration, while our MAX‚Ñ¢ technology allows merchants to 'go mobile' quickly and easily to gain mobile commerce sales and bolster customer loyalty through mobile marketing."
             },
             "gsx$companyurl":{
                "$t":"http://www.cardinalcommerce.com"
@@ -3957,7 +3954,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/ahx1v"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -4016,7 +4013,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/ajbm8"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -4075,7 +4072,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/akq6p"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -4134,7 +4131,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/aaw7q"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -4193,7 +4190,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/acas7"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -4252,7 +4249,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/adpck"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -4311,7 +4308,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/af3x1"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -4370,7 +4367,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/arr0q"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -4429,7 +4426,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/auk5k"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -4488,7 +4485,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/avyq1"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -4547,7 +4544,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/am4r2"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -4561,7 +4558,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: GBST, companydesc: GBST is a global technology services company providing securities transaction and client accounting solutions, wealth management solutions, and professional design and development services to the financial services industry. \n, companyurl: http://www.gbst.com, companyproductdesc: The GBST Global Broker Services division offers Syn~ô, a modern, highly\nscalable, rules-based transaction processing engine which facilitates the highest levels of STP/STEP in the global capital markets.\nFor Wealth Management, Composerô offers a highly configurable solution for the management and administration of investments. The GWT-based\nComposerWebô solution offers a comprehensive and extensive web front-end\napplication, enabling advisers and investors to administer portfolios. , companylogo: http://www.google.com/events/io/2011/static/img/gbst.png, companypod: Developer Tools"
+               "$t":"companyname: GBST, companydesc: GBST is a global technology services company providing securities transaction and client accounting solutions, wealth management solutions, and professional design and development services to the financial services industry. \n, companyurl: http://www.gbst.com, companyproductdesc: The GBST Global Broker Services division offers Syn~‚Ñ¢, a modern, highly\nscalable, rules-based transaction processing engine which facilitates the highest levels of STP/STEP in the global capital markets.\nFor Wealth Management, Composer‚Ñ¢ offers a highly configurable solution for the management and administration of investments. The GWT-based\nComposerWeb‚Ñ¢ solution offers a comprehensive and extensive web front-end\napplication, enabling advisers and investors to administer portfolios. , companylogo: http://www.google.com/events/io/2011/static/img/gbst.png, companypod: Developer Tools"
             },
             "link":[
                {
@@ -4586,7 +4583,7 @@ gdata.io.handleScriptLoaded({
                "$t":"http://www.gbst.com"
             },
             "gsx$companyproductdesc":{
-               "$t":"The GBST Global Broker Services division offers Syn~ô, a modern, highly\nscalable, rules-based transaction processing engine which facilitates the highest levels of STP/STEP in the global capital markets.\nFor Wealth Management, Composerô offers a highly configurable solution for the management and administration of investments. The GWT-based\nComposerWebô solution offers a comprehensive and extensive web front-end\napplication, enabling advisers and investors to administer portfolios. "
+               "$t":"The GBST Global Broker Services division offers Syn~‚Ñ¢, a modern, highly\nscalable, rules-based transaction processing engine which facilitates the highest levels of STP/STEP in the global capital markets.\nFor Wealth Management, Composer‚Ñ¢ offers a highly configurable solution for the management and administration of investments. The GWT-based\nComposerWeb‚Ñ¢ solution offers a comprehensive and extensive web front-end\napplication, enabling advisers and investors to administer portfolios. "
             },
             "gsx$companylogo":{
                "$t":"http://www.google.com/events/io/2011/static/img/gbst.png"
@@ -4606,7 +4603,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/anjbj"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -4665,7 +4662,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/aoxvw"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -4724,7 +4721,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/aqcgd"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -4783,7 +4780,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/b2zk2"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -4842,7 +4839,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/b4e4j"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -4901,7 +4898,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/b5sow"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -4960,7 +4957,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/b779d"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -5019,7 +5016,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/axdae"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -5078,7 +5075,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/ayruv"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -5137,7 +5134,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/be856"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -5196,7 +5193,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/bfmpn"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -5255,7 +5252,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/bh1a0"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -5314,7 +5311,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/bifuh"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -5373,7 +5370,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/jxug1"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -5432,7 +5429,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/jo0h2"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -5491,7 +5488,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/jpf1j"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -5550,7 +5547,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/jqtlw"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -5609,7 +5606,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/js86d"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -5623,7 +5620,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: Accenture, companydesc: Accenture is a global management consulting, technology services and outsourcing company. Combining unparalleled experience, comprehensive capabilities across all industries and business functions, and extensive research on the world's most successful companies, Accenture collaborates with clients to help them become high-performance businesses and governments., companyurl: http://www.accenture.com, companyproductdesc: Accentureís enterprise-class portal-as-a-service solution leverages the Google Cloud to offer internal and external facing \"gadgets\" designed to provide a customizable user experience with secure data integration., companylogo: http://www.google.com/events/io/2011/static/img/accenture.png, companypod: Google Apps"
+               "$t":"companyname: Accenture, companydesc: Accenture is a global management consulting, technology services and outsourcing company. Combining unparalleled experience, comprehensive capabilities across all industries and business functions, and extensive research on the world's most successful companies, Accenture collaborates with clients to help them become high-performance businesses and governments., companyurl: http://www.accenture.com, companyproductdesc: Accenture‚Äôs enterprise-class portal-as-a-service solution leverages the Google Cloud to offer internal and external facing \"gadgets\" designed to provide a customizable user experience with secure data integration., companylogo: http://www.google.com/events/io/2011/static/img/accenture.png, companypod: Google Apps"
             },
             "link":[
                {
@@ -5648,7 +5645,7 @@ gdata.io.handleScriptLoaded({
                "$t":"http://www.accenture.com"
             },
             "gsx$companyproductdesc":{
-               "$t":"Accentureís enterprise-class portal-as-a-service solution leverages the Google Cloud to offer internal and external facing \"gadgets\" designed to provide a customizable user experience with secure data integration."
+               "$t":"Accenture‚Äôs enterprise-class portal-as-a-service solution leverages the Google Cloud to offer internal and external facing \"gadgets\" designed to provide a customizable user experience with secure data integration."
             },
             "gsx$companylogo":{
                "$t":"http://www.google.com/events/io/2011/static/img/accenture.png"
@@ -5668,7 +5665,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/f52je"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -5727,7 +5724,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/f6h3v"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -5786,7 +5783,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/f7vo8"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -5845,7 +5842,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/f9a8p"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -5904,7 +5901,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/ezg9q"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -5918,7 +5915,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: CloudLock, companydesc: CloudLock is the cloud data security company that provides total visibility and control for customersí data on Google Apps. Advanced collaboration analytics, governance, and protection., companyurl: http://www.cloudlock.com, companyproductdesc: CloudLock provides instant visibility and control for data in the cloud. Data protection and governance is easy with CloudLock, available on the Google Apps Marketplace., companylogo: http://www.google.com/events/io/2011/static/img/cloudlock.png, companypod: Google Apps"
+               "$t":"companyname: CloudLock, companydesc: CloudLock is the cloud data security company that provides total visibility and control for customers‚Äô data on Google Apps. Advanced collaboration analytics, governance, and protection., companyurl: http://www.cloudlock.com, companyproductdesc: CloudLock provides instant visibility and control for data in the cloud. Data protection and governance is easy with CloudLock, available on the Google Apps Marketplace., companylogo: http://www.google.com/events/io/2011/static/img/cloudlock.png, companypod: Google Apps"
             },
             "link":[
                {
@@ -5937,7 +5934,7 @@ gdata.io.handleScriptLoaded({
                "$t":""
             },
             "gsx$companydesc":{
-               "$t":"CloudLock is the cloud data security company that provides total visibility and control for customersí data on Google Apps. Advanced collaboration analytics, governance, and protection."
+               "$t":"CloudLock is the cloud data security company that provides total visibility and control for customers‚Äô data on Google Apps. Advanced collaboration analytics, governance, and protection."
             },
             "gsx$companyurl":{
                "$t":"http://www.cloudlock.com"
@@ -5963,7 +5960,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/f0uu7"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -6022,7 +6019,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/f29ek"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -6081,7 +6078,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/f3nz1"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -6140,7 +6137,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/fgb2q"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -6199,7 +6196,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/fhpn7"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -6258,7 +6255,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/fj47k"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -6272,7 +6269,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: LearnBoost, companydesc: LearnBoost is a San Francisco based startup company, backed by reputable venture capitalists and angel investors. The organization was founded by Rafael Corrales, Thianh Lu, and Guillermo Rauch in June of 2010. LearnBoost creates comprehensive tools to plan, assess, and help improve academic performance while saving schools up to 100% of their administrative software costs. , companyurl: http://www.learnboost.com, companyproductdesc: LearnBoost†empowers teachers with a free all-in-one classroom management solution so they can track student grades and progress, create standards-aligned lesson plans, generate beautiful analytics and reports, and organize their schedules from a central dashboard, and connect with parents and students, all while integrating with Google Apps. This entire suite, including newly released parent and student accounts, is free as LearnBoost aims to save schools of millions of dollars every year on their software., companylogo: http://www.google.com/events/io/2011/static/img/learnboost.png, companypod: Google Apps"
+               "$t":"companyname: LearnBoost, companydesc: LearnBoost is a San Francisco based startup company, backed by reputable venture capitalists and angel investors. The organization was founded by Rafael Corrales, Thianh Lu, and Guillermo Rauch in June of 2010. LearnBoost creates comprehensive tools to plan, assess, and help improve academic performance while saving schools up to 100% of their administrative software costs. , companyurl: http://www.learnboost.com, companyproductdesc: LearnBoost empowers teachers with a free all-in-one classroom management solution so they can track student grades and progress, create standards-aligned lesson plans, generate beautiful analytics and reports, and organize their schedules from a central dashboard, and connect with parents and students, all while integrating with Google Apps. This entire suite, including newly released parent and student accounts, is free as LearnBoost aims to save schools of millions of dollars every year on their software., companylogo: http://www.google.com/events/io/2011/static/img/learnboost.png, companypod: Google Apps"
             },
             "link":[
                {
@@ -6297,7 +6294,7 @@ gdata.io.handleScriptLoaded({
                "$t":"http://www.learnboost.com"
             },
             "gsx$companyproductdesc":{
-               "$t":"LearnBoost†empowers teachers with a free all-in-one classroom management solution so they can track student grades and progress, create standards-aligned lesson plans, generate beautiful analytics and reports, and organize their schedules from a central dashboard, and connect with parents and students, all while integrating with Google Apps. This entire suite, including newly released parent and student accounts, is free as LearnBoost aims to save schools of millions of dollars every year on their software."
+               "$t":"LearnBoost empowers teachers with a free all-in-one classroom management solution so they can track student grades and progress, create standards-aligned lesson plans, generate beautiful analytics and reports, and organize their schedules from a central dashboard, and connect with parents and students, all while integrating with Google Apps. This entire suite, including newly released parent and student accounts, is free as LearnBoost aims to save schools of millions of dollars every year on their software."
             },
             "gsx$companylogo":{
                "$t":"http://www.google.com/events/io/2011/static/img/learnboost.png"
@@ -6317,7 +6314,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/fkis1"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -6376,7 +6373,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/faot2"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -6390,7 +6387,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: Manymoon, companydesc: Get work done together ñ on anything, with anyone and anywhere. \n\nTrusted by over 50,000 organizations, Manymoon can be used for anything from planning an event, to launching a product to hiring new employees., companyurl: http://www.manymoon.com, companyproductdesc: Manymooon is a social productivity app that simplifies your work life by letting you organize group projects, tasks, documents, and conversations all in one place for your whole team., companylogo: http://www.google.com/events/io/2011/static/img/manymoon.png, companypod: Google Apps"
+               "$t":"companyname: Manymoon, companydesc: Get work done together ‚Äì on anything, with anyone and anywhere. \n\nTrusted by over 50,000 organizations, Manymoon can be used for anything from planning an event, to launching a product to hiring new employees., companyurl: http://www.manymoon.com, companyproductdesc: Manymooon is a social productivity app that simplifies your work life by letting you organize group projects, tasks, documents, and conversations all in one place for your whole team., companylogo: http://www.google.com/events/io/2011/static/img/manymoon.png, companypod: Google Apps"
             },
             "link":[
                {
@@ -6409,7 +6406,7 @@ gdata.io.handleScriptLoaded({
                "$t":""
             },
             "gsx$companydesc":{
-               "$t":"Get work done together ñ on anything, with anyone and anywhere. \n\nTrusted by over 50,000 organizations, Manymoon can be used for anything from planning an event, to launching a product to hiring new employees."
+               "$t":"Get work done together ‚Äì on anything, with anyone and anywhere. \n\nTrusted by over 50,000 organizations, Manymoon can be used for anything from planning an event, to launching a product to hiring new employees."
             },
             "gsx$companyurl":{
                "$t":"http://www.manymoon.com"
@@ -6435,7 +6432,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/fc3dj"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -6494,7 +6491,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/fdhxw"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -6508,7 +6505,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: NetSuite/Celigo, companydesc: NetSuite Inc. is a leading vendor of cloud computing business management suites including ERP, CRM, and Ecommerce. \n\nCeligo simplifies cloud computing by providing turn-key, cloud-to-cloud integration solutions.\n\n\n, companyurl: http://www.netsuite.com/portal/landing/netsuite-for-google.shtml, companyproductdesc: Celigoís Gmail Sync and Calendar Sync for NetSuite are designed for Google Apps users that want to manage NetSuite ERP, CRM and E-Commerce data directly from within Google Apps., companylogo: http://www.google.com/events/io/2011/static/img/netsuite.png, companypod: Google Apps"
+               "$t":"companyname: NetSuite/Celigo, companydesc: NetSuite Inc. is a leading vendor of cloud computing business management suites including ERP, CRM, and Ecommerce. \n\nCeligo simplifies cloud computing by providing turn-key, cloud-to-cloud integration solutions.\n\n\n, companyurl: http://www.netsuite.com/portal/landing/netsuite-for-google.shtml, companyproductdesc: Celigo‚Äôs Gmail Sync and Calendar Sync for NetSuite are designed for Google Apps users that want to manage NetSuite ERP, CRM and E-Commerce data directly from within Google Apps., companylogo: http://www.google.com/events/io/2011/static/img/netsuite.png, companypod: Google Apps"
             },
             "link":[
                {
@@ -6533,7 +6530,7 @@ gdata.io.handleScriptLoaded({
                "$t":"http://www.netsuite.com/portal/landing/netsuite-for-google.shtml"
             },
             "gsx$companyproductdesc":{
-               "$t":"Celigoís Gmail Sync and Calendar Sync for NetSuite are designed for Google Apps users that want to manage NetSuite ERP, CRM and E-Commerce data directly from within Google Apps."
+               "$t":"Celigo‚Äôs Gmail Sync and Calendar Sync for NetSuite are designed for Google Apps users that want to manage NetSuite ERP, CRM and E-Commerce data directly from within Google Apps."
             },
             "gsx$companylogo":{
                "$t":"http://www.google.com/events/io/2011/static/img/netsuite.png"
@@ -6553,7 +6550,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/fewid"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -6612,7 +6609,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/frjm2"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -6671,7 +6668,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/fsy6j"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -6685,7 +6682,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: SAP, companydesc: SAP is the worldís leading provider of business software with more than 100,000 customers in more than 120 countries., companyurl: http://www.sap.com, companyproductdesc:  SAP StreamWork brings together people, information, and structure enabling brainstorming, strategizing, and decision making for fast, meaningful results, companylogo: http://www.google.com/events/io/2011/static/img/sap.png, companypod: Google Apps"
+               "$t":"companyname: SAP, companydesc: SAP is the world‚Äôs leading provider of business software with more than 100,000 customers in more than 120 countries., companyurl: http://www.sap.com, companyproductdesc:  SAP StreamWork brings together people, information, and structure enabling brainstorming, strategizing, and decision making for fast, meaningful results, companylogo: http://www.google.com/events/io/2011/static/img/sap.png, companypod: Google Apps"
             },
             "link":[
                {
@@ -6704,7 +6701,7 @@ gdata.io.handleScriptLoaded({
                "$t":""
             },
             "gsx$companydesc":{
-               "$t":"SAP is the worldís leading provider of business software with more than 100,000 customers in more than 120 countries."
+               "$t":"SAP is the world‚Äôs leading provider of business software with more than 100,000 customers in more than 120 countries."
             },
             "gsx$companyurl":{
                "$t":"http://www.sap.com"
@@ -6730,7 +6727,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/fucqw"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -6789,7 +6786,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/fvrbd"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -6803,7 +6800,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: Smartsheet, companydesc: Smartsheet.com, a Bellevue, WA SaaS company, offers an enterprise-ready cloud app for project management and collaboration. Top-ranked app in the Google Application Marketplace., companyurl: http://www.smartsheet.com, companyproductdesc: Smartsheetís project management and collaboration app features a flexible spreadsheet-like interface, file sharing and work automation. Ideal for managing any kind of work., companylogo: http://www.google.com/events/io/2011/static/img/smartsheet.png, companypod: Google Apps"
+               "$t":"companyname: Smartsheet, companydesc: Smartsheet.com, a Bellevue, WA SaaS company, offers an enterprise-ready cloud app for project management and collaboration. Top-ranked app in the Google Application Marketplace., companyurl: http://www.smartsheet.com, companyproductdesc: Smartsheet‚Äôs project management and collaboration app features a flexible spreadsheet-like interface, file sharing and work automation. Ideal for managing any kind of work., companylogo: http://www.google.com/events/io/2011/static/img/smartsheet.png, companypod: Google Apps"
             },
             "link":[
                {
@@ -6828,7 +6825,7 @@ gdata.io.handleScriptLoaded({
                "$t":"http://www.smartsheet.com"
             },
             "gsx$companyproductdesc":{
-               "$t":"Smartsheetís project management and collaboration app features a flexible spreadsheet-like interface, file sharing and work automation. Ideal for managing any kind of work."
+               "$t":"Smartsheet‚Äôs project management and collaboration app features a flexible spreadsheet-like interface, file sharing and work automation. Ideal for managing any kind of work."
             },
             "gsx$companylogo":{
                "$t":"http://www.google.com/events/io/2011/static/img/smartsheet.png"
@@ -6848,7 +6845,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/flxce"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -6907,7 +6904,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/fnbwv"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -6966,7 +6963,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/foqh8"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -7025,7 +7022,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/fq51p"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -7084,7 +7081,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/g2s5e"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -7143,7 +7140,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/g46pv"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -7202,7 +7199,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/g5la8"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -7261,7 +7258,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/g6zup"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -7320,7 +7317,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/fx5vq"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -7379,7 +7376,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/fykg7"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -7393,7 +7390,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: Redux, companydesc: Redux ñ Discover entertainment curated by your friends and people that share your taste. , companyurl: http://www.redux.com, companyproductdesc: Redux for GoogleTV is a fun and beautiful way to discover video that your friends and relevant tastemakers are curating, in an effortless lean-back experience., companylogo: http://www.google.com/events/io/2011/static/img/redux.png, companypod: Google TV"
+               "$t":"companyname: Redux, companydesc: Redux ‚Äì Discover entertainment curated by your friends and people that share your taste. , companyurl: http://www.redux.com, companyproductdesc: Redux for GoogleTV is a fun and beautiful way to discover video that your friends and relevant tastemakers are curating, in an effortless lean-back experience., companylogo: http://www.google.com/events/io/2011/static/img/redux.png, companypod: Google TV"
             },
             "link":[
                {
@@ -7412,7 +7409,7 @@ gdata.io.handleScriptLoaded({
                "$t":""
             },
             "gsx$companydesc":{
-               "$t":"Redux ñ Discover entertainment curated by your friends and people that share your taste. "
+               "$t":"Redux ‚Äì Discover entertainment curated by your friends and people that share your taste. "
             },
             "gsx$companyurl":{
                "$t":"http://www.redux.com"
@@ -7438,7 +7435,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/fzz0k"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -7497,7 +7494,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/g1dl1"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -7511,7 +7508,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: 955 Dreams Inc., companydesc: 955Dreams Inc. is a new age publishing company. We publish magical titles on mobile devices., companyurl: http://www.955dreams.com, companyproductdesc: The History of Jazz\nThe History of Blues\nOn the Way to Woodstock, companypod: YouTube"
+               "$t":"companyname: 955 Dreams Inc., companydesc: 955Dreams Inc. is a new age publishing company. We publish magical titles on mobile devices., companyurl: http://www.955dreams.com, companyproductdesc: The History of Jazz\nThe History of Blues\nOn the Way to Woodstock, companylogo: http://www.google.com/events/io/2011/static/img/955.png, companypod: YouTube"
             },
             "link":[
                {
@@ -7539,7 +7536,7 @@ gdata.io.handleScriptLoaded({
                "$t":"The History of Jazz\nThe History of Blues\nOn the Way to Woodstock"
             },
             "gsx$companylogo":{
-               "$t":""
+               "$t":"http://www.google.com/events/io/2011/static/img/955.png"
             },
             "gsx$companypod":{
                "$t":"YouTube"
@@ -7556,7 +7553,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/ge0qi"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -7615,7 +7612,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/gffaz"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -7629,7 +7626,7 @@ gdata.io.handleScriptLoaded({
             },
             "content":{
                "type":"text",
-               "$t":"companyname: ShortForm, companydesc: ShortForm is a new entertainment medium where you find continuous channels of the best videos curated by a growing community of VJs. \n, companyurl: http://www.ShortForm.com, companyproductdesc: ShortForm makes it easy for anyone to mix and share the worldís videos in continuous channels. Viewers subscribe to channels of interest and enjoy a continuous stream., companylogo: http://www.google.com/events/io/2011/static/img/shortform.png, companypod: YouTube"
+               "$t":"companyname: ShortForm, companydesc: ShortForm is a new entertainment medium where you find continuous channels of the best videos curated by a growing community of VJs. \n, companyurl: http://www.ShortForm.com, companyproductdesc: ShortForm makes it easy for anyone to mix and share the world‚Äôs videos in continuous channels. Viewers subscribe to channels of interest and enjoy a continuous stream., companylogo: http://www.google.com/events/io/2011/static/img/shortform.png, companypod: YouTube"
             },
             "link":[
                {
@@ -7654,7 +7651,7 @@ gdata.io.handleScriptLoaded({
                "$t":"http://www.ShortForm.com"
             },
             "gsx$companyproductdesc":{
-               "$t":"ShortForm makes it easy for anyone to mix and share the worldís videos in continuous channels. Viewers subscribe to channels of interest and enjoy a continuous stream."
+               "$t":"ShortForm makes it easy for anyone to mix and share the world‚Äôs videos in continuous channels. Viewers subscribe to channels of interest and enjoy a continuous stream."
             },
             "gsx$companylogo":{
                "$t":"http://www.google.com/events/io/2011/static/img/shortform.png"
@@ -7674,7 +7671,7 @@ gdata.io.handleScriptLoaded({
                "$t":"https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values/ggtvc"
             },
             "updated":{
-               "$t":"2011-05-04T00:15:01.165Z"
+               "$t":"2011-05-07T19:05:35.871Z"
             },
             "category":[
                {
@@ -7730,4 +7727,4 @@ gdata.io.handleScriptLoaded({
          }
       ]
    }
-});
+}

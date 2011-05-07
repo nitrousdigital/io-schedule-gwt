@@ -1,4 +1,4 @@
-package com.nitrous.iosched.client;
+package com.nitrous.iosched.client.view;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -8,11 +8,16 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.nitrous.iosched.client.images.Images;
-import com.nitrous.iosched.client.toolbar.RootToolbar;
+import com.nitrous.iosched.client.toolbar.ApplicationToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
-import com.nitrous.iosched.client.toolbar.ToolbarEnabledWidget;
+import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 
-public class ActivityMenu extends Composite implements ToolbarEnabledWidget {
+/**
+ * The main activity menu
+ * @author Nick
+ *
+ */
+public class ActivityMenuView extends Composite implements ToolbarEnabledView {
 	private static final Images images = GWT.create(Images.class);
 	
 	private static final Image bulletinBtn = new Image(images.bulletin());
@@ -23,16 +28,16 @@ public class ActivityMenu extends Composite implements ToolbarEnabledWidget {
 	private static final Image starredBtn = new Image(images.starred());
 	
 	private ActivityController controller;
-	private RootToolbar toolbar = new RootToolbar();
+	private ApplicationToolbar toolbar = new ApplicationToolbar();
 	
 	/**
 	 * @wbp.parser.constructor
 	 */
-	public ActivityMenu() {
+	public ActivityMenuView() {
 		this(316, 402);
 	}
 	
-	public ActivityMenu(int width, int height) {
+	public ActivityMenuView(int width, int height) {
 		
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setStyleName("iconBackground");
@@ -81,7 +86,7 @@ public class ActivityMenu extends Composite implements ToolbarEnabledWidget {
 		sessionsBtn.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event) {
 				if (controller != null) {
-					controller.showSessions();
+					controller.showSessionTrackSelector();
 				}
 			}
 		});
@@ -90,7 +95,7 @@ public class ActivityMenu extends Composite implements ToolbarEnabledWidget {
 		lblSessions.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event) {
 				if (controller != null) {
-					controller.showSessions();
+					controller.showSessionTrackSelector();
 				}
 			}
 		});

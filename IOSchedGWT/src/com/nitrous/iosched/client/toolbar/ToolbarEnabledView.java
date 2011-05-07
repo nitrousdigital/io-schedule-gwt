@@ -1,6 +1,6 @@
 package com.nitrous.iosched.client.toolbar;
 
 
-public interface ToolbarEnabledWidget {
+public interface ToolbarEnabledView {
 	public Toolbar getToolbar();
 }

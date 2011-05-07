@@ -1,4 +1,4 @@
-package com.nitrous.iosched.client;
+package com.nitrous.iosched.client.model;
 
 public enum DayOfWeek {
 	Monday("monday", 0),

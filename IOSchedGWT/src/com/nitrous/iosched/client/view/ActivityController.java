@@ -1,12 +1,15 @@
-package com.nitrous.iosched.client;
+package com.nitrous.iosched.client.view;
+
+import com.nitrous.iosched.client.model.CompanyPod;
+import com.nitrous.iosched.client.model.SessionTrack;
 
 public interface ActivityController {
 	public void showSchedule();
 	public void showMap();
-	public void showSessions();
+	public void showSessionTrackSelector();
 	public void showStarred();
 	public void showSandboxSelector();
 	public void showBulletin();
 	public void showSessionTrack(SessionTrack track);
-	public void showSandbox(Sandbox sandbox);
+	public void showCompanyPod(CompanyPod sandbox);
 }

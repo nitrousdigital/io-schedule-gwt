@@ -1,6 +1,6 @@
-package com.nitrous.iosched.client;
+package com.nitrous.iosched.client.model;
 
-public enum Sandbox {
+public enum CompanyPod {
 	All("(All companies)"),
 	Accessibility("Accessibility"),
 	Android("Android"),
@@ -15,7 +15,7 @@ public enum Sandbox {
 	YouTube("YouTube");
 	
 	private String label;
-	Sandbox(String label) {
+	CompanyPod(String label) {
 		this.label = label;
 	}
 	public String toString() {
