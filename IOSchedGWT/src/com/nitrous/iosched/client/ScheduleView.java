@@ -21,8 +21,8 @@ public class ScheduleView extends Composite implements ToolbarEnabledWidget {
 	private Label navLeft;
 	private FlexTable calendarGrid;
 	public ScheduleView(int width, int height) {
+		width -= 20;
 		VerticalPanel layout = new VerticalPanel();
-		layout.setSize(width+"px", height+"px");
 		initWidget(layout);
 
 		layout.setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
