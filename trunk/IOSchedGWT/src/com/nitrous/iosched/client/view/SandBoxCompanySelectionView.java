@@ -89,7 +89,7 @@ public class SandBoxCompanySelectionView extends Composite implements ToolbarEna
 			}
 			// display
 			for (SandboxFeedEntry entry : sorted) {
-				if (companyPod == null || CompanyPod.All.equals(companyPod) || companyPod.toString().equalsIgnoreCase(entry.getCompanyPod())) {
+				if (companyPod == null || CompanyPod.All.equals(companyPod) || companyPod.toString().equalsIgnoreCase(entry.getCompanyPod().trim())) {
 					addEntry(entry);
 				}
 			}
@@ -116,6 +116,7 @@ public class SandBoxCompanySelectionView extends Composite implements ToolbarEna
 		
 		Label title = new Label(entry.getCompanyName());
 		title.setStyleName("sandboxCompanySelectionTitle");
+		title.setWidth("100%");
 		row.add(title);
 		layout.add(row);
 	}
