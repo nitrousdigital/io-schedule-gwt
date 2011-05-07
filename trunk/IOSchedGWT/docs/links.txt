@@ -14,14 +14,21 @@ sandbox
 Tuesday, May 03, 2011 8:15 PM
 sandbox
 
+MOBILE ANNOUNCEMENTS
+http://www.google.com/events/io/2011/mobile_announcements.html
 
+SPEAKERS
+https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od7/public/basic
+
+SANDBOX
+https://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/basic
+
+SESSIONS
 http://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od6/public/values
-sessions
-
-http://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od6/public/values?alt=json
 Session feed in JSON format.
-http://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od6/public/values?alt=json-in-script
+http://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od6/public/values?alt=json
 Session feed in JSONp format:
+http://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od6/public/values?alt=json-in-script
 gdata.io.handleScriptLoaded({
    "version":"1.0",
    "encoding":"UTF-8",
