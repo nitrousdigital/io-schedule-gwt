@@ -5,7 +5,8 @@ public interface ActivityController {
 	public void showMap();
 	public void showSessions();
 	public void showStarred();
-	public void showSandbox();
+	public void showSandboxSelector();
 	public void showBulletin();
 	public void showSessionTrack(SessionTrack track);
+	public void showSandbox(Sandbox sandbox);
 }

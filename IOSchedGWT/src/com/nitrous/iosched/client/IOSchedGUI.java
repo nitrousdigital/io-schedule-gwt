@@ -23,7 +23,7 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 	private SessionTrackView sessionTrackView;
 	
 	private StarredView starred;
-	private SandBoxView sandbox;
+	private SandBoxSelectionView sandboxSelectionView;
 	private BulletinView bulletin;
 	
 	private AbsolutePanel layout;
@@ -70,8 +70,9 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 		viewDeckPanel.add(starred);
 		
 		// 5
-		sandbox = new SandBoxView(WIDTH, clientHeight);
-		viewDeckPanel.add(sandbox);
+		sandboxSelectionView = new SandBoxSelectionView(WIDTH, clientHeight);
+		sandboxSelectionView.setController(this);
+		viewDeckPanel.add(sandboxSelectionView);
 		
 		// 6
 		bulletin = new BulletinView(WIDTH, clientHeight);
@@ -138,9 +139,9 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 		currentView = starred;
 		showToolbar(currentView);
 	}
-	public void showSandbox() {
+	public void showSandboxSelector() {
 		viewDeckPanel.showWidget(5);
-		currentView = sandbox;
+		currentView = sandboxSelectionView;
 		showToolbar(currentView);
 	}
 	public void showBulletin() {
@@ -153,6 +154,11 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 		viewDeckPanel.showWidget(7);
 		currentView = sessionTrackView;
 		showToolbar(currentView);
+	}
+
+	public void showSandbox(Sandbox sandbox) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

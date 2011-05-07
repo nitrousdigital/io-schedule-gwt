@@ -2,6 +2,7 @@ package com.nitrous.iosched.client.images;
 
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.ImageResource;
+import com.google.gwt.user.client.ui.Image;
 
 public interface Images extends ClientBundle {
 	// toolbar icons
@@ -53,4 +54,16 @@ public interface Images extends ClientBundle {
 	ImageResource trackGoogleApps();
 	@Source("tech_talk_track.png")
 	ImageResource trackTechTalk();
+	
+	// sandbox swatches
+	@Source("accessibility_sandbox.png")
+	ImageResource sandboxAccessibility(); 	
+	@Source("gamedev_sandbox.png")
+	ImageResource sandboxGameDev();
+	@Source("googletv_sandbox.png")
+	ImageResource sandboxGoogleTv();
+	@Source("youtube_sandbox.png")
+	ImageResource sandboxYouTube();
+	
+	
 }
