@@ -63,7 +63,8 @@ public class ScheduleView extends Composite implements ToolbarEnabledWidget {
 		layout.add(datePanel);
 		
 		calendarGrid = new FlexTable();
-		calendarGrid.setWidth(width+"px");
+//		calendarGrid.setBorderWidth(1);
+//		calendarGrid.setWidth(width+"px");
 		layout.add(calendarGrid);
 		
 		navLeft();
@@ -114,6 +115,23 @@ public class ScheduleView extends Composite implements ToolbarEnabledWidget {
 		
 		wednesday.setVisible(true);
 		navLeft.setVisible(true);
+		
+		addBlueBox("Breakfast", 7,0, 10,0);
+		addBlueBox("Lunch<br>served", 11,45, 13,30);
+		
+		addDisabledRedBox("Keynote", 9,30, 10,30);
+		addRedBox("Breakout<br>sessions", 10,45, 11,45);		
+		addRedBox("Breakout<br>sessions", 12,30, 13,30);		
+		addRedBox("Breakout<br>sessions", 13,45, 14,45);		
+		addRedBox("Breakout<br>sessions", 15,00, 16,0);
+		addRedBox("Breakout<br>sessions", 16,15, 17,15);
+		
+		addGreenBox("Office<br>hours", 12,0, 15,0);
+		addGreenBox("Office<br>hours", 15,0, 17,30);
+		
+		// workaround for bug where FlexTable inserts unwanted empty cells due to parallel rowspans.
+		calendarGrid.removeCell(20, 1);
+		calendarGrid.removeCell(22, 1);
 	}
 	
 	private void navLeft() {
@@ -171,7 +189,7 @@ public class ScheduleView extends Composite implements ToolbarEnabledWidget {
 		box.setStyleName(boxStyle);
 		box.setSize("100%", "100%");
 		
-		HTML boxLabel = new HTML(text);
+		HTML boxLabel = new HTML(text);		
 		boxLabel.setStyleName("scheduleBoxText");
 		boxLabel.setSize("100%", "100%");
 		
@@ -183,7 +201,7 @@ public class ScheduleView extends Composite implements ToolbarEnabledWidget {
 			calendarGrid.getFlexCellFormatter().setRowSpan(row, column, rowSpan);
 		}
 		calendarGrid.getFlexCellFormatter().setStyleName(row, column, boxStyle);
-		calendarGrid.getFlexCellFormatter().setWidth(row, column, "80px"); 
+		calendarGrid.getFlexCellFormatter().setWidth(row, column, "70px"); 
 	}
 	
 	public Toolbar getToolbar() {
