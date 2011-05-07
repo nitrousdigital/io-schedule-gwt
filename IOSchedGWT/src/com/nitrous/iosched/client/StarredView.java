@@ -19,7 +19,7 @@ public class StarredView extends Composite implements ToolbarEnabledWidget {
 		layout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		layout.setStyleName("iconBackground");
 		
-		Label temp = new Label("Not implemented yet... Try the map instead :)");
+		Label temp = new Label("Not implemented yet... coming soon!");
 		temp.setStyleName("iconText");
 		layout.add(temp);
 	}
