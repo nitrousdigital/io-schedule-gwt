@@ -9,6 +9,7 @@ import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.Response;
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
@@ -107,8 +108,8 @@ public class SessionTrackView extends Composite implements ToolbarEnabledWidget,
 	private static class FeedEntryComparator implements Comparator<FeedEntry> {
 		public int compare(FeedEntry entry, FeedEntry other) {
 			// 1st sort by date/time
-			Date entryDate = entry.getStartDateTime();
-			Date otherDate = other.getStartDateTime();
+			Date entryDate = getStartDateTime(entry);
+			Date otherDate = getStartDateTime(other);
 			int result = Long.valueOf(entryDate.getTime()).compareTo(Long.valueOf(otherDate.getTime()));
 			if (result == 0) {
 				// 2nd sort by title
@@ -121,6 +122,22 @@ public class SessionTrackView extends Composite implements ToolbarEnabledWidget,
 			return result;
 		}
 	}
+	private static final DateTimeFormat format = DateTimeFormat.getFormat("EEEE MMMM dd hh:mmaa");
+	private static Date getStartDateTime(FeedEntry entry) {
+		Date startTime = entry.getStartDateTimeNative();
+		if (startTime == null) {
+			// Wednesday May 11
+			String date = entry.getSessionDate();
+			// 4:15pm-5:15pm
+			String time = entry.getSessionTime();
+			String dateTime = date + " " + time;
+			dateTime = dateTime.substring(0, dateTime.indexOf("-"));
+			startTime = format.parse(dateTime);
+			entry.setStartDateTimeNative(startTime);
+		}
+		return startTime;
+	}
+
 	
 	private void addSession(FeedEntry entry) {
 		VerticalPanel row = new VerticalPanel();

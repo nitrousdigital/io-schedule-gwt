@@ -3,7 +3,6 @@ package com.nitrous.iosched.client.model;
 import java.util.Date;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.i18n.client.DateTimeFormat;
 
 /**
  * The entries loaded from a session feed using the URL http://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od6/public/values?alt=json
@@ -11,29 +10,13 @@ import com.google.gwt.i18n.client.DateTimeFormat;
  *
  */
 public final class FeedEntry extends JavaScriptObject {
-	private static final DateTimeFormat format = DateTimeFormat.getFormat("EEEE MMMM dd hh:mmaa");
 	protected FeedEntry() {
 	}
 	
-	public Date getStartDateTime() {
-		Date startTime = getStartDateTimeNative();
-		if (startTime == null) {
-			// Wednesday May 11
-			String date = getSessionDate();
-			// 4:15pm-5:15pm
-			String time = getSessionTime();
-			String dateTime = date + " " + time;
-			dateTime = dateTime.substring(0, dateTime.indexOf("-"));
-			startTime = format.parse(dateTime);
-			setStartDateTimeNative(startTime);
-		}
-		return startTime;
-	}
-
-	private native Date getStartDateTimeNative() /*-{
+	public native Date getStartDateTimeNative() /*-{
 		return this.startDateTime;
 	}-*/;
-	private native void setStartDateTimeNative(Date startDateTime) /*-{
+	public native void setStartDateTimeNative(Date startDateTime) /*-{
 		this.startDateTime = startDateTime;
 	}-*/;
 	
