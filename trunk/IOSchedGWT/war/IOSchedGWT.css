@@ -113,3 +113,42 @@ h1 {
     border-bottom-style:solid;
     border-bottom-width:1px;    
 }
+.scheduleViewDateLabel {
+    font-family: 'Droid Sans',Arial,helvetica;
+    font-size: 10px;
+    color: #000000;
+    font-weight:bold;    
+}
+.scheduleViewDateNavLabel {
+    font-family: 'Droid Sans',Arial,helvetica;
+    font-size: 10px;
+    color: #000000;
+    font-weight:bold;    
+    cursor:pointer;
+}
+.scheduleViewHourLabel {
+    font-family: 'Droid Sans',Arial,helvetica;
+    font-size: 10px;
+    color: #000000;
+    font-weight:bold;    
+}
+.blueScheduleBox {
+    background-color: #3c95c3;
+}
+.redScheduleBoxDisabled {
+    background-color: #ff9292;
+}
+.redScheduleBox {
+    background-color: #ff0000;
+}
+.greenScheduleBox {
+    background-color: #2c833a;
+}
+
+
+.scheduleBoxText {
+    font-family: 'Droid Sans',Arial,helvetica;
+    font-size: 10px;
+    color: #ffffff;
+    font-weight:bold;    
+}
