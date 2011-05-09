@@ -20,6 +20,7 @@ public class ScheduleView extends Composite implements ToolbarEnabledView {
 	private Label navRight;
 	private Label navLeft;
 	private FlexTable calendarGrid;
+	private IScroll scroll;
 	public ScheduleView(int width, int height) {
 		width -= 20;
 		VerticalPanel layout = new VerticalPanel();
@@ -67,6 +68,7 @@ public class ScheduleView extends Composite implements ToolbarEnabledView {
 //		calendarGrid.setWidth(width+"px");
 		layout.add(calendarGrid);
 		
+		scroll = IScroll.applyScroll(layout);
 		navLeft();
 	}
 	
@@ -132,6 +134,8 @@ public class ScheduleView extends Composite implements ToolbarEnabledView {
 		// workaround for bug where FlexTable inserts unwanted empty cells due to parallel rowspans.
 		calendarGrid.removeCell(20, 1);
 		calendarGrid.removeCell(22, 1);
+		
+		scroll.refresh();
 	}
 	
 	private void navLeft() {
@@ -164,6 +168,8 @@ public class ScheduleView extends Composite implements ToolbarEnabledView {
 		calendarGrid.removeCell(20, 2);
 		calendarGrid.removeCell(20, 1);
 		calendarGrid.removeCell(32, 2);
+		
+		scroll.refresh();
 	}
 	
 	private void addBlueBox(String text, int startHr, int startMin, int endHr, int endMin) {

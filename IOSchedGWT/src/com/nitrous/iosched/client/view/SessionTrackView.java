@@ -33,6 +33,7 @@ public class SessionTrackView extends Composite implements ToolbarEnabledView, R
 	private SessionTrack track;
 	private VerticalPanel layout;
 	private int width;
+	private IScroll scroll;
 	public SessionTrackView(int width) {
 		this.width = width-20;
 		layout = new VerticalPanel();
@@ -40,6 +41,7 @@ public class SessionTrackView extends Composite implements ToolbarEnabledView, R
 		layout.setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
 		layout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		initWidget(layout);
+		scroll = IScroll.applyScroll(layout);
 	}
 	
 	/**
@@ -61,7 +63,9 @@ public class SessionTrackView extends Composite implements ToolbarEnabledView, R
 		Label msg = new Label(message);
 		msg.setStyleName(isError ? "sessionErrorMessage" : "sessionMessage");
 		layout.add(msg);
+		scroll.refresh();
 	}
+	
 	public void onRefresh() {
 		showMessage("Loading, Please wait...", false);
 		// load all sessions in JSON format
@@ -103,6 +107,7 @@ public class SessionTrackView extends Composite implements ToolbarEnabledView, R
 				}
 			}
 		}
+		scroll.refresh();
 	}
 
 	private static final FeedEntryComparator feedSorter = new FeedEntryComparator();
@@ -157,7 +162,8 @@ public class SessionTrackView extends Composite implements ToolbarEnabledView, R
 	}
 	
 	private void onClear() {
-		this.layout.clear();		
+		this.layout.clear();	
+		scroll.refresh();
 	}
 	
 	public Toolbar getToolbar() {

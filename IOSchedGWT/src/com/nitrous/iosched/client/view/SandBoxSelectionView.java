@@ -68,7 +68,7 @@ public class SandBoxSelectionView extends Composite implements ToolbarEnabledVie
 			}
 			layout.add(row);
 		}
-		scroll = IScroll.applyScroll(layout.getElement());
+		scroll = IScroll.applyScroll(layout);
 		scroll.refresh();
 	}
 

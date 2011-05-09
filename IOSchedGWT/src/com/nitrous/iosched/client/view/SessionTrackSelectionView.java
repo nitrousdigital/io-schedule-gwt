@@ -20,6 +20,7 @@ public class SessionTrackSelectionView extends Composite implements ToolbarEnabl
 	private static final Images images = GWT.create(Images.class);
 	private SessionSelectionToolbar toolbar = new SessionSelectionToolbar();
 	private ActivityController controller;
+	private IScroll scroll;
 	public SessionTrackSelectionView(int width) {
 		width -= 20;
 		VerticalPanel layout = new VerticalPanel();
@@ -66,6 +67,8 @@ public class SessionTrackSelectionView extends Composite implements ToolbarEnabl
 			}
 			layout.add(row);
 		}
+		scroll = IScroll.applyScroll(layout);
+		scroll.refresh();
 	}
 
 	private Image getImage(SessionTrack track) {
