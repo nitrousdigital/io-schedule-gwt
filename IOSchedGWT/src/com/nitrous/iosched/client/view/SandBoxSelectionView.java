@@ -20,6 +20,7 @@ public class SandBoxSelectionView extends Composite implements ToolbarEnabledVie
 	private static final Images images = GWT.create(Images.class);
 	private ActivityToolbar toolbar = new ActivityToolbar("Sandbox pods");
 	private ActivityController controller;
+	private IScroll scroll;
 	public SandBoxSelectionView(int width, int height) {
 		width -= 20;
 		
@@ -67,6 +68,8 @@ public class SandBoxSelectionView extends Composite implements ToolbarEnabledVie
 			}
 			layout.add(row);
 		}
+		scroll = IScroll.applyScroll(layout.getElement());
+		scroll.refresh();
 	}
 
 	private Image getImage(CompanyPod pod) {
