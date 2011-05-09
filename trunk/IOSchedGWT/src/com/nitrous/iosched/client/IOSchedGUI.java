@@ -56,7 +56,7 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 		colorBar.setSize(WIDTH+"px", "6px");
 		layout.add(colorBar, 0, 43);
 		
-		int clientHeight = 402;
+		int clientHeight = 360;
 		viewDeckPanel = new DeckPanel();
 		viewDeckPanel.setStyleName("deckPanel");
 		viewDeckPanel.setSize(WIDTH+"px", clientHeight+"px");
