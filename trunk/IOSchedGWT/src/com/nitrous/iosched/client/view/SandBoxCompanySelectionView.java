@@ -25,12 +25,14 @@ public class SandBoxCompanySelectionView extends Composite implements ToolbarEna
 	private CompanyPod companyPod;
 	private VerticalPanel layout;
 	private int width;
+	private IScroll scroll;
 	public SandBoxCompanySelectionView(int width) {
 		this.width = width-20;
 		layout = new VerticalPanel();
 		layout.setWidth(this.width+"px");
 		layout.setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
 		layout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
+		scroll = IScroll.applyScroll(layout.getElement());
 		initWidget(layout);
 	}
 	
@@ -94,6 +96,7 @@ public class SandBoxCompanySelectionView extends Composite implements ToolbarEna
 				}
 			}
 		}
+		scroll.refresh();
 	}
 
 	private static final FeedEntryComparator feedSorter = new FeedEntryComparator();
@@ -122,7 +125,8 @@ public class SandBoxCompanySelectionView extends Composite implements ToolbarEna
 	}
 	
 	private void onClear() {
-		this.layout.clear();		
+		this.layout.clear();
+		scroll.refresh();
 	}
 	
 	public Toolbar getToolbar() {
