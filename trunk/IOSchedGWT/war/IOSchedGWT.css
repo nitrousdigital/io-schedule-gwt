@@ -178,3 +178,25 @@ h1 {
     color: #000000;
     cursor: pointer;
 }
+
+#Map-scrollpanel {
+	overflow:auto;
+}
+#Bulletin-scrollpanel {
+	overflow:auto;
+}
+#SandBoxCompanySelectionView-scrollpanel {
+	overflow:auto;
+}
+#SandBoxSelectionView-scrollpanel {
+	overflow:auto;
+}
+#ScheduleView-scrollpanel {
+	overflow:auto;
+}
+#SessionTrackSelectionView-scrollpanel {
+	overflow:auto;
+}
+#SessionTrackView-scrollpanel {
+	overflow:auto;
+}

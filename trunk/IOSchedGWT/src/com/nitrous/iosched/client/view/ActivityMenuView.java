@@ -61,7 +61,7 @@ public class ActivityMenuView extends Composite implements ToolbarEnabledView {
 				}
 			}
 		});
-		absolutePanel.add(lblSchedule, 62, 80);
+		absolutePanel.add(lblSchedule, 60, 80);
 		
 		absolutePanel.add(mapBtn, 191, 10);
 		mapBtn.addClickHandler(new ClickHandler(){
@@ -80,9 +80,9 @@ public class ActivityMenuView extends Composite implements ToolbarEnabledView {
 				}
 			}
 		});
-		absolutePanel.add(lblMap, 211, 80);
+		absolutePanel.add(lblMap, 210, 80);
 		
-		absolutePanel.add(sessionsBtn, 54, 123);
+		absolutePanel.add(sessionsBtn, 54, 110);
 		sessionsBtn.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event) {
 				if (controller != null) {
@@ -99,9 +99,9 @@ public class ActivityMenuView extends Composite implements ToolbarEnabledView {
 				}
 			}
 		});
-		absolutePanel.add(lblSessions, 62, 187);
+		absolutePanel.add(lblSessions, 61, 174);
 		
-		absolutePanel.add(starredBtn, 191, 123);
+		absolutePanel.add(starredBtn, 191, 104);
 		starredBtn.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event) {
 				if (controller != null) {
@@ -118,9 +118,9 @@ public class ActivityMenuView extends Composite implements ToolbarEnabledView {
 				}
 			}
 		});
-		absolutePanel.add(lblStarred, 202, 187);
+		absolutePanel.add(lblStarred, 201, 174);
 		
-		absolutePanel.add(sandboxBtn, 54, 226);
+		absolutePanel.add(sandboxBtn, 54, 205);
 		sandboxBtn.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event) {
 				if (controller != null) {
@@ -137,9 +137,9 @@ public class ActivityMenuView extends Composite implements ToolbarEnabledView {
 				}
 			}
 		});
-		absolutePanel.add(lblSandbox, 58, 294);
+		absolutePanel.add(lblSandbox, 58, 266);
 		
-		absolutePanel.add(bulletinBtn, 192, 226);
+		absolutePanel.add(bulletinBtn, 192, 205);
 		bulletinBtn.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event) {
 				if (controller != null) {
@@ -156,7 +156,7 @@ public class ActivityMenuView extends Composite implements ToolbarEnabledView {
 				}
 			}
 		});
-		absolutePanel.add(lblBulletin, 196, 294);
+		absolutePanel.add(lblBulletin, 199, 266);
 	}
 
 	public ActivityController getController() {

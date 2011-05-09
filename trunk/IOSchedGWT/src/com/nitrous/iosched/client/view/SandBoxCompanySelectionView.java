@@ -32,6 +32,7 @@ public class SandBoxCompanySelectionView extends Composite implements ToolbarEna
 		layout.setWidth(this.width+"px");
 		layout.setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
 		layout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
+		layout.getElement().setId("SandBoxCompanySelectionView-scrollpanel");
 		scroll = IScroll.applyScroll(layout);
 		initWidget(layout);
 	}

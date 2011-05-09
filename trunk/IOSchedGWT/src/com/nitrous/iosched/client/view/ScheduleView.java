@@ -68,6 +68,7 @@ public class ScheduleView extends Composite implements ToolbarEnabledView {
 //		calendarGrid.setWidth(width+"px");
 		layout.add(calendarGrid);
 		
+		layout.getElement().setId("ScheduleView-scrollpanel");
 		scroll = IScroll.applyScroll(layout);
 		navLeft();
 	}

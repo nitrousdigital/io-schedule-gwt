@@ -13,7 +13,7 @@ public final class IScroll extends JavaScriptObject {
 	public native void refresh() /*-{
 		setTimeout(function () {
 			this.refresh();
-		}, 100);
+		}, 3000);
 	}-*/;
 	
 	/**

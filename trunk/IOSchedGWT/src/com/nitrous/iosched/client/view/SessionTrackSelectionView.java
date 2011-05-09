@@ -67,6 +67,7 @@ public class SessionTrackSelectionView extends Composite implements ToolbarEnabl
 			}
 			layout.add(row);
 		}
+		layout.getElement().setId("SessionTrackSelectionView-scrollpanel");
 		scroll = IScroll.applyScroll(layout);
 		scroll.refresh();
 	}
