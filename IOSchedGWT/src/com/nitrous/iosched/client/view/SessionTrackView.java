@@ -41,6 +41,7 @@ public class SessionTrackView extends Composite implements ToolbarEnabledView, R
 		layout.setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
 		layout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		initWidget(layout);
+		layout.getElement().setId("SessionTrackView-scrollpanel");
 		scroll = IScroll.applyScroll(layout);
 	}
 	
