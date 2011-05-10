@@ -25,7 +25,7 @@ public class ActivityMenuView extends Composite implements ToolbarEnabledView {
 	private static final Image sandboxBtn = new Image(images.sandbox());
 	private static final Image scheduleBtn = new Image(images.schedule());
 	private static final Image sessionsBtn = new Image(images.sessions());
-	private static final Image starredBtn = new Image(images.starred());
+//	private static final Image starredBtn = new Image(images.starred());
 	
 	private ActivityController controller;
 	private ApplicationToolbar toolbar = new ApplicationToolbar();
@@ -102,24 +102,24 @@ public class ActivityMenuView extends Composite implements ToolbarEnabledView {
 		});
 		absolutePanel.add(lblSessions, 61, 174);
 		
-		absolutePanel.add(starredBtn, 191, 104);
-		starredBtn.addClickHandler(new ClickHandler(){
-			public void onClick(ClickEvent event) {
-				if (controller != null) {
-					controller.showStarred();
-				}
-			}
-		});
-		Label lblStarred = new Label("Starred");
-		lblStarred.setStyleName("iconText");
-		lblStarred.addClickHandler(new ClickHandler(){
-			public void onClick(ClickEvent event) {
-				if (controller != null) {
-					controller.showStarred();
-				}
-			}
-		});
-		absolutePanel.add(lblStarred, 201, 174);
+//		absolutePanel.add(starredBtn, 191, 104);
+//		starredBtn.addClickHandler(new ClickHandler(){
+//			public void onClick(ClickEvent event) {
+//				if (controller != null) {
+//					controller.showStarred();
+//				}
+//			}
+//		});
+//		Label lblStarred = new Label("Starred");
+//		lblStarred.setStyleName("iconText");
+//		lblStarred.addClickHandler(new ClickHandler(){
+//			public void onClick(ClickEvent event) {
+//				if (controller != null) {
+//					controller.showStarred();
+//				}
+//			}
+//		});
+//		absolutePanel.add(lblStarred, 201, 174);
 		
 		absolutePanel.add(sandboxBtn, 54, 205);
 		sandboxBtn.addClickHandler(new ClickHandler(){
@@ -140,7 +140,7 @@ public class ActivityMenuView extends Composite implements ToolbarEnabledView {
 		});
 		absolutePanel.add(lblSandbox, 58, 266);
 		
-		absolutePanel.add(bulletinBtn, 192, 205);
+		absolutePanel.add(bulletinBtn, 191, 113); // 192, 205
 		bulletinBtn.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event) {
 				if (controller != null) {
@@ -157,7 +157,7 @@ public class ActivityMenuView extends Composite implements ToolbarEnabledView {
 				}
 			}
 		});
-		absolutePanel.add(lblBulletin, 199, 266);
+		absolutePanel.add(lblBulletin, 198, 174); // 199, 266
 	}
 
 	public ActivityController getController() {
