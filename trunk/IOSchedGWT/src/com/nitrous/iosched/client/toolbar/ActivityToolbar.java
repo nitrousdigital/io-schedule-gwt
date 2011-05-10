@@ -84,7 +84,7 @@ public class ActivityToolbar extends Composite implements Toolbar {
 		return toolbarTitle;
 	}
 
-	protected Widget initRefreshButton() {
+	protected Widget initRefreshButton() {		
 		Image refreshBtn = new Image(images.refresh());
 		refreshBtn.addClickHandler(new com.google.gwt.event.dom.client.ClickHandler(){
 			public void onClick(ClickEvent event) {
@@ -97,15 +97,17 @@ public class ActivityToolbar extends Composite implements Toolbar {
 	}
 	
 	protected Widget initSearchButton() {
-		Image searchBtn = new Image(images.search());
-		searchBtn.addClickHandler(new com.google.gwt.event.dom.client.ClickHandler(){
-			public void onClick(ClickEvent event) {
-				if (toolbarController != null) {
-					toolbarController.search();
-				}
-			}
-		});
-		return searchBtn;
+		return new ToolbarText(" ", 45);
+
+//		Image searchBtn = new Image(images.search());
+//		searchBtn.addClickHandler(new com.google.gwt.event.dom.client.ClickHandler(){
+//			public void onClick(ClickEvent event) {
+//				if (toolbarController != null) {
+//					toolbarController.search();
+//				}
+//			}
+//		});
+//		return searchBtn;
 	}
 
 	

@@ -32,14 +32,15 @@ public class ApplicationToolbar extends Composite implements Toolbar {
 		ToolbarText fill = new ToolbarText(" ", 45);
 		toolbar.add(fill);
 		
-		toolbar.add(searchBtn);
-		searchBtn.addClickHandler(new com.google.gwt.event.dom.client.ClickHandler(){
-			public void onClick(ClickEvent event) {
-				if (toolbarController != null) {
-					toolbarController.search();
-				}
-			}
-		});
+		toolbar.add(new ToolbarText(" ", 45));
+//		toolbar.add(searchBtn);
+//		searchBtn.addClickHandler(new com.google.gwt.event.dom.client.ClickHandler(){
+//			public void onClick(ClickEvent event) {
+//				if (toolbarController != null) {
+//					toolbarController.search();
+//				}
+//			}
+//		});
 		
 	}
 	
