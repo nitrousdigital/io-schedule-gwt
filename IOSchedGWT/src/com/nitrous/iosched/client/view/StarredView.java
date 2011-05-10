@@ -11,6 +11,7 @@ import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 
 public class StarredView extends Composite implements ToolbarEnabledView {
 	private ActivityToolbar toolbar = new ActivityToolbar("Starred");
+	private Bookmark bookmark = new Bookmark(BookmarkCategory.STARRED);
 	public StarredView(int width, int height) {
 		VerticalPanel layout = new VerticalPanel();
 		layout.setSize(width+"px", height+"px");
@@ -26,5 +27,8 @@ public class StarredView extends Composite implements ToolbarEnabledView {
 
 	public Toolbar getToolbar() {
 		return toolbar;
+	}
+	public String getHistoryToken() {
+		return bookmark.toString();
 	}
 }

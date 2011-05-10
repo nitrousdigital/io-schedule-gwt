@@ -21,6 +21,7 @@ public class SandBoxSelectionView extends Composite implements ToolbarEnabledVie
 	private ActivityToolbar toolbar = new ActivityToolbar("Sandbox pods");
 	private ActivityController controller;
 	private IScroll scroll;
+	private Bookmark bookmark = new Bookmark(BookmarkCategory.SANDBOX);
 	public SandBoxSelectionView(int width, int height) {
 		width -= 20;
 		
@@ -101,5 +102,8 @@ public class SandBoxSelectionView extends Composite implements ToolbarEnabledVie
 
 	public void setController(ActivityController controller) {
 		this.controller = controller;
+	}
+	public String getHistoryToken() {
+		return bookmark.toString();
 	}
 }

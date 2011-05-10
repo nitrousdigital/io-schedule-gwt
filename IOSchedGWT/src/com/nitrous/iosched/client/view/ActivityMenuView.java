@@ -30,6 +30,7 @@ public class ActivityMenuView extends Composite implements ToolbarEnabledView {
 	private ActivityController controller;
 	private ApplicationToolbar toolbar = new ApplicationToolbar();
 	
+	private Bookmark bookmark = new Bookmark(BookmarkCategory.HOME);
 	/**
 	 * @wbp.parser.constructor
 	 */
@@ -171,4 +172,7 @@ public class ActivityMenuView extends Composite implements ToolbarEnabledView {
 		return toolbar;
 	}
 	
+	public String getHistoryToken() {
+		return bookmark.toString();
+	}
 }

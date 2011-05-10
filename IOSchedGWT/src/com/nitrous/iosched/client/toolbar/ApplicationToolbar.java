@@ -12,7 +12,6 @@ public class ApplicationToolbar extends Composite implements Toolbar {
 	
 	private static final Images images = GWT.create(Images.class);
 	private static final Image logo = new Image(images.logo());
-	private static final Image refreshBtn = new Image(images.refresh());
 	private static final Image searchBtn = new Image(images.search());
 
 	private ToolbarController toolbarController;
@@ -30,14 +29,8 @@ public class ApplicationToolbar extends Composite implements Toolbar {
 			}
 		});
 		
-		toolbar.add(refreshBtn);
-		refreshBtn.addClickHandler(new com.google.gwt.event.dom.client.ClickHandler(){
-			public void onClick(ClickEvent event) {
-				if (toolbarController != null) {
-					toolbarController.refresh();
-				}
-			}
-		});
+		ToolbarText fill = new ToolbarText(" ", 45);
+		toolbar.add(fill);
 		
 		toolbar.add(searchBtn);
 		searchBtn.addClickHandler(new com.google.gwt.event.dom.client.ClickHandler(){

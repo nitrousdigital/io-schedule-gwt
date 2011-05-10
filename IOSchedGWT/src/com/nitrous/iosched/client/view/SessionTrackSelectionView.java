@@ -12,15 +12,16 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.nitrous.iosched.client.images.Images;
 import com.nitrous.iosched.client.model.SessionTrack;
-import com.nitrous.iosched.client.toolbar.SessionSelectionToolbar;
+import com.nitrous.iosched.client.toolbar.ActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 
 public class SessionTrackSelectionView extends Composite implements ToolbarEnabledView {
 	private static final Images images = GWT.create(Images.class);
-	private SessionSelectionToolbar toolbar = new SessionSelectionToolbar();
+	private ActivityToolbar toolbar = new ActivityToolbar("Session Tracks");
 	private ActivityController controller;
 	private IScroll scroll;
+	private Bookmark bookmark = new Bookmark(BookmarkCategory.SESSION);
 	public SessionTrackSelectionView(int width) {
 		width -= 20;
 		VerticalPanel layout = new VerticalPanel();
@@ -97,5 +98,8 @@ public class SessionTrackSelectionView extends Composite implements ToolbarEnabl
 
 	public void setController(ActivityController controller) {
 		this.controller = controller;
+	}
+	public String getHistoryToken() {
+		return bookmark.toString();
 	}
 }

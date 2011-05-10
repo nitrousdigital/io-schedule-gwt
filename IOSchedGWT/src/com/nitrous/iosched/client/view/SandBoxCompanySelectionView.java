@@ -3,6 +3,7 @@ package com.nitrous.iosched.client.view;
 import java.util.Comparator;
 import java.util.TreeSet;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
@@ -14,18 +15,20 @@ import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.nitrous.iosched.client.model.CompanyPod;
+import com.nitrous.iosched.client.model.Configuration;
 import com.nitrous.iosched.client.model.SandboxFeed;
 import com.nitrous.iosched.client.model.SandboxFeedEntry;
-import com.nitrous.iosched.client.toolbar.SandboxViewToolbar;
+import com.nitrous.iosched.client.toolbar.RefreshableSubActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 
 public class SandBoxCompanySelectionView extends Composite implements ToolbarEnabledView, Refreshable {
-	private SandboxViewToolbar toolbar = new SandboxViewToolbar();
+	private RefreshableSubActivityToolbar toolbar = new RefreshableSubActivityToolbar("Companies");
 	private CompanyPod companyPod;
 	private VerticalPanel layout;
 	private int width;
 	private IScroll scroll;
+	private Bookmark bookmark = new Bookmark(BookmarkCategory.SANDBOX);
 	public SandBoxCompanySelectionView(int width) {
 		this.width = width-20;
 		layout = new VerticalPanel();
@@ -49,6 +52,7 @@ public class SandBoxCompanySelectionView extends Composite implements ToolbarEna
 
 	public void setCompanyPod(CompanyPod sandbox) {
 		this.companyPod = sandbox;
+		this.bookmark.setStateToken(sandbox.getHistoryToken());
 	}
 	
 	private void showMessage(String message, boolean isError) {
@@ -60,22 +64,47 @@ public class SandBoxCompanySelectionView extends Composite implements ToolbarEna
 	public void onRefresh() {
 		showMessage("Loading, Please wait...", false);
 		// load all sandbox data in JSON format
-		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, "http://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values?alt=json");
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, Configuration.SANDBOX_FEED_URL);
 		try {
 			builder.sendRequest(null, new RequestCallback(){
 				public void onResponseReceived(Request request, Response response) {
 					if (response.getStatusCode() != Response.SC_OK) {
-						showMessage("Failed to load sandbox data: "+response.getStatusText(), true);
+						String detail = null;
+						try {
+							detail = response.getStatusText();
+						} catch (Throwable t) {
+							GWT.log("Failed to load sandbox data", t);
+							showMessage("Failed to load sandbox data", true);
+							return;
+						}
+						if (detail != null && detail.trim().length() > 0) {
+							showMessage("Failed to load sandbox data: "+detail, true);
+						} else {
+							showMessage("Failed to load sandbox data", true);
+						}
+						
 					} else {
 						loadSandboxData(response.getText());
 					}
 				}
 				public void onError(Request request, Throwable exception) {
-					showMessage("Failed to load sandbox data: "+exception.getMessage(), true);
+					GWT.log("Failed to load sandbox data", exception);
+					String detail = exception.getMessage();
+					if (detail != null && detail.trim().length() > 0) {
+						showMessage("Failed to load sandbox data: "+detail, true);
+					} else {
+						showMessage("Failed to load sandbox data", true);
+					}
 				}
 			});
 		} catch (Exception ex) {
-			showMessage("Failed to load sandbox data: "+ex.getMessage(), true);
+			GWT.log("Failed to load sandbox data", ex);
+			String detail = ex.getMessage();
+			if (detail != null && detail.trim().length() > 0) {
+				showMessage("Failed to load sandbox data: "+detail, true);
+			} else {
+				showMessage("Failed to load sandbox data", true);
+			}
 		}		
 	}
 	
@@ -132,6 +161,9 @@ public class SandBoxCompanySelectionView extends Composite implements ToolbarEna
 	
 	public Toolbar getToolbar() {
 		return toolbar;
+	}
+	public String getHistoryToken() {
+		return bookmark.toString();
 	}
 	
 }

@@ -107,11 +107,13 @@ h1 {
     font-size: 12px;
     font-weight:bold;    
     color: #000000;
+    cursor: pointer;    
 }
 .sessionLocation {
     font-family: 'Droid Sans',Arial,helvetica;
     font-size: 10px;
     color: #A7A7A7;
+    cursor: pointer;    
 }
 .sessionErrorMessage {
     font-family: 'Droid Sans',Arial,helvetica;
@@ -177,6 +179,18 @@ h1 {
     font-weight:bold;    
     color: #000000;
     cursor: pointer;
+}
+.sessionDetailGridHeaderLabel {
+    font-family: 'Droid Sans',Arial,helvetica;
+    font-size: 12px;
+    font-weight:bold;    
+    color: #000000;
+}
+.sessionDetailGridText {
+    font-family: 'Droid Sans',Arial,helvetica;
+    font-size: 12px;
+    font-weight:plain;    
+    color: #000000;
 }
 
 #Map-scrollpanel {
