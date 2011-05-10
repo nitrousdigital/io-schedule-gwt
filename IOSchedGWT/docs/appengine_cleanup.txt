@@ -1,0 +1,4 @@
+cd /Applications/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.4.3.r36v201104261928/appengine-java-sdk-1.4.3/bin
+
+
+sh-3.2# ./appcfg.sh --email=nitrousdigital@gmail.com --passin rollback /Users/nick/work/java/workspace/IOSchedGWT
