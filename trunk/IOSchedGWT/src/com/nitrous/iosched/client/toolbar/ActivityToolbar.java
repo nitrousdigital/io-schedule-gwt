@@ -8,6 +8,12 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 import com.nitrous.iosched.client.images.Images;
 
+/**
+ * A base toolbar that has the following buttons:
+ * home and search
+ * @author nick
+ *
+ */
 public class ActivityToolbar extends Composite implements Toolbar {
 	
 	private static Images images = GWT.create(Images.class);
@@ -32,8 +38,7 @@ public class ActivityToolbar extends Composite implements Toolbar {
 	protected Widget[] initWidgets(String toolbarLabel) {
 		return new Widget[]{
 				initHomeButton(),
-				initToolbarLabel(toolbarLabel),
-				initRefreshButton(),
+				initToolbarLabel(toolbarLabel, 229),
 				initSearchButton()
 		};
 	}

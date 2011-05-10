@@ -1,25 +1,21 @@
 package com.nitrous.iosched.client.view;
 
-import java.util.Comparator;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.TreeSet;
 
-import com.google.gwt.core.client.JsArray;
-import com.google.gwt.http.client.Request;
-import com.google.gwt.http.client.RequestBuilder;
-import com.google.gwt.http.client.RequestCallback;
-import com.google.gwt.http.client.Response;
-import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.nitrous.iosched.client.model.Feed;
 import com.nitrous.iosched.client.model.FeedEntry;
-import com.nitrous.iosched.client.model.SessionData;
+import com.nitrous.iosched.client.model.SessionStore;
 import com.nitrous.iosched.client.model.SessionTrack;
-import com.nitrous.iosched.client.toolbar.SessionTrackViewToolbar;
+import com.nitrous.iosched.client.toolbar.RefreshableSubActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 
@@ -29,11 +25,13 @@ import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
  *
  */
 public class SessionTrackView extends Composite implements ToolbarEnabledView, Refreshable {
-	private SessionTrackViewToolbar toolbar = new SessionTrackViewToolbar();
+	private RefreshableSubActivityToolbar toolbar = new RefreshableSubActivityToolbar("Sessions");
 	private SessionTrack track;
 	private VerticalPanel layout;
 	private int width;
 	private IScroll scroll;
+	private ActivityController controller;
+	private Bookmark bookmark = new Bookmark(BookmarkCategory.SESSION);
 	public SessionTrackView(int width) {
 		this.width = width-20;
 		layout = new VerticalPanel();
@@ -45,6 +43,10 @@ public class SessionTrackView extends Composite implements ToolbarEnabledView, R
 		scroll = IScroll.applyScroll(layout);
 	}
 	
+	public void setController(ActivityController controller) {
+		this.controller = controller;
+	}
+
 	/**
 	 * Load and display the sessions in the specified track
 	 * @param track The session track to display
@@ -55,8 +57,12 @@ public class SessionTrackView extends Composite implements ToolbarEnabledView, R
 		onRefresh();
 	}
 
+	public SessionTrack getTrack() {
+		return track;
+	}
 	public void setTrack(SessionTrack track) {
 		this.track = track;
+		this.bookmark.setStateToken(track.getHistoryToken());
 	}
 	
 	private void showMessage(String message, boolean isError) {
@@ -67,102 +73,81 @@ public class SessionTrackView extends Composite implements ToolbarEnabledView, R
 		scroll.refresh();
 	}
 	
+	
 	public void onRefresh() {
 		showMessage("Loading, Please wait...", false);
-		// load all sessions in JSON format
-		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, "http://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od6/public/values?alt=json");
-		try {
-			builder.sendRequest(null, new RequestCallback(){
-				public void onResponseReceived(Request request, Response response) {
-					if (response.getStatusCode() != Response.SC_OK) {
-						showMessage("Failed to load session data: "+response.getStatusText(), true);
-					} else {
-						loadSessionData(response.getText());
-					}
-				}
-				public void onError(Request request, Throwable exception) {
-					showMessage("Failed to load session data: "+exception.getMessage(), true);
-				}
-			});
-		} catch (Exception ex) {
-			showMessage("Failed to load session data: "+ex.getMessage(), true);
-		}		
+		SessionStore.get().getSessions(new AsyncCallback<TreeSet<FeedEntry>>(){
+			public void onFailure(Throwable caught) {
+				String message = caught.getMessage();
+				if (message != null && message.trim().length() > 0) {
+					showMessage("Failed to load session data: "+message, true);
+				} else {
+					showMessage("Failed to load session data", true);
+				}						
+
+			}
+			public void onSuccess(TreeSet<FeedEntry> result) {
+				loadSessionData(result);
+			}
+			
+		}, true);
 	}
 	
-	private void loadSessionData(String json) {
+	private void loadSessionData(TreeSet<FeedEntry> sorted) {
 		onClear();
-		SessionData data = SessionData.eval(json);
-		Feed feed = data.getFeed();
-		JsArray<FeedEntry> entries = feed.getEntries();
-		if (entries != null) {
-			// sort
-			TreeSet<FeedEntry> sorted = new TreeSet<FeedEntry>(feedSorter);			
-			for (int i = 0 ; i < entries.length(); i++) {				
-				FeedEntry entry = entries.get(i);
-				sorted.add(entry);
-			}
-			// display
-			for (FeedEntry entry : sorted) {
-				if (track == null || SessionTrack.All.equals(track) || track.toString().equalsIgnoreCase(entry.getSessionTrack())) {
-					addSession(entry);
-				}
+		// display
+		for (FeedEntry entry : sorted) {
+			if (track == null || SessionTrack.All.equals(track) || track.toString().equalsIgnoreCase(entry.getSessionTrack())) {
+				addSession(entry);
 			}
 		}
 		scroll.refresh();
 	}
 
-	private static final FeedEntryComparator feedSorter = new FeedEntryComparator();
-	private static class FeedEntryComparator implements Comparator<FeedEntry> {
-		public int compare(FeedEntry entry, FeedEntry other) {
-			// 1st sort by date/time
-			Date entryDate = getStartDateTime(entry);
-			Date otherDate = getStartDateTime(other);
-			int result = Long.valueOf(entryDate.getTime()).compareTo(Long.valueOf(otherDate.getTime()));
-			if (result == 0) {
-				// 2nd sort by title
-				result = entry.getTitle().compareTo(other.getTitle());
-				if (result == 0) {
-					// last resort sort by ID
-					result = entry.getId().compareTo(other.getId());
-				}
-			}
-			return result;
-		}
-	}
-	private static final DateTimeFormat format = DateTimeFormat.getFormat("EEEE MMMM dd hh:mmaa");
-	private static Date getStartDateTime(FeedEntry entry) {
-		Date startTime = entry.getStartDateTimeNative();
-		if (startTime == null) {
-			// Wednesday May 11
-			String date = entry.getSessionDate();
-			// 4:15pm-5:15pm
-			String time = entry.getSessionTime();
-			String dateTime = date + " " + time;
-			dateTime = dateTime.substring(0, dateTime.indexOf("-"));
-			startTime = format.parse(dateTime);
-			entry.setStartDateTimeNative(startTime);
-		}
-		return startTime;
-	}
-
 	
-	private void addSession(FeedEntry entry) {
+	
+	private void showSessionDetail(FeedEntry entry) {
+		if (controller != null) {
+			controller.showSessionDetail(this.track, entry);
+		}
+	}
+	
+	private ArrayList<HandlerRegistration> sessionClickHandlers = new ArrayList<HandlerRegistration>();
+	private void addSession(final FeedEntry entry) {
 		VerticalPanel row = new VerticalPanel();
 		row.setWidth(this.width+"px");
-		row.setStyleName("sessionRow");
+		row.setStyleName("sessionRow");		
 		
 		Label title = new Label(entry.getSessionTitle());
 		title.setStyleName("sessionTitle");
+		title.setWidth("100%");
+		HandlerRegistration reg = title.addClickHandler(new ClickHandler(){
+			public void onClick(ClickEvent event) {
+				showSessionDetail(entry);
+			}
+		});
+		sessionClickHandlers.add(reg);
 		row.add(title);
 		
 		Label dateTimePlace = new Label(getDateTimePlace(entry));
 		dateTimePlace.setStyleName("sessionLocation");
+		dateTimePlace.setWidth("100%");
+		reg = dateTimePlace.addClickHandler(new ClickHandler(){
+			public void onClick(ClickEvent event) {
+				showSessionDetail(entry);
+			}
+		});
+		sessionClickHandlers.add(reg);
 		row.add(dateTimePlace);
 		
 		layout.add(row);
 	}
 	
 	private void onClear() {
+		for (HandlerRegistration reg : sessionClickHandlers) {
+			reg.removeHandler();
+		}
+		sessionClickHandlers.clear();
 		this.layout.clear();	
 		scroll.refresh();
 	}
@@ -194,5 +179,8 @@ public class SessionTrackView extends Composite implements ToolbarEnabledView, R
 		buf.append(" in Room ");
 		buf.append(entry.getSessionRoom());
 		return buf.toString();
+	}
+	public String getHistoryToken() {
+		return bookmark.toString();
 	}
 }

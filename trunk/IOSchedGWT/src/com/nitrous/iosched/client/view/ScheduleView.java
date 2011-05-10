@@ -1,5 +1,7 @@
 package com.nitrous.iosched.client.view;
 
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
@@ -13,7 +15,7 @@ import com.nitrous.iosched.client.toolbar.ActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 
-public class ScheduleView extends Composite implements ToolbarEnabledView {
+public class ScheduleView extends Composite implements ToolbarEnabledView, ScrollableView {
 	private ActivityToolbar toolbar = new ActivityToolbar("Schedule");
 	private Label tuesday;
 	private Label wednesday;
@@ -21,9 +23,11 @@ public class ScheduleView extends Composite implements ToolbarEnabledView {
 	private Label navLeft;
 	private FlexTable calendarGrid;
 	private IScroll scroll;
-	public ScheduleView(int width, int height) {
+	private VerticalPanel layout;
+	private Bookmark bookmark = new Bookmark(BookmarkCategory.SCHEDULE);
+	public ScheduleView(int width) {
 		width -= 20;
-		VerticalPanel layout = new VerticalPanel();
+		layout = new VerticalPanel();
 		initWidget(layout);
 
 		layout.setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
@@ -69,8 +73,22 @@ public class ScheduleView extends Composite implements ToolbarEnabledView {
 		layout.add(calendarGrid);
 		
 		layout.getElement().setId("ScheduleView-scrollpanel");
-		scroll = IScroll.applyScroll(layout);
 		navLeft();
+	}
+	
+	public void initScroll() {
+		if (scroll == null) {
+			Scheduler.get().scheduleDeferred(new ScheduledCommand(){
+				public void execute() {
+					com.google.gwt.user.client.Timer t = new com.google.gwt.user.client.Timer() {
+						public void run() {
+							scroll = IScroll.applyScroll(layout);
+						}
+					};
+					t.schedule(100);
+				}
+			 });
+		}
 	}
 	
 	private void addHourMarkers() {
@@ -136,7 +154,7 @@ public class ScheduleView extends Composite implements ToolbarEnabledView {
 		calendarGrid.removeCell(20, 1);
 		calendarGrid.removeCell(22, 1);
 		
-		scroll.refresh();
+		refreshScroll();
 	}
 	
 	private void navLeft() {
@@ -170,7 +188,13 @@ public class ScheduleView extends Composite implements ToolbarEnabledView {
 		calendarGrid.removeCell(20, 1);
 		calendarGrid.removeCell(32, 2);
 		
-		scroll.refresh();
+		refreshScroll();
+	}
+	
+	private void refreshScroll() {
+		if (scroll != null) {
+			scroll.refresh();
+		}
 	}
 	
 	private void addBlueBox(String text, int startHr, int startMin, int endHr, int endMin) {
@@ -213,5 +237,8 @@ public class ScheduleView extends Composite implements ToolbarEnabledView {
 	
 	public Toolbar getToolbar() {
 		return toolbar;
+	}
+	public String getHistoryToken() {
+		return bookmark.toString();
 	}
 }
