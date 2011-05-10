@@ -3,7 +3,6 @@ package com.nitrous.iosched.client.view;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -16,16 +15,16 @@ import com.nitrous.iosched.client.toolbar.ActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 
-public class SandBoxSelectionView extends Composite implements ToolbarEnabledView {
+public class SandBoxSelectionView extends AbstractScrollableComposite implements ToolbarEnabledView {
 	private static final Images images = GWT.create(Images.class);
 	private ActivityToolbar toolbar = new ActivityToolbar("Sandbox pods");
 	private ActivityController controller;
-	private IScroll scroll;
+	private VerticalPanel layout;
 	private Bookmark bookmark = new Bookmark(BookmarkCategory.SANDBOX);
 	public SandBoxSelectionView(int width, int height) {
 		width -= 20;
 		
-		VerticalPanel layout = new VerticalPanel();
+		layout = new VerticalPanel();
 		layout.setWidth(width+"px");
 		layout.setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
 		layout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
@@ -70,10 +69,9 @@ public class SandBoxSelectionView extends Composite implements ToolbarEnabledVie
 			layout.add(row);
 		}
 		layout.getElement().setId("SandBoxSelectionView-scrollpanel");
-		scroll = IScroll.applyScroll(layout);
-		scroll.refresh();
+		setScrollable(layout);
 	}
-
+	
 	private Image getImage(CompanyPod pod) {
 		switch (pod) {
 			case All: return null;

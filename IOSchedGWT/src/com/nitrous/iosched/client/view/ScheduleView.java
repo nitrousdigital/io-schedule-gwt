@@ -1,9 +1,6 @@
 package com.nitrous.iosched.client.view;
 
-import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -15,14 +12,13 @@ import com.nitrous.iosched.client.toolbar.ActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 
-public class ScheduleView extends Composite implements ToolbarEnabledView, ScrollableView {
+public class ScheduleView extends AbstractScrollableComposite implements ToolbarEnabledView {
 	private ActivityToolbar toolbar = new ActivityToolbar("Schedule");
 	private Label tuesday;
 	private Label wednesday;
 	private Label navRight;
 	private Label navLeft;
 	private FlexTable calendarGrid;
-	private IScroll scroll;
 	private VerticalPanel layout;
 	private Bookmark bookmark = new Bookmark(BookmarkCategory.SCHEDULE);
 	public ScheduleView(int width) {
@@ -74,21 +70,8 @@ public class ScheduleView extends Composite implements ToolbarEnabledView, Scrol
 		
 		layout.getElement().setId("ScheduleView-scrollpanel");
 		navLeft();
-	}
-	
-	public void initScroll() {
-		if (scroll == null) {
-			Scheduler.get().scheduleDeferred(new ScheduledCommand(){
-				public void execute() {
-					com.google.gwt.user.client.Timer t = new com.google.gwt.user.client.Timer() {
-						public void run() {
-							scroll = IScroll.applyScroll(layout);
-						}
-					};
-					t.schedule(100);
-				}
-			 });
-		}
+		
+		setScrollable(layout);
 	}
 	
 	private void addHourMarkers() {
@@ -190,13 +173,7 @@ public class ScheduleView extends Composite implements ToolbarEnabledView, Scrol
 		
 		refreshScroll();
 	}
-	
-	private void refreshScroll() {
-		if (scroll != null) {
-			scroll.refresh();
-		}
-	}
-	
+		
 	private void addBlueBox(String text, int startHr, int startMin, int endHr, int endMin) {
 		addBox(text, startHr, startMin, endHr, endMin, "blueScheduleBox", 1);
 	}
