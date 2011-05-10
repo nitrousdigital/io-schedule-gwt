@@ -7,7 +7,6 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.Label;
@@ -24,12 +23,11 @@ import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
  * @author Nick
  *
  */
-public class SessionTrackView extends Composite implements ToolbarEnabledView, Refreshable {
+public class SessionTrackView extends AbstractScrollableComposite implements ToolbarEnabledView, Refreshable {
 	private RefreshableSubActivityToolbar toolbar = new RefreshableSubActivityToolbar("Sessions");
 	private SessionTrack track;
 	private VerticalPanel layout;
 	private int width;
-	private IScroll scroll;
 	private ActivityController controller;
 	private Bookmark bookmark = new Bookmark(BookmarkCategory.SESSION);
 	public SessionTrackView(int width) {
@@ -40,7 +38,7 @@ public class SessionTrackView extends Composite implements ToolbarEnabledView, R
 		layout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		initWidget(layout);
 		layout.getElement().setId("SessionTrackView-scrollpanel");
-		scroll = IScroll.applyScroll(layout);
+		setScrollable(layout);
 	}
 	
 	public void setController(ActivityController controller) {
@@ -70,7 +68,7 @@ public class SessionTrackView extends Composite implements ToolbarEnabledView, R
 		Label msg = new Label(message);
 		msg.setStyleName(isError ? "sessionErrorMessage" : "sessionMessage");
 		layout.add(msg);
-		scroll.refresh();
+		refreshScroll();
 	}
 	
 	public void onRefresh() {
@@ -103,7 +101,7 @@ public class SessionTrackView extends Composite implements ToolbarEnabledView, R
 				addSession(entry);
 			}
 		}
-		scroll.refresh();
+		refreshScroll();
 	}
 
 	
@@ -151,7 +149,7 @@ public class SessionTrackView extends Composite implements ToolbarEnabledView, R
 		}
 		sessionClickHandlers.clear();
 		this.layout.clear();	
-		scroll.refresh();
+		refreshScroll();
 	}
 	
 	public Toolbar getToolbar() {

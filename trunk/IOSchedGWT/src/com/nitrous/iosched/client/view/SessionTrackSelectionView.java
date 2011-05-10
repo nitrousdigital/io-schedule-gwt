@@ -3,7 +3,6 @@ package com.nitrous.iosched.client.view;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -16,11 +15,10 @@ import com.nitrous.iosched.client.toolbar.ActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 
-public class SessionTrackSelectionView extends Composite implements ToolbarEnabledView {
+public class SessionTrackSelectionView extends AbstractScrollableComposite implements ToolbarEnabledView {
 	private static final Images images = GWT.create(Images.class);
 	private ActivityToolbar toolbar = new ActivityToolbar("Session Tracks");
 	private ActivityController controller;
-	private IScroll scroll;
 	private Bookmark bookmark = new Bookmark(BookmarkCategory.SESSION);
 	public SessionTrackSelectionView(int width) {
 		width -= 20;
@@ -69,8 +67,7 @@ public class SessionTrackSelectionView extends Composite implements ToolbarEnabl
 			layout.add(row);
 		}
 		layout.getElement().setId("SessionTrackSelectionView-scrollpanel");
-		scroll = IScroll.applyScroll(layout);
-		scroll.refresh();
+		setScrollable(layout);
 	}
 
 	private Image getImage(SessionTrack track) {

@@ -9,7 +9,6 @@ import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.Response;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.Label;
@@ -22,12 +21,11 @@ import com.nitrous.iosched.client.toolbar.RefreshableSubActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 
-public class SandBoxCompanySelectionView extends Composite implements ToolbarEnabledView, Refreshable {
+public class SandBoxCompanySelectionView extends AbstractScrollableComposite implements ToolbarEnabledView, Refreshable {
 	private RefreshableSubActivityToolbar toolbar = new RefreshableSubActivityToolbar("Companies");
 	private CompanyPod companyPod;
 	private VerticalPanel layout;
 	private int width;
-	private IScroll scroll;
 	private Bookmark bookmark = new Bookmark(BookmarkCategory.SANDBOX);
 	public SandBoxCompanySelectionView(int width) {
 		this.width = width-20;
@@ -36,8 +34,8 @@ public class SandBoxCompanySelectionView extends Composite implements ToolbarEna
 		layout.setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
 		layout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		layout.getElement().setId("SandBoxCompanySelectionView-scrollpanel");
-		scroll = IScroll.applyScroll(layout);
 		initWidget(layout);
+		setScrollable(layout);
 	}
 	
 	/**
@@ -126,7 +124,7 @@ public class SandBoxCompanySelectionView extends Composite implements ToolbarEna
 				}
 			}
 		}
-		scroll.refresh();
+		refreshScroll();
 	}
 
 	private static final FeedEntryComparator feedSorter = new FeedEntryComparator();
@@ -156,7 +154,7 @@ public class SandBoxCompanySelectionView extends Composite implements ToolbarEna
 	
 	private void onClear() {
 		this.layout.clear();
-		scroll.refresh();
+		refreshScroll();
 	}
 	
 	public Toolbar getToolbar() {
