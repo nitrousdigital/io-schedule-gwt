@@ -54,7 +54,7 @@ public class SessionTrackView extends Composite implements ToolbarEnabledView, R
 	public void showSessionTrack(SessionTrack track) {
 		toolbar.setTitle(track.toString());
 		setTrack(track);
-		onRefresh();
+		onRefresh(false);
 	}
 
 	public SessionTrack getTrack() {
@@ -73,8 +73,10 @@ public class SessionTrackView extends Composite implements ToolbarEnabledView, R
 		scroll.refresh();
 	}
 	
-	
 	public void onRefresh() {
+		onRefresh(true);
+	}
+	public void onRefresh(boolean reload) {
 		showMessage("Loading, Please wait...", false);
 		SessionStore.get().getSessions(new AsyncCallback<TreeSet<FeedEntry>>(){
 			public void onFailure(Throwable caught) {
@@ -90,7 +92,7 @@ public class SessionTrackView extends Composite implements ToolbarEnabledView, R
 				loadSessionData(result);
 			}
 			
-		}, true);
+		}, reload);
 	}
 	
 	private void loadSessionData(TreeSet<FeedEntry> sorted) {

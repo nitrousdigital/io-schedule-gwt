@@ -93,6 +93,7 @@ public class SessionStore {
 									FeedEntry entry = entries.get(i);
 									sorted.add(entry);
 								}
+								sessions = sorted;
 								callback.onSuccess(sorted);
 							}
 						}
