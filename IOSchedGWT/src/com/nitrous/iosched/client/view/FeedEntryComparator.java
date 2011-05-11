@@ -25,7 +25,7 @@ public class FeedEntryComparator  implements Comparator<FeedEntry> {
 		}			
 		return result;
 	}
-	private static Date getStartDateTime(FeedEntry entry) {
+	public static Date getStartDateTime(FeedEntry entry) {
 		Date startTime = entry.getStartDateTimeNative();
 		if (startTime == null) {
 			// Wednesday May 11
@@ -38,6 +38,19 @@ public class FeedEntryComparator  implements Comparator<FeedEntry> {
 			entry.setStartDateTimeNative(startTime);
 		}
 		return startTime;
+	}
+	public static Date getEndDateTime(FeedEntry entry) {
+		Date endTime = entry.getEndDateTimeNative();
+		if (endTime == null) {
+			// Wednesday May 11
+			String date = entry.getSessionDate();
+			// 4:15pm-5:15pm
+			String time = entry.getSessionTime();
+			String dateTime = date + " " + time.substring(time.indexOf("-")+1).trim();
+			endTime = format.parse(dateTime);
+			entry.setEndDateTimeNative(endTime);
+		}
+		return endTime;
 	}
 	
 }

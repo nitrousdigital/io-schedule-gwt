@@ -5,6 +5,7 @@ public enum BookmarkCategory {
 	SCHEDULE("schedule"),
 	MAP("map"),
 	SESSION("sessions"),
+	NOW_PLAYING("now"),
 	STARRED("starred"),
 	SANDBOX("sandbox"),
 	BULLETIN("bulletin");

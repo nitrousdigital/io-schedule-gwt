@@ -11,6 +11,7 @@ import com.nitrous.iosched.client.images.Images;
 import com.nitrous.iosched.client.toolbar.ApplicationToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
+import com.google.gwt.user.client.ui.Button;
 
 /**
  * The main activity menu
@@ -45,7 +46,7 @@ public class ActivityMenuView extends Composite implements ToolbarEnabledView {
 		initWidget(absolutePanel);
 		absolutePanel.setSize(width+"px", height+"px");
 				
-		absolutePanel.add(scheduleBtn, 58, 14);
+		absolutePanel.add(scheduleBtn, 61, 14);
 		scheduleBtn.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event) {
 				if (controller != null) {
@@ -62,7 +63,7 @@ public class ActivityMenuView extends Composite implements ToolbarEnabledView {
 				}
 			}
 		});
-		absolutePanel.add(lblSchedule, 60, 80);
+		absolutePanel.add(lblSchedule, 63, 80);
 		
 		absolutePanel.add(mapBtn, 191, 10);
 		mapBtn.addClickHandler(new ClickHandler(){
@@ -83,7 +84,7 @@ public class ActivityMenuView extends Composite implements ToolbarEnabledView {
 		});
 		absolutePanel.add(lblMap, 210, 80);
 		
-		absolutePanel.add(sessionsBtn, 54, 110);
+		absolutePanel.add(sessionsBtn, 57, 110);
 		sessionsBtn.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event) {
 				if (controller != null) {
@@ -100,7 +101,7 @@ public class ActivityMenuView extends Composite implements ToolbarEnabledView {
 				}
 			}
 		});
-		absolutePanel.add(lblSessions, 61, 174);
+		absolutePanel.add(lblSessions, 64, 174);
 		
 //		absolutePanel.add(starredBtn, 191, 104);
 //		starredBtn.addClickHandler(new ClickHandler(){
@@ -121,7 +122,7 @@ public class ActivityMenuView extends Composite implements ToolbarEnabledView {
 //		});
 //		absolutePanel.add(lblStarred, 201, 174);
 		
-		absolutePanel.add(sandboxBtn, 54, 205);
+		absolutePanel.add(sandboxBtn, 57, 205);
 		sandboxBtn.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event) {
 				if (controller != null) {
@@ -138,7 +139,7 @@ public class ActivityMenuView extends Composite implements ToolbarEnabledView {
 				}
 			}
 		});
-		absolutePanel.add(lblSandbox, 58, 266);
+		absolutePanel.add(lblSandbox, 65, 266);
 		
 		absolutePanel.add(bulletinBtn, 191, 113); // 192, 205
 		bulletinBtn.addClickHandler(new ClickHandler(){
@@ -158,6 +159,16 @@ public class ActivityMenuView extends Composite implements ToolbarEnabledView {
 			}
 		});
 		absolutePanel.add(lblBulletin, 198, 174); // 199, 266
+		
+		Button btnNowPlaying = new Button("Now Playing");
+		absolutePanel.add(btnNowPlaying, 48, 310);
+		btnNowPlaying.addClickHandler(new ClickHandler(){
+			public void onClick(ClickEvent event) {
+				if (controller != null) {
+					controller.showNowPlaying();
+				}
+			}
+		});
 	}
 
 	public ActivityController getController() {

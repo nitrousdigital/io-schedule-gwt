@@ -15,6 +15,9 @@ public class Bookmark {
 	public BookmarkCategory getCategory() {
 		return category;
 	}
+	public void setCategory(BookmarkCategory category) {
+		this.category = category;
+	}
 	public void clearStateTokens() {
 		if (stateTokens != null) {
 			stateTokens.clear();

@@ -29,7 +29,16 @@ public abstract class AbstractScrollableComposite extends Composite implements S
 	}
 	public void refreshScroll() {
 		if (this.scroll != null) {
-			scroll.refresh();
+			Scheduler.get().scheduleDeferred(new ScheduledCommand(){
+				public void execute() {
+					com.google.gwt.user.client.Timer t = new com.google.gwt.user.client.Timer() {
+						public void run() {
+							scroll.refresh();
+						}
+					};
+					t.schedule(300);
+				}
+			 });
 		}
 	}
 }

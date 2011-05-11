@@ -20,6 +20,13 @@ public final class FeedEntry extends JavaScriptObject {
 		this.startDateTime = startDateTime;
 	}-*/;
 	
+	public native Date getEndDateTimeNative() /*-{
+		return this.endDateTime;
+	}-*/;
+	public native void setEndDateTimeNative(Date endDateTime) /*-{
+		this.endDateTime = endDateTime;
+	}-*/;
+	
 	/**
 	 * @return Example "2011-05-04T00:15:01.165Z"
 	 */

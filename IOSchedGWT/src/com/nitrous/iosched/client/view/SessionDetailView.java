@@ -1,6 +1,7 @@
 package com.nitrous.iosched.client.view;
 
 import com.google.gwt.user.client.ui.Grid;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.Label;
@@ -18,17 +19,17 @@ public class SessionDetailView extends AbstractScrollableComposite implements To
 	private VerticalPanel layout;
 	private Grid infoGrid;
 	
-	private Label sessionTitle;
-	private Label sessionTime;
-	private Label sessionRoom;
-	private Label sessionSpeakers;
-	private Label sessionAbstract;
-	private Label[] fields = new Label[]{
-			sessionTitle = new Label(),
-			sessionTime = new Label(),
-			sessionRoom = new Label(),
-			sessionSpeakers = new Label(),
-			sessionAbstract = new Label()
+	private HTML sessionTitle;
+	private HTML sessionTime;
+	private HTML sessionRoom;
+	private HTML sessionSpeakers;
+	private HTML sessionAbstract;
+	private HTML[] fields = new HTML[]{
+			sessionTitle = new HTML(),
+			sessionTime = new HTML(),
+			sessionRoom = new HTML(),
+			sessionSpeakers = new HTML(),
+			sessionAbstract = new HTML()
 	};
 	public SessionDetailView(int width) {
 		width -= 20;
@@ -62,16 +63,29 @@ public class SessionDetailView extends AbstractScrollableComposite implements To
 	}
 	
 	
+	/**
+	 * Show now-playing session
+	 * @param entry The session to show
+	 */
+	public void showSessionDetail(FeedEntry entry) {
+		showSessionDetail(null, entry);
+	}
 	public void showSessionDetail(SessionTrack track, FeedEntry entry) {
-		sessionTitle.setText(entry.getSessionTitle());
-		sessionTime.setText(entry.getSessionDate()+" "+entry.getSessionTime());
-		sessionRoom.setText(entry.getSessionRoom());
-		sessionSpeakers.setText(entry.getSessionSpeakers());
-		sessionAbstract.setText(entry.getSessionAbstract());
+		sessionTitle.setHTML(entry.getSessionTitle());
+		sessionTime.setHTML(entry.getSessionDate()+" "+entry.getSessionTime());
+		sessionRoom.setHTML(entry.getSessionRoom());
+		sessionSpeakers.setHTML(entry.getSessionSpeakers());
+		sessionAbstract.setHTML(entry.getSessionAbstract());
 		refreshScroll();
 		
 		bookmark.clearStateTokens();
-		bookmark.addStateToken(track.getHistoryToken());
+		if (track != null) {
+			bookmark.setCategory(BookmarkCategory.SESSION);
+			// navigated from track view instead of now-playing
+			bookmark.addStateToken(track.getHistoryToken());
+		} else {
+			bookmark.setCategory(BookmarkCategory.NOW_PLAYING);
+		}
 		bookmark.addStateToken(entry.getId());
 	}
 

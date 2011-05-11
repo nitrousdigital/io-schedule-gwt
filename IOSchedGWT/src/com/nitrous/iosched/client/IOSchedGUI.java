@@ -22,6 +22,7 @@ import com.nitrous.iosched.client.view.ActivityMenuView;
 import com.nitrous.iosched.client.view.Bookmark;
 import com.nitrous.iosched.client.view.BulletinView;
 import com.nitrous.iosched.client.view.MapView;
+import com.nitrous.iosched.client.view.NowPlayingView;
 import com.nitrous.iosched.client.view.Refreshable;
 import com.nitrous.iosched.client.view.SandBoxCompanySelectionView;
 import com.nitrous.iosched.client.view.SandBoxSelectionView;
@@ -44,6 +45,8 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 	private SessionTrackSelectionView sessionTrackSelectionView;
 	private SessionTrackView sessionTrackView;
 	private SessionDetailView sessionDetailView;
+	
+	private NowPlayingView nowPlayingView;
 	
 	private StarredView starred;
 	private SandBoxSelectionView sandboxSelectionView;
@@ -117,6 +120,11 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 		sessionDetailView = new SessionDetailView(WIDTH);
 		viewDeckPanel.add(sessionDetailView);
 		
+		// 10 - now playing session list
+		nowPlayingView = new NowPlayingView(WIDTH);
+		nowPlayingView.setController(this);
+		viewDeckPanel.add(nowPlayingView);
+		
 	}
 	
 	public void navigateTo(Bookmark bookmark) {
@@ -141,9 +149,31 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 				showSandboxSelector();
 			}
 			break;
+			
 		case SCHEDULE:
 			showSchedule();
 			break;
+			
+		case NOW_PLAYING:
+			if (bookmark.hasState()) {
+				final ArrayList<String> state = bookmark.getState();
+				if (state.size() == 1) {
+					SessionStore.get().getSession(state.get(0), new AsyncCallback<FeedEntry>(){
+						public void onFailure(Throwable caught) {
+							GWT.log("Failed to load session info for ID: "+state.get(1));
+							showNowPlaying();
+						}
+
+						public void onSuccess(FeedEntry result) {
+							showCurrentSessionDetail(result);
+						}						
+					});
+				}
+			} else {
+				showNowPlaying();
+			}
+			break;
+			
 		case SESSION:
 			if (bookmark.hasState()) {
 				final ArrayList<String> state = bookmark.getState();
@@ -179,7 +209,12 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 		} else if (currentView == sandBoxCompanySelectionView) {
 			showSandboxSelector();
 		} else if (currentView == sessionDetailView) {
-			showSessionTrack(sessionTrackView.getTrack());
+			SessionTrack track = sessionTrackView.getTrack();
+			if (track != null) {
+				showSessionTrack(track);
+			} else {
+				showNowPlaying();
+			}
 		}
 	}
 	
@@ -229,6 +264,12 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 		onViewDisplayed(map);
 	}
 	
+	public void showNowPlaying() {
+		viewDeckPanel.showWidget(10);
+		nowPlayingView.onRefresh(true);
+		onViewDisplayed(nowPlayingView);
+	}
+	
 	public void showSessionTrackSelector() {
 		viewDeckPanel.showWidget(3);
 		onViewDisplayed(sessionTrackSelectionView);
@@ -240,6 +281,11 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 	}
 	public void showSessionDetail(SessionTrack track, FeedEntry entry) {
 		sessionDetailView.showSessionDetail(track, entry);
+		viewDeckPanel.showWidget(9);
+		onViewDisplayed(sessionDetailView);
+	}
+	public void showCurrentSessionDetail(FeedEntry entry) {
+		sessionDetailView.showSessionDetail(entry);
 		viewDeckPanel.showWidget(9);
 		onViewDisplayed(sessionDetailView);
 	}
@@ -268,5 +314,6 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 		viewDeckPanel.showWidget(8);
 		onViewDisplayed(sandBoxCompanySelectionView);
 	}
+
 
 }
