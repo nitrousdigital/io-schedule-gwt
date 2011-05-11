@@ -137,7 +137,8 @@ public class ScheduleView extends AbstractScrollableComposite implements Toolbar
 	}
 
 	private void onCellClicked(int row, int col) {
-		if (col == 0) {
+		if (col != 2) {
+			// currently only support session boxes
 			return;
 		}
 		SessionCell found = null;
@@ -232,7 +233,8 @@ public class ScheduleView extends AbstractScrollableComposite implements Toolbar
 		addBox(text, startTime, endTime, "redScheduleBox", "scheduleBoxText", 2);
 	}
 	private void addGreenBox(String text, String startTime, String endTime) {
-		addBox(text, startTime, endTime, "greenScheduleBox", "scheduleBoxText", 3);
+//		addBox(text, startTime, endTime, "greenScheduleBox", "scheduleBoxText", 3);
+		addBox(text, startTime, endTime, "greenScheduleBoxDisabled", "scheduleBoxTextDisabled", 3);
 	}
 	private static final DateTimeFormat format = DateTimeFormat.getFormat("EEEE MMMM dd yyyy h:mmaa");
 	private void addBox(String text, String startTime, String endTime, String boxStyle, String textStyle, int column) {

@@ -164,6 +164,10 @@ h1 {
     background-color: #2c833a;
     cursor: pointer;
 }
+.greenScheduleBoxDisabled  {
+    background-color: #2c833a;
+    cursor: default;
+}
 
 .scheduleBoxTextDisabled {
     font-family: 'Droid Sans',Arial,helvetica;
