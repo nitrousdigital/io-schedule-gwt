@@ -21,13 +21,18 @@ import com.nitrous.iosched.client.toolbar.RefreshableSubActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 
-public class SandBoxCompanySelectionView extends AbstractScrollableComposite implements ToolbarEnabledView, Refreshable {
+/**
+ * Displays the companies exhibiting in a specified pod
+ * @author nick
+ *
+ */
+public class CompanyListView extends AbstractScrollableComposite implements ToolbarEnabledView, Refreshable {
 	private RefreshableSubActivityToolbar toolbar = new RefreshableSubActivityToolbar("Companies");
 	private CompanyPod companyPod;
 	private VerticalPanel layout;
 	private int width;
 	private Bookmark bookmark = new Bookmark(BookmarkCategory.SANDBOX);
-	public SandBoxCompanySelectionView(int width) {
+	public CompanyListView(int width) {
 		this.width = width-20;
 		layout = new VerticalPanel();
 		layout.setWidth(this.width+"px");
