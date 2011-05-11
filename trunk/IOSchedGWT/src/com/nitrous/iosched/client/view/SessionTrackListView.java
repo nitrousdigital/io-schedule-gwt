@@ -15,12 +15,12 @@ import com.nitrous.iosched.client.toolbar.ActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 
-public class SessionTrackSelectionView extends AbstractScrollableComposite implements ToolbarEnabledView {
+public class SessionTrackListView extends AbstractScrollableComposite implements ToolbarEnabledView {
 	private static final Images images = GWT.create(Images.class);
 	private ActivityToolbar toolbar = new ActivityToolbar("Session Tracks");
 	private ActivityController controller;
 	private Bookmark bookmark = new Bookmark(BookmarkCategory.SESSIONS);
-	public SessionTrackSelectionView(int width) {
+	public SessionTrackListView(int width) {
 		width -= 20;
 		VerticalPanel layout = new VerticalPanel();
 		layout.setWidth(width+"px");

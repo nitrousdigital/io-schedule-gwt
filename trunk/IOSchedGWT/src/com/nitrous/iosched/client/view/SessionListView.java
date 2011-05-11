@@ -20,11 +20,11 @@ import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 
 /**
- * Displays the sessions for a selected track
+ * Displays the sessions for a selected track or time range
  * @author Nick
  *
  */
-public class SessionTrackView extends AbstractScrollableComposite implements ToolbarEnabledView, Refreshable {
+public class SessionListView extends AbstractScrollableComposite implements ToolbarEnabledView, Refreshable {
 	private RefreshableSubActivityToolbar toolbar = new RefreshableSubActivityToolbar("Sessions");
 	
 	// track for session track mode
@@ -38,7 +38,7 @@ public class SessionTrackView extends AbstractScrollableComposite implements Too
 	private int width;
 	private ActivityController controller;
 	private Bookmark bookmark = new Bookmark(BookmarkCategory.SESSIONS);
-	public SessionTrackView(int width) {
+	public SessionListView(int width) {
 		this.width = width-20;
 		layout = new VerticalPanel();
 		layout.setWidth(this.width+"px");

@@ -15,13 +15,13 @@ import com.nitrous.iosched.client.toolbar.ActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 
-public class SandBoxSelectionView extends AbstractScrollableComposite implements ToolbarEnabledView {
+public class SandBoxListView extends AbstractScrollableComposite implements ToolbarEnabledView {
 	private static final Images images = GWT.create(Images.class);
 	private ActivityToolbar toolbar = new ActivityToolbar("Sandbox pods");
 	private ActivityController controller;
 	private VerticalPanel layout;
 	private Bookmark bookmark = new Bookmark(BookmarkCategory.SANDBOX);
-	public SandBoxSelectionView(int width, int height) {
+	public SandBoxListView(int width, int height) {
 		width -= 20;
 		
 		layout = new VerticalPanel();

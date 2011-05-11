@@ -24,13 +24,13 @@ import com.nitrous.iosched.client.view.BulletinView;
 import com.nitrous.iosched.client.view.MapView;
 import com.nitrous.iosched.client.view.NowPlayingView;
 import com.nitrous.iosched.client.view.Refreshable;
-import com.nitrous.iosched.client.view.SandBoxCompanySelectionView;
-import com.nitrous.iosched.client.view.SandBoxSelectionView;
+import com.nitrous.iosched.client.view.CompanyListView;
+import com.nitrous.iosched.client.view.SandBoxListView;
 import com.nitrous.iosched.client.view.ScheduleView;
 import com.nitrous.iosched.client.view.ScrollableView;
 import com.nitrous.iosched.client.view.SessionDetailView;
-import com.nitrous.iosched.client.view.SessionTrackSelectionView;
-import com.nitrous.iosched.client.view.SessionTrackView;
+import com.nitrous.iosched.client.view.SessionTrackListView;
+import com.nitrous.iosched.client.view.SessionListView;
 import com.nitrous.iosched.client.view.StarredView;
 
 public class IOSchedGUI extends Composite implements ActivityController, ToolbarController {
@@ -42,17 +42,17 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 	private ScheduleView schedule;
 	private MapView map;
 	
-	private SessionTrackSelectionView sessionTrackSelectionView;
-	private SessionTrackView sessionTrackView;
+	private SessionTrackListView sessionTrackListView;
+	private SessionListView sessionListView;
 	private SessionDetailView sessionDetailView;
 	
 	private NowPlayingView nowPlayingView;
 	
-	private StarredView starred;
-	private SandBoxSelectionView sandboxSelectionView;
-	private SandBoxCompanySelectionView sandBoxCompanySelectionView;
+	private StarredView starredView;
+	private SandBoxListView sandboxListView;
+	private CompanyListView companyListView;
 	
-	private BulletinView bulletin;
+	private BulletinView bulletinView;
 	
 	private AbsolutePanel layout;
 	private DeckPanel viewDeckPanel;
@@ -91,31 +91,31 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 		viewDeckPanel.add(schedule);
 		
 		// 3
-		sessionTrackSelectionView = new SessionTrackSelectionView(WIDTH);
-		sessionTrackSelectionView.setController(this);
-		viewDeckPanel.add(sessionTrackSelectionView);
+		sessionTrackListView = new SessionTrackListView(WIDTH);
+		sessionTrackListView.setController(this);
+		viewDeckPanel.add(sessionTrackListView);
 
 		// 4
-		starred = new StarredView(WIDTH, clientHeight);
-		viewDeckPanel.add(starred);
+		starredView = new StarredView(WIDTH, clientHeight);
+		viewDeckPanel.add(starredView);
 		
 		// 5
-		sandboxSelectionView = new SandBoxSelectionView(WIDTH, clientHeight);
-		sandboxSelectionView.setController(this);
-		viewDeckPanel.add(sandboxSelectionView);
+		sandboxListView = new SandBoxListView(WIDTH, clientHeight);
+		sandboxListView.setController(this);
+		viewDeckPanel.add(sandboxListView);
 		
 		// 6
-		bulletin = new BulletinView(WIDTH, clientHeight);
-		viewDeckPanel.add(bulletin);
+		bulletinView = new BulletinView(WIDTH, clientHeight);
+		viewDeckPanel.add(bulletinView);
 		
 		// 7 - displays sessions within the selected selection track
-		sessionTrackView = new SessionTrackView(WIDTH);
-		sessionTrackView.setController(this);
-		viewDeckPanel.add(sessionTrackView);
+		sessionListView = new SessionListView(WIDTH);
+		sessionListView.setController(this);
+		viewDeckPanel.add(sessionListView);
 		
 		// 8 - displays the list of companies within a selected sandbox pod
-		sandBoxCompanySelectionView = new SandBoxCompanySelectionView(WIDTH);
-		viewDeckPanel.add(sandBoxCompanySelectionView);
+		companyListView = new CompanyListView(WIDTH);
+		viewDeckPanel.add(companyListView);
 		
 		// 9 - displays the session details
 		sessionDetailView = new SessionDetailView(WIDTH);
@@ -210,7 +210,7 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 						}
 
 						public void onSuccess(FeedEntry result) {
-							sessionTrackView.setTrack(track);
+							sessionListView.setTrack(track);
 							showSessionDetail(track, result);
 						}						
 					});
@@ -225,13 +225,13 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 	}
 	
 	public void back() {
-		if (currentView == sessionTrackView) {
-			if (sessionTrackView.getTrack() != null) {
+		if (currentView == sessionListView) {
+			if (sessionListView.getTrack() != null) {
 				showSessionTrackSelector();
 			} else {
 				showSchedule();
 			}
-		} else if (currentView == sandBoxCompanySelectionView) {
+		} else if (currentView == companyListView) {
 			showSandboxSelector();
 		} else if (currentView == sessionDetailView) {
 			SessionTrack track = sessionDetailView.getReferringTrack();
@@ -306,12 +306,12 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 	
 	public void showSessionTrackSelector() {
 		viewDeckPanel.showWidget(3);
-		onViewDisplayed(sessionTrackSelectionView);
+		onViewDisplayed(sessionTrackListView);
 	}
 	public void showSessionTrack(SessionTrack track) {
-		sessionTrackView.showSessionTrack(track);
+		sessionListView.showSessionTrack(track);
 		viewDeckPanel.showWidget(7);
-		onViewDisplayed(sessionTrackView);
+		onViewDisplayed(sessionListView);
 	}
 	/**
 	 * Display all sessions within the specified time range
@@ -319,9 +319,9 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 	 * @param endTime The end time
 	 */
 	public void showSessionTimeRange(long startTime, long endTime) {
-		sessionTrackView.showSessionTimeRange(startTime, endTime);
+		sessionListView.showSessionTimeRange(startTime, endTime);
 		viewDeckPanel.showWidget(7);
-		onViewDisplayed(sessionTrackView);
+		onViewDisplayed(sessionListView);
 	}
 
 	public void showSessionDetail(SessionTrack track, FeedEntry entry) {
@@ -349,15 +349,15 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 	
 	public void showStarred() {
 		viewDeckPanel.showWidget(4);
-		onViewDisplayed(starred);
+		onViewDisplayed(starredView);
 	}
 	public void showSandboxSelector() {
 		viewDeckPanel.showWidget(5);
-		onViewDisplayed(sandboxSelectionView);
+		onViewDisplayed(sandboxListView);
 	}
 	public void showBulletin() {
 		viewDeckPanel.showWidget(6);
-		onViewDisplayed(bulletin);
+		onViewDisplayed(bulletinView);
 	}
 	private void setHistoryToken(String token) {
 		String old = History.getToken();
@@ -367,9 +367,9 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 	}
 
 	public void showCompanyPod(CompanyPod pod) {
-		this.sandBoxCompanySelectionView.showPodCompanies(pod);
+		this.companyListView.showPodCompanies(pod);
 		viewDeckPanel.showWidget(8);
-		onViewDisplayed(sandBoxCompanySelectionView);
+		onViewDisplayed(companyListView);
 	}
 
 
