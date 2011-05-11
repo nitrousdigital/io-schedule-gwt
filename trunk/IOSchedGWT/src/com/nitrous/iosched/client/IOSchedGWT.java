@@ -4,7 +4,7 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.History;
-import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.nitrous.iosched.client.view.Bookmark;
 
 /**
@@ -17,7 +17,7 @@ public class IOSchedGWT implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 		gui = new IOSchedGUI();
-		RootPanel.get().add(gui);
+		RootLayoutPanel.get().add(gui);
 		
 		History.addValueChangeHandler(new ValueChangeHandler<String>(){
 			  public void onValueChange(ValueChangeEvent<String> event) {

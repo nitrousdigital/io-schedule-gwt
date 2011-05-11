@@ -4,21 +4,23 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.AbsolutePanel;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ResizeComposite;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.nitrous.iosched.client.images.Images;
 import com.nitrous.iosched.client.toolbar.ApplicationToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
-import com.google.gwt.user.client.ui.Button;
 
 /**
  * The main activity menu
  * @author Nick
  *
  */
-public class ActivityMenuView extends Composite implements ToolbarEnabledView {
+public class ActivityMenuView extends ResizeComposite implements ToolbarEnabledView {
 	private static final Images images = GWT.create(Images.class);
 	
 	private static final Image bulletinBtn = new Image(images.bulletin());
@@ -42,9 +44,12 @@ public class ActivityMenuView extends Composite implements ToolbarEnabledView {
 	public ActivityMenuView(int width, int height) {
 		
 		AbsolutePanel absolutePanel = new AbsolutePanel();
-		absolutePanel.setStyleName("iconBackground");
-		initWidget(absolutePanel);
 		absolutePanel.setSize(width+"px", height+"px");
+		absolutePanel.setStyleName("iconBackground");
+		
+		ScrollPanel scroll= new ScrollPanel();
+		scroll.add(absolutePanel);
+		initWidget(scroll);
 				
 		absolutePanel.add(scheduleBtn, 61, 14);
 		scheduleBtn.addClickHandler(new ClickHandler(){
@@ -166,6 +171,16 @@ public class ActivityMenuView extends Composite implements ToolbarEnabledView {
 			public void onClick(ClickEvent event) {
 				if (controller != null) {
 					controller.showNowPlaying();
+				}
+			}
+		});
+		
+		Button btnRealtime = new Button("Realtime Stream");
+		absolutePanel.add(btnRealtime, 148, 310);
+		btnRealtime.addClickHandler(new ClickHandler(){
+			public void onClick(ClickEvent event) {
+				if (controller != null) {
+					controller.showRealtimeStream();
 				}
 			}
 		});

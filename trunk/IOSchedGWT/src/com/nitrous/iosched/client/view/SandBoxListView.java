@@ -8,6 +8,7 @@ import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.nitrous.iosched.client.images.Images;
 import com.nitrous.iosched.client.model.CompanyPod;
@@ -25,10 +26,12 @@ public class SandBoxListView extends AbstractScrollableComposite implements Tool
 		width -= 20;
 		
 		layout = new VerticalPanel();
-		layout.setWidth(width+"px");
-		layout.setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
-		layout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
-		initWidget(layout);
+		layout.setWidth("100%");
+		layout.getElement().setId("SandBoxSelectionView-scrollpanel");
+		
+		ScrollPanel scroll = new ScrollPanel();
+		scroll.add(layout);
+		initWidget(scroll);
 
 		for (CompanyPod pod: CompanyPod.values()) {
 			HorizontalPanel row = new HorizontalPanel();
@@ -68,8 +71,7 @@ public class SandBoxListView extends AbstractScrollableComposite implements Tool
 			}
 			layout.add(row);
 		}
-		layout.getElement().setId("SandBoxSelectionView-scrollpanel");
-		setScrollable(layout);
+		setScrollable(scroll);
 	}
 	
 	private Image getImage(CompanyPod pod) {

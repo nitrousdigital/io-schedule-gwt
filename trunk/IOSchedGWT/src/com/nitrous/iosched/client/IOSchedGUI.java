@@ -3,12 +3,15 @@ package com.nitrous.iosched.client;
 import java.util.ArrayList;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.AbsolutePanel;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.DeckPanel;
+import com.google.gwt.user.client.ui.DeckLayoutPanel;
+import com.google.gwt.user.client.ui.DockLayoutPanel;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.ResizeComposite;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.nitrous.iosched.client.images.Images;
 import com.nitrous.iosched.client.model.CompanyPod;
 import com.nitrous.iosched.client.model.FeedEntry;
@@ -21,26 +24,28 @@ import com.nitrous.iosched.client.view.ActivityController;
 import com.nitrous.iosched.client.view.ActivityMenuView;
 import com.nitrous.iosched.client.view.Bookmark;
 import com.nitrous.iosched.client.view.BulletinView;
+import com.nitrous.iosched.client.view.CompanyListView;
 import com.nitrous.iosched.client.view.MapView;
 import com.nitrous.iosched.client.view.NowPlayingView;
+import com.nitrous.iosched.client.view.RealtimeView;
 import com.nitrous.iosched.client.view.Refreshable;
-import com.nitrous.iosched.client.view.CompanyListView;
 import com.nitrous.iosched.client.view.SandBoxListView;
 import com.nitrous.iosched.client.view.ScheduleView;
 import com.nitrous.iosched.client.view.ScrollableView;
 import com.nitrous.iosched.client.view.SessionDetailView;
-import com.nitrous.iosched.client.view.SessionTrackListView;
 import com.nitrous.iosched.client.view.SessionListView;
+import com.nitrous.iosched.client.view.SessionTrackListView;
 import com.nitrous.iosched.client.view.StarredView;
 
-public class IOSchedGUI extends Composite implements ActivityController, ToolbarController {
+public class IOSchedGUI extends ResizeComposite implements ActivityController, ToolbarController {
 	private static final Images images = GWT.create(Images.class);
 	
 	private ActivityMenuView rootMenu;
 	
 	// views
-	private ScheduleView schedule;
-	private MapView map;
+	private ScheduleView scheduleView;
+	private MapView mapView;
+	private RealtimeView realtimeStreamView;
 	
 	private SessionTrackListView sessionTrackListView;
 	private SessionListView sessionListView;
@@ -54,41 +59,43 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 	
 	private BulletinView bulletinView;
 	
-	private AbsolutePanel layout;
-	private DeckPanel viewDeckPanel;
+	private DockLayoutPanel layout;
+	private DeckLayoutPanel viewDeckPanel;
 	private Toolbar currentToolbar;
 	private ToolbarEnabledView currentView;
 	
 	private static final int WIDTH = 316;
+	private HorizontalPanel toolbarContainer;
+	
 	public IOSchedGUI() {		
-		layout = new AbsolutePanel();
-		initWidget(layout);		
-		layout.setSize(WIDTH+"px", "450px");
 
+		VerticalPanel header = new VerticalPanel();
+		toolbarContainer = new HorizontalPanel();
+		toolbarContainer.setHeight("45px");
+		toolbarContainer.setWidth("100%");
+		header.add(toolbarContainer);
 		Image colorBar = new Image(images.colors());
-		colorBar.setSize(WIDTH+"px", "6px");
-		layout.add(colorBar, 0, 43);
+		colorBar.setSize("100%", "6px");
+		header.add(colorBar);
+		
+		viewDeckPanel = new DeckLayoutPanel();
+		viewDeckPanel.setStyleName("deckPanel");
+		viewDeckPanel.setSize("100%", "100%");
 		
 		int clientHeight = 360;
-		viewDeckPanel = new DeckPanel();
-		viewDeckPanel.setStyleName("deckPanel");
-//		viewDeckPanel.setSize(WIDTH+"px", clientHeight+"px");
-		viewDeckPanel.setSize(WIDTH+"px", "100%");
-		layout.add(viewDeckPanel, 0, 49);
-		
 		// 0
 		rootMenu = new ActivityMenuView(WIDTH, clientHeight);
 		rootMenu.setController(this);
 		viewDeckPanel.add(rootMenu);
 			
 		// 1
-		map = new MapView(WIDTH, clientHeight);
-		viewDeckPanel.add(map);
+		mapView = new MapView(WIDTH, clientHeight);
+		viewDeckPanel.add(mapView);
 		
 		// 2
-		schedule = new ScheduleView(WIDTH);
-		schedule.setController(this);
-		viewDeckPanel.add(schedule);
+		scheduleView = new ScheduleView(WIDTH);
+		scheduleView.setController(this);
+		viewDeckPanel.add(scheduleView);
 		
 		// 3
 		sessionTrackListView = new SessionTrackListView(WIDTH);
@@ -126,6 +133,15 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 		nowPlayingView.setController(this);
 		viewDeckPanel.add(nowPlayingView);
 		
+		// 11 - realtime stream
+		realtimeStreamView = new RealtimeView(WIDTH, clientHeight);
+		viewDeckPanel.add(realtimeStreamView);	
+
+		layout = new DockLayoutPanel(Unit.PX);
+		layout.setSize(WIDTH+"px", "450px");
+		layout.addNorth(toolbarContainer, 45);
+		layout.add(viewDeckPanel);
+		initWidget(layout);		
 	}
 	
 	public void navigateTo(Bookmark bookmark) {
@@ -141,6 +157,9 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 			break;
 		case MAP:
 			showMap();
+			break;
+		case REALTIME:
+			showRealtimeStream();
 			break;
 		case SANDBOX:
 			if (bookmark.hasState()) {
@@ -259,12 +278,12 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 	
 	private void showToolbar(ToolbarEnabledView widget) {
 		if (currentToolbar != null) {
-			layout.remove(currentToolbar.getUI());
+			toolbarContainer.remove(currentToolbar.getUI());
 		}
 		currentToolbar = widget.getToolbar();
 		if (currentToolbar != null) {
 			currentToolbar.setController(this);
-			layout.add(currentToolbar.getUI(), 0, 0);
+			toolbarContainer.add(currentToolbar.getUI());
 		}
 	}
 	
@@ -276,9 +295,15 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 	public void search() {
 	}
 	
+	public void showRealtimeStream() {
+		viewDeckPanel.showWidget(11);
+		realtimeStreamView.onRefresh();
+		onViewDisplayed(realtimeStreamView);
+	}
+	
 	public void showSchedule() {
 		viewDeckPanel.showWidget(2);
-		onViewDisplayed(schedule);
+		onViewDisplayed(scheduleView);
 	}
 	
 	private void onViewDisplayed(ToolbarEnabledView view) {
@@ -294,8 +319,8 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 	
 	public void showMap() {
 		viewDeckPanel.showWidget(1);
-		map.onRefresh();
-		onViewDisplayed(map);
+		mapView.onRefresh();
+		onViewDisplayed(mapView);
 	}
 	
 	public void showNowPlaying() {

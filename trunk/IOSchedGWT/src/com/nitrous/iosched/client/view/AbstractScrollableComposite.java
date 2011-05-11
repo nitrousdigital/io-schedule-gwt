@@ -2,10 +2,10 @@ package com.nitrous.iosched.client.view;
 
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
-import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.Widget;
 
-public abstract class AbstractScrollableComposite extends Composite implements ScrollableView {
+public abstract class AbstractScrollableComposite extends ResizeComposite implements ScrollableView {
 	private IPhoneScroller scroll;
 	private Widget scrollable;
 	public AbstractScrollableComposite() {

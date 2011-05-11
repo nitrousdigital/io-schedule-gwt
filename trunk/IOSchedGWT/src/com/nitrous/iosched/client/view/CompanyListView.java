@@ -9,9 +9,8 @@ import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.Response;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.nitrous.iosched.client.model.CompanyPod;
 import com.nitrous.iosched.client.model.Configuration;
@@ -35,12 +34,13 @@ public class CompanyListView extends AbstractScrollableComposite implements Tool
 	public CompanyListView(int width) {
 		this.width = width-20;
 		layout = new VerticalPanel();
-		layout.setWidth(this.width+"px");
-		layout.setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
-		layout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
+		layout.setWidth("100%");
 		layout.getElement().setId("SandBoxCompanySelectionView-scrollpanel");
-		initWidget(layout);
-		setScrollable(layout);
+		
+		ScrollPanel scroll = new ScrollPanel();
+		scroll.add(layout);
+		initWidget(scroll);
+		setScrollable(scroll);
 	}
 	
 	/**

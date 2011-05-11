@@ -8,6 +8,7 @@ import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.nitrous.iosched.client.images.Images;
 import com.nitrous.iosched.client.model.SessionTrack;
@@ -23,10 +24,8 @@ public class SessionTrackListView extends AbstractScrollableComposite implements
 	public SessionTrackListView(int width) {
 		width -= 20;
 		VerticalPanel layout = new VerticalPanel();
-		layout.setWidth(width+"px");
-		layout.setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
-		layout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
-		initWidget(layout);
+		layout.getElement().setId("SessionTrackSelectionView-scrollpanel");
+		layout.setWidth("100%");
 
 		for (SessionTrack track : SessionTrack.values()) {
 			HorizontalPanel row = new HorizontalPanel();
@@ -66,8 +65,11 @@ public class SessionTrackListView extends AbstractScrollableComposite implements
 			}
 			layout.add(row);
 		}
-		layout.getElement().setId("SessionTrackSelectionView-scrollpanel");
-		setScrollable(layout);
+		
+		ScrollPanel scroll = new ScrollPanel();
+		scroll.add(layout);
+		initWidget(scroll);	
+		setScrollable(scroll);
 	}
 
 	private Image getImage(SessionTrack track) {
