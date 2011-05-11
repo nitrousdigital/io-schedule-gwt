@@ -14,7 +14,7 @@ import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 
 public class SessionDetailView extends AbstractScrollableComposite implements ToolbarEnabledView {
 	private RefreshableSubActivityToolbar toolbar = new RefreshableSubActivityToolbar("Session Detail");
-	private Bookmark bookmark = new Bookmark(BookmarkCategory.SESSION);
+	private Bookmark bookmark = new Bookmark(BookmarkCategory.SESSIONS);
 	
 	private VerticalPanel layout;
 	private Grid infoGrid;
@@ -31,6 +31,13 @@ public class SessionDetailView extends AbstractScrollableComposite implements To
 			sessionSpeakers = new HTML(),
 			sessionAbstract = new HTML()
 	};
+	/** The selected track from the referring view */
+	private SessionTrack referringTrack;
+	/** The selected period start time from the referring view */
+	private Long referringBlockStartTime;
+	/** The selected period end time from the referring view */
+	private Long referringBlockEndTime;
+	
 	public SessionDetailView(int width) {
 		width -= 20;
 		layout = new VerticalPanel();
@@ -64,13 +71,41 @@ public class SessionDetailView extends AbstractScrollableComposite implements To
 	
 	
 	/**
-	 * Show now-playing session
+	 * Show the details of a session selected from the now-showing view
 	 * @param entry The session to show
 	 */
 	public void showSessionDetail(FeedEntry entry) {
-		showSessionDetail(null, entry);
+		showSessionDetail(null, entry, null, null);
 	}
+	/**
+	 * Show the details of a session selected from a time range view
+	 * @param entry The session to show
+	 * @param blockStartTime The start of the time range from which the session was selected
+	 * @param blockEndTime The end of the time range from which the session was selected
+	 */
+	public void showSessionDetail(FeedEntry entry, long blockStartTime, long blockEndTime) {
+		showSessionDetail(null, entry, blockStartTime, blockEndTime);
+	}
+	/**
+	 * Show the details of a session selected from a track
+	 * @param track The track from which the session was selected
+	 * @param entry The session to show
+	 */
 	public void showSessionDetail(SessionTrack track, FeedEntry entry) {
+		showSessionDetail(track, entry, null, null);
+	}
+	/**
+	 * Show session details
+	 * @param track The track from which the session was selected or null
+	 * @param entry The session to show
+	 * @param blockStartTime The beginning of the selected time range from which the session was selected or null
+	 * @param blockEndTime The end of the selected time range from which the session was selected or null
+	 */
+	private void showSessionDetail(SessionTrack track, FeedEntry entry, Long blockStartTime, Long blockEndTime) {
+		this.referringTrack = track;
+		this.referringBlockStartTime = blockStartTime;
+		this.referringBlockEndTime = blockEndTime;
+		
 		sessionTitle.setHTML(entry.getSessionTitle());
 		sessionTime.setHTML(entry.getSessionDate()+" "+entry.getSessionTime());
 		sessionRoom.setHTML(entry.getSessionRoom());
@@ -80,15 +115,32 @@ public class SessionDetailView extends AbstractScrollableComposite implements To
 		
 		bookmark.clearStateTokens();
 		if (track != null) {
-			bookmark.setCategory(BookmarkCategory.SESSION);
+			// session was selected on the track view
+			bookmark.setCategory(BookmarkCategory.SESSIONS);
 			// navigated from track view instead of now-playing
 			bookmark.addStateToken(track.getHistoryToken());
+		} else if (blockStartTime != null && blockEndTime != null) {
+			// session was selected from a time range selected from the schedule view
+			bookmark.setCategory(BookmarkCategory.SCHEDULE_SESSIONS);
+			bookmark.addStateToken(String.valueOf(blockStartTime));
+			bookmark.addStateToken(String.valueOf(blockEndTime));
 		} else {
+			// session was selected from the now playing view
 			bookmark.setCategory(BookmarkCategory.NOW_PLAYING);
 		}
 		bookmark.addStateToken(entry.getId());
 	}
 
+	public SessionTrack getReferringTrack() {
+		return referringTrack;
+	}
+	public Long getReferringSessionBlockStartTime() {
+		return referringBlockStartTime;
+	}	
+	public Long getReferringSessionBlockEndTime() {
+		return referringBlockEndTime;
+	}
+	
 	public Toolbar getToolbar() {
 		return toolbar;
 	}

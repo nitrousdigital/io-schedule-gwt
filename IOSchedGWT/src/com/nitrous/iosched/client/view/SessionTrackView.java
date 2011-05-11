@@ -1,6 +1,7 @@
 package com.nitrous.iosched.client.view;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.TreeSet;
 
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -25,11 +26,18 @@ import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
  */
 public class SessionTrackView extends AbstractScrollableComposite implements ToolbarEnabledView, Refreshable {
 	private RefreshableSubActivityToolbar toolbar = new RefreshableSubActivityToolbar("Sessions");
+	
+	// track for session track mode
 	private SessionTrack track;
+	
+	// dare range for session block mode
+	private Long start;
+	private Long end;
+	
 	private VerticalPanel layout;
 	private int width;
 	private ActivityController controller;
-	private Bookmark bookmark = new Bookmark(BookmarkCategory.SESSION);
+	private Bookmark bookmark = new Bookmark(BookmarkCategory.SESSIONS);
 	public SessionTrackView(int width) {
 		this.width = width-20;
 		layout = new VerticalPanel();
@@ -50,16 +58,31 @@ public class SessionTrackView extends AbstractScrollableComposite implements Too
 	 * @param track The session track to display
 	 */
 	public void showSessionTrack(SessionTrack track) {
-		toolbar.setTitle(track.toString());
 		setTrack(track);
 		onRefresh(false);
 	}
 
+	public void showSessionTimeRange(long start, long end) {
+		this.toolbar.setTitle("Sessions");
+		this.track = null;
+		this.start = start;
+		this.end = end;
+		this.bookmark.setCategory(BookmarkCategory.SCHEDULE_SESSIONS);
+		this.bookmark.clearStateTokens();
+		this.bookmark.addStateToken(String.valueOf(start));
+		this.bookmark.addStateToken(String.valueOf(end));
+		onRefresh(false);
+	}
+	
 	public SessionTrack getTrack() {
 		return track;
 	}
 	public void setTrack(SessionTrack track) {
+		this.start = null;
+		this.end = null;
 		this.track = track;
+		this.toolbar.setTitle(track.toString());
+		this.bookmark.setCategory(BookmarkCategory.SESSIONS);
 		this.bookmark.setStateToken(track.getHistoryToken());
 	}
 	
@@ -96,19 +119,40 @@ public class SessionTrackView extends AbstractScrollableComposite implements Too
 	private void loadSessionData(TreeSet<FeedEntry> sorted) {
 		onClear();
 		// display
+		int displayedSessions = 0;
 		for (FeedEntry entry : sorted) {
-			if (track == null || SessionTrack.All.equals(track) || track.toString().equalsIgnoreCase(entry.getSessionTrack())) {
-				addSession(entry);
+			if (start != null) {
+				// date range mode
+				Date sessionStart = FeedEntryComparator.getStartDateTime(entry);
+				long sessionStartMs = sessionStart.getTime();
+				if (sessionStartMs >= start && sessionStartMs <= end) {
+					addSession(entry);
+					displayedSessions++;
+				}
+			} else {
+				// session track mode
+				if (track == null || SessionTrack.All.equals(track) || track.toString().equalsIgnoreCase(entry.getSessionTrack())) {
+					addSession(entry);
+					displayedSessions++;
+				}
 			}
 		}
-		refreshScroll();
+		if (displayedSessions == 0) {
+			showMessage("0 sessions found", false);
+		} else {
+			refreshScroll();
+		}
 	}
 
 	
 	
 	private void showSessionDetail(FeedEntry entry) {
 		if (controller != null) {
-			controller.showSessionDetail(this.track, entry);
+			if (this.start == null) {
+				controller.showSessionDetail(this.track, entry);
+			} else {
+				controller.showSessionDetail(entry, this.start, this.end);
+			}
 		}
 	}
 	

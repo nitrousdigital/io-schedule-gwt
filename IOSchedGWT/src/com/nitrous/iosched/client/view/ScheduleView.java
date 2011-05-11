@@ -1,13 +1,20 @@
 package com.nitrous.iosched.client.view;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HTMLTable.Cell;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.nitrous.iosched.client.model.SessionCell;
 import com.nitrous.iosched.client.toolbar.ActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
@@ -21,6 +28,7 @@ public class ScheduleView extends AbstractScrollableComposite implements Toolbar
 	private FlexTable calendarGrid;
 	private VerticalPanel layout;
 	private Bookmark bookmark = new Bookmark(BookmarkCategory.SCHEDULE);
+	private ActivityController controller;
 	public ScheduleView(int width) {
 		width -= 20;
 		layout = new VerticalPanel();
@@ -64,6 +72,20 @@ public class ScheduleView extends AbstractScrollableComposite implements Toolbar
 		layout.add(datePanel);
 		
 		calendarGrid = new FlexTable();
+		calendarGrid.addClickHandler(new ClickHandler(){
+			public void onClick(ClickEvent event) {
+				if (controller == null) {
+					return;
+				}
+				Cell cell = calendarGrid.getCellForEvent(event);
+				if (cell != null) {
+					int row = cell.getRowIndex();
+					int col = cell.getCellIndex();
+					onCellClicked(row, col);
+				}
+			}
+		});
+		
 //		calendarGrid.setBorderWidth(1);
 //		calendarGrid.setWidth(width+"px");
 		layout.add(calendarGrid);
@@ -72,6 +94,10 @@ public class ScheduleView extends AbstractScrollableComposite implements Toolbar
 		navLeft();
 		
 		setScrollable(layout);
+	}
+	
+	public void setController(ActivityController controller) {
+		this.controller = controller;
 	}
 	
 	private void addHourMarkers() {
@@ -110,8 +136,30 @@ public class ScheduleView extends AbstractScrollableComposite implements Toolbar
 		}
 	}
 
+	private void onCellClicked(int row, int col) {
+		if (col == 0) {
+			return;
+		}
+		SessionCell found = null;
+		for (SessionCell cell : sessionCells) {
+			if (cell.getCol() == col) {
+				int cellMinRow = cell.getMinRow();
+				int cellMaxRow = cell.getMaxRow();
+				if (row >= cellMinRow && row <= cellMaxRow) {
+					found = cell;
+					break;
+				}				
+			}
+		}
+		if (found != null) {
+			controller.showSessionTimeRange(found.getStartTime(), found.getEndTime());
+		}
+	}
+	
+	private ArrayList<SessionCell> sessionCells = new ArrayList<SessionCell>();
 	private void navRight() {
 		calendarGrid.removeAllRows();
+		sessionCells.clear();
 		addHourMarkers();
 		
 		tuesday.setVisible(false);
@@ -120,18 +168,18 @@ public class ScheduleView extends AbstractScrollableComposite implements Toolbar
 		wednesday.setVisible(true);
 		navLeft.setVisible(true);
 		
-		addBlueBox("Breakfast", 7,0, 10,0);
-		addBlueBox("Lunch<br>served", 11,45, 13,30);
+		addBlueBox("Breakfast", "Wednesday May 11 2011 7:00am", "Wednesday May 11 2011 10:00am");
+		addBlueBox("Lunch<br>served", "Wednesday May 11 2011 11:45am", "Wednesday May 11 2011 1:30pm");
 		
-		addDisabledRedBox("Keynote", 9,30, 10,30);
-		addRedBox("Breakout<br>sessions", 10,45, 11,45);		
-		addRedBox("Breakout<br>sessions", 12,30, 13,30);		
-		addRedBox("Breakout<br>sessions", 13,45, 14,45);		
-		addRedBox("Breakout<br>sessions", 15,00, 16,0);
-		addRedBox("Breakout<br>sessions", 16,15, 17,15);
+		addDisabledRedBox("Keynote", "Wednesday May 11 2011 9:30am", "Wednesday May 11 2011 10:30am");
+		addRedBox("Breakout<br>sessions", "Wednesday May 11 2011 10:45am", "Wednesday May 11 2011 11:45am");		
+		addRedBox("Breakout<br>sessions", "Wednesday May 11 2011 12:30pm", "Wednesday May 11 2011 1:30pm");		
+		addRedBox("Breakout<br>sessions", "Wednesday May 11 2011 1:45pm", "Wednesday May 11 2011 2:45pm");		
+		addRedBox("Breakout<br>sessions", "Wednesday May 11 2011 3:00pm", "Wednesday May 11 2011 4:00pm");
+		addRedBox("Breakout<br>sessions", "Wednesday May 11 2011 4:15pm", "Wednesday May 11 2011 5:15pm");
 		
-		addGreenBox("Office<br>hours", 12,0, 15,0);
-		addGreenBox("Office<br>hours", 15,0, 17,30);
+		addGreenBox("Office<br>hours", "Wednesday May 11 2011 12:00pm", "Wednesday May 11 2011 3:00pm");
+		addGreenBox("Office<br>hours", "Wednesday May 11 2011 3:00pm", "Wednesday May 11 2011 5:30pm");
 		
 		// workaround for bug where FlexTable inserts unwanted empty cells due to parallel rowspans.
 		calendarGrid.removeCell(20, 1);
@@ -151,20 +199,20 @@ public class ScheduleView extends AbstractScrollableComposite implements Toolbar
 		navLeft.setVisible(false);
 		
 		
-		addBlueBox("Breakfast", 7,0, 10,0);
-		addBlueBox("Lunch<br>served", 11,45, 13,15);
-		addBlueBox("After<br>Hours<br>evening<br>party", 18,30, 22,15);
+		addBlueBox("Breakfast", "Tuesday May 10 2011 7:00am", "Tuesday May 10 2011 10:00am");
+		addBlueBox("Lunch<br>served", "Tuesday May 10 2011 11:45am", "Tuesday May 10 2011 1:15pm");
+		addBlueBox("After<br>Hours<br>evening<br>party", "Tuesday May 10 2011 6:30pm", "Tuesday May 10 2011 10:15pm");
 		
-		addDisabledRedBox("Keynote", 9,0, 10,0);
-		addRedBox("Breakout<br>sessions", 10,15, 11,15);
-		addRedBox("Breakout<br>sessions", 11,30, 12,30);
-		addRedBox("Breakout<br>sessions", 13,15, 14,15);
-		addRedBox("Breakout<br>sessions", 14,30, 15,30);
-		addRedBox("Breakout<br>sessions", 15,45, 16,45);
-		addRedBox("Breakout<br>sessions", 17,0, 18,15);
+		addDisabledRedBox("Keynote", "Tuesday May 10 2011 9:00am", "Tuesday May 10 2011 10:00am");
+		addRedBox("Breakout<br>sessions", "Tuesday May 10 2011 10:15am", "Tuesday May 10 2011 11:15am");
+		addRedBox("Breakout<br>sessions", "Tuesday May 10 2011 11:30am", "Tuesday May 10 2011 12:30pm");
+		addRedBox("Breakout<br>sessions", "Tuesday May 10 2011 1:15pm", "Tuesday May 10 2011 2:15pm");
+		addRedBox("Breakout<br>sessions", "Tuesday May 10 2011 2:30pm", "Tuesday May 10 2011 3:30pm");
+		addRedBox("Breakout<br>sessions", "Tuesday May 10 2011 3:45pm", "Tuesday May 10 2011 4:45pm");
+		addRedBox("Breakout<br>sessions", "Tuesday May 10 2011 5:00pm", "Tuesday May 10 2011 6:15pm");
 		
-		addGreenBox("Office<br>hours", 12,0, 15,0);
-		addGreenBox("Office<br>hours", 15,0, 18,30);
+		addGreenBox("Office<br>hours", "Tuesday May 10 2011 12:00pm", "Tuesday May 10 2011 3:00pm");
+		addGreenBox("Office<br>hours", "Tuesday May 10 2011 3:00pm", "Tuesday May 10 2011 6:30pm");
 		
 		// workaround for bug where FlexTable inserts unwanted empty cells due to parallel rowspans.
 		calendarGrid.removeCell(20, 2);
@@ -174,19 +222,27 @@ public class ScheduleView extends AbstractScrollableComposite implements Toolbar
 		refreshScroll();
 	}
 		
-	private void addBlueBox(String text, int startHr, int startMin, int endHr, int endMin) {
-		addBox(text, startHr, startMin, endHr, endMin, "blueScheduleBox", 1);
+	private void addBlueBox(String text, String startTime, String endTime) {
+		addBox(text, startTime, endTime, "blueScheduleBox", "scheduleBoxTextDisabled", 1);
 	}
-	private void addDisabledRedBox(String text, int startHr, int startMin, int endHr, int endMin) {
-		addBox(text, startHr, startMin, endHr, endMin, "redScheduleBoxDisabled", 1);
+	private void addDisabledRedBox(String text, String startTime, String endTime) {
+		addBox(text, startTime, endTime, "redScheduleBoxDisabled", "scheduleBoxTextDisabled", 1);
 	}
-	private void addRedBox(String text, int startHr, int startMin, int endHr, int endMin) {
-		addBox(text, startHr, startMin, endHr, endMin, "redScheduleBox", 2);
+	private void addRedBox(String text, String startTime, String endTime) {
+		addBox(text, startTime, endTime, "redScheduleBox", "scheduleBoxText", 2);
 	}
-	private void addGreenBox(String text, int startHr, int startMin, int endHr, int endMin) {
-		addBox(text, startHr, startMin, endHr, endMin, "greenScheduleBox", 3);
+	private void addGreenBox(String text, String startTime, String endTime) {
+		addBox(text, startTime, endTime, "greenScheduleBox", "scheduleBoxText", 3);
 	}
-	private void addBox(String text, int startHr, int startMin, int endHr, int endMin, String boxStyle, int column) {
+	private static final DateTimeFormat format = DateTimeFormat.getFormat("EEEE MMMM dd yyyy h:mmaa");
+	private void addBox(String text, String startTime, String endTime, String boxStyle, String textStyle, int column) {
+		Date start = format.parse(startTime);
+		Date end = format.parse(endTime);
+		int startHr = start.getHours();
+		int startMin = start.getMinutes();
+		int endHr = end.getHours();
+		int endMin = end.getMinutes();
+		
 		int row = (startHr-7) * 4;
 		row += (startMin / 15);
 		int endRow = (endHr-7) * 4;
@@ -198,7 +254,7 @@ public class ScheduleView extends AbstractScrollableComposite implements Toolbar
 		box.setSize("100%", "100%");
 		
 		HTML boxLabel = new HTML(text);		
-		boxLabel.setStyleName("scheduleBoxText");
+		boxLabel.setStyleName(textStyle);
 		boxLabel.setSize("100%", "100%");
 		
 		box.setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
@@ -209,7 +265,9 @@ public class ScheduleView extends AbstractScrollableComposite implements Toolbar
 			calendarGrid.getFlexCellFormatter().setRowSpan(row, column, rowSpan);
 		}
 		calendarGrid.getFlexCellFormatter().setStyleName(row, column, boxStyle);
-		calendarGrid.getFlexCellFormatter().setWidth(row, column, "70px"); 
+		calendarGrid.getFlexCellFormatter().setWidth(row, column, "70px");
+		
+		sessionCells.add(new SessionCell(row, row + rowSpan, column, start.getTime(), end.getTime()));
 	}
 	
 	public Toolbar getToolbar() {
