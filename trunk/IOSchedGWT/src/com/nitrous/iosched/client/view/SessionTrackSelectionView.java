@@ -19,7 +19,7 @@ public class SessionTrackSelectionView extends AbstractScrollableComposite imple
 	private static final Images images = GWT.create(Images.class);
 	private ActivityToolbar toolbar = new ActivityToolbar("Session Tracks");
 	private ActivityController controller;
-	private Bookmark bookmark = new Bookmark(BookmarkCategory.SESSION);
+	private Bookmark bookmark = new Bookmark(BookmarkCategory.SESSIONS);
 	public SessionTrackSelectionView(int width) {
 		width -= 20;
 		VerticalPanel layout = new VerticalPanel();

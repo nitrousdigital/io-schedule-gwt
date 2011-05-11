@@ -87,6 +87,7 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 		
 		// 2
 		schedule = new ScheduleView(WIDTH);
+		schedule.setController(this);
 		viewDeckPanel.add(schedule);
 		
 		// 3
@@ -173,8 +174,28 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 				showNowPlaying();
 			}
 			break;
+		
+		case SCHEDULE_SESSIONS:
+			if (bookmark.hasState()) {
+				final ArrayList<String> state = bookmark.getState();
+				if (state.size() == 2) {
+					try {
+						long startTime = Long.valueOf(state.get(0));
+						long endTime = Long.valueOf(state.get(1));
+						showSessionTimeRange(startTime, endTime);
+					} catch (Throwable t) {
+						GWT.log("Failed to parse start/end date range for session view", t);
+						showSchedule();
+					}
+				} else {
+					showSchedule();
+				}
+			} else {
+				showSchedule();
+			}
+			break;
 			
-		case SESSION:
+		case SESSIONS:
 			if (bookmark.hasState()) {
 				final ArrayList<String> state = bookmark.getState();
 				if (state.size() == 1) {
@@ -205,15 +226,28 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 	
 	public void back() {
 		if (currentView == sessionTrackView) {
-			showSessionTrackSelector();
+			if (sessionTrackView.getTrack() != null) {
+				showSessionTrackSelector();
+			} else {
+				showSchedule();
+			}
 		} else if (currentView == sandBoxCompanySelectionView) {
 			showSandboxSelector();
 		} else if (currentView == sessionDetailView) {
-			SessionTrack track = sessionTrackView.getTrack();
+			SessionTrack track = sessionDetailView.getReferringTrack();
 			if (track != null) {
+				// referring view is track view
 				showSessionTrack(track);
 			} else {
-				showNowPlaying();
+				Long start = sessionDetailView.getReferringSessionBlockStartTime();
+				if (start != null) {
+					// referring view is time block selected from schedule view
+					Long end = sessionDetailView.getReferringSessionBlockEndTime();
+					showSessionTimeRange(start, end);
+				} else {
+					// referring view is now playing view
+					showNowPlaying();
+				}
 			}
 		}
 	}
@@ -279,11 +313,34 @@ public class IOSchedGUI extends Composite implements ActivityController, Toolbar
 		viewDeckPanel.showWidget(7);
 		onViewDisplayed(sessionTrackView);
 	}
+	/**
+	 * Display all sessions within the specified time range
+	 * @param startTime The start time
+	 * @param endTime The end time
+	 */
+	public void showSessionTimeRange(long startTime, long endTime) {
+		sessionTrackView.showSessionTimeRange(startTime, endTime);
+		viewDeckPanel.showWidget(7);
+		onViewDisplayed(sessionTrackView);
+	}
+
 	public void showSessionDetail(SessionTrack track, FeedEntry entry) {
 		sessionDetailView.showSessionDetail(track, entry);
 		viewDeckPanel.showWidget(9);
 		onViewDisplayed(sessionDetailView);
 	}
+	/**
+	 * Show the details of a session selected from a time range view
+	 * @param entry The session to show
+	 * @param blockStartTime The start of the time range from which the session was selected
+	 * @param blockEndTime The end of the time range from which the session was selected
+	 */
+	public void showSessionDetail(FeedEntry entry, long blockStartTime, long blockEndTime) {
+		sessionDetailView.showSessionDetail(entry, blockStartTime, blockEndTime);
+		viewDeckPanel.showWidget(9);
+		onViewDisplayed(sessionDetailView);
+	}
+	
 	public void showCurrentSessionDetail(FeedEntry entry) {
 		sessionDetailView.showSessionDetail(entry);
 		viewDeckPanel.showWidget(9);
