@@ -4,6 +4,7 @@ public enum BookmarkCategory {
 	HOME("home"),
 	SCHEDULE("schedule"),
 	MAP("map"),
+	REALTIME("realtime"),
 	SESSIONS("sessions"),
 	SCHEDULE_SESSIONS("schedulesessions"),
 	NOW_PLAYING("now"),

@@ -10,9 +10,8 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.nitrous.iosched.client.model.FeedEntry;
 import com.nitrous.iosched.client.model.SessionStore;
@@ -34,12 +33,13 @@ public class NowPlayingView extends AbstractScrollableComposite implements Toolb
 	public NowPlayingView(int width) {
 		this.width = width-20;
 		layout = new VerticalPanel();
-		layout.setWidth(this.width+"px");
-		layout.setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
-		layout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
-		initWidget(layout);
+		layout.setWidth("100%");
 		layout.getElement().setId("NowPlaying-scrollpanel");
-		setScrollable(layout);
+		
+		ScrollPanel scroll = new ScrollPanel();
+		scroll.add(layout);
+		initWidget(scroll);
+		setScrollable(scroll);
 	}
 	
 	public void setController(ActivityController controller) {

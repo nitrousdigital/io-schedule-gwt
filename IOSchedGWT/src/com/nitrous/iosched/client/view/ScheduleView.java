@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.nitrous.iosched.client.model.SessionCell;
 import com.nitrous.iosched.client.toolbar.ActivityToolbar;
@@ -26,17 +27,14 @@ public class ScheduleView extends AbstractScrollableComposite implements Toolbar
 	private Label navRight;
 	private Label navLeft;
 	private FlexTable calendarGrid;
-	private VerticalPanel layout;
+	private ScrollPanel layout;
 	private Bookmark bookmark = new Bookmark(BookmarkCategory.SCHEDULE);
 	private ActivityController controller;
 	public ScheduleView(int width) {
 		width -= 20;
-		layout = new VerticalPanel();
+		layout = new ScrollPanel();
 		initWidget(layout);
 
-		layout.setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
-		layout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
-		
 		HorizontalPanel datePanel = new HorizontalPanel();
 		datePanel.setSize(width+"px", "12px");
 		datePanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
@@ -69,7 +67,6 @@ public class ScheduleView extends AbstractScrollableComposite implements Toolbar
 		navRight.setStyleName("scheduleViewDateNavLabel");
 		datePanel.add(navRight);
 		
-		layout.add(datePanel);
 		
 		calendarGrid = new FlexTable();
 		calendarGrid.addClickHandler(new ClickHandler(){
@@ -88,7 +85,11 @@ public class ScheduleView extends AbstractScrollableComposite implements Toolbar
 		
 //		calendarGrid.setBorderWidth(1);
 //		calendarGrid.setWidth(width+"px");
-		layout.add(calendarGrid);
+		VerticalPanel v = new VerticalPanel();
+		v.setSize("100%", "100%");
+		v.add(datePanel);
+		v.add(calendarGrid);
+		layout.add(v);
 		
 		layout.getElement().setId("ScheduleView-scrollpanel");
 		navLeft();

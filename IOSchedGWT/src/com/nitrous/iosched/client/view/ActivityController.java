@@ -8,6 +8,7 @@ public interface ActivityController {
 	public void showSchedule();
 	public void showMap();
 	public void showSessionTrackSelector();
+	public void showRealtimeStream();
 	public void showStarred();
 	public void showSandboxSelector();
 	public void showBulletin();

@@ -8,9 +8,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.nitrous.iosched.client.model.FeedEntry;
 import com.nitrous.iosched.client.model.SessionStore;
@@ -41,11 +40,12 @@ public class SessionListView extends AbstractScrollableComposite implements Tool
 	public SessionListView(int width) {
 		this.width = width-20;
 		layout = new VerticalPanel();
-		layout.setWidth(this.width+"px");
-		layout.setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
-		layout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
-		initWidget(layout);
+		layout.setWidth("100%");
 		layout.getElement().setId("SessionTrackView-scrollpanel");
+		
+		ScrollPanel scroll = new ScrollPanel();
+		scroll.add(layout);
+		initWidget(scroll);
 		setScrollable(layout);
 	}
 	

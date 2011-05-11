@@ -2,10 +2,8 @@ package com.nitrous.iosched.client.view;
 
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.nitrous.iosched.client.model.FeedEntry;
 import com.nitrous.iosched.client.model.SessionTrack;
 import com.nitrous.iosched.client.toolbar.RefreshableSubActivityToolbar;
@@ -16,7 +14,7 @@ public class SessionDetailView extends AbstractScrollableComposite implements To
 	private RefreshableSubActivityToolbar toolbar = new RefreshableSubActivityToolbar("Session Detail");
 	private Bookmark bookmark = new Bookmark(BookmarkCategory.SESSIONS);
 	
-	private VerticalPanel layout;
+	private ScrollPanel layout;
 	private Grid infoGrid;
 	
 	private HTML sessionTitle;
@@ -40,10 +38,8 @@ public class SessionDetailView extends AbstractScrollableComposite implements To
 	
 	public SessionDetailView(int width) {
 		width -= 20;
-		layout = new VerticalPanel();
-		layout.setWidth(width+"px");
-		layout.setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
-		layout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
+		layout = new ScrollPanel();
+		layout.setWidth("100%");
 		initWidget(layout);
 		
 		infoGrid = new Grid(5,2);
