@@ -15,7 +15,6 @@ public class ToolbarText extends Composite {
 		VerticalPanel layout = new VerticalPanel();
 		layout.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 		layout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
-		layout.setStyleName("toolbarFill");
 		layout.setHeight("44px");
 		layout.add(l);
 		layout.setWidth(width+"px");

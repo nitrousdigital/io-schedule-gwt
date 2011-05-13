@@ -3,6 +3,7 @@ package com.nitrous.iosched.client.toolbar;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
@@ -18,9 +19,12 @@ public class ApplicationToolbar extends Composite implements Toolbar {
 	
 	public ApplicationToolbar() {
 		HorizontalPanel toolbar = new HorizontalPanel();
+		toolbar.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
+		toolbar.setStyleName("toolbarFill");
 		initWidget(toolbar);
 		
 		toolbar.add(logo);
+		logo.setStyleName("toolbarButton");
 		logo.addClickHandler(new com.google.gwt.event.dom.client.ClickHandler(){
 			public void onClick(ClickEvent event) {
 				if (toolbarController != null) {
@@ -34,6 +38,7 @@ public class ApplicationToolbar extends Composite implements Toolbar {
 		
 		toolbar.add(new ToolbarText(" ", 45));
 //		toolbar.add(searchBtn);
+//		searchBtn.setStyleName("toolbarButton");
 //		searchBtn.addClickHandler(new com.google.gwt.event.dom.client.ClickHandler(){
 //			public void onClick(ClickEvent event) {
 //				if (toolbarController != null) {

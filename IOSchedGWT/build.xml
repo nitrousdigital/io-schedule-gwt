@@ -82,6 +82,18 @@
 	<target name="war" depends="build" description="Create a war file">
 		<zip destfile="build/IOSchedGWT.war" basedir="war" />
 	</target>
+	
+	<target name="copy-js" description="Re-deploy the javascript and static HTML resources (without re-compiling)">
+		<copy todir="${webapps.dir}/IOSchedGWT">
+			<fileset dir="war">
+				<exclude name="**/.svn/**"/> 
+				<exclude name="WEB-INF/**"/> 
+			</fileset>
+		</copy>
+	</target>
+	<target name="deploy-js" depends="build, copy-js" description="Build and re-deploy ONLY the GWT compiled JavaScript and static resources">
+	</target>
+	
 	<target name="zip" depends="build" description="Create a zip file of the ajax web page">
 		<zip destfile="build/IOSchedGWT.zip" basedir="war">
 			<exclude name="WEB-INF/**/*" />			
