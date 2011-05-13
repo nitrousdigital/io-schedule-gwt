@@ -5,7 +5,6 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ResizeComposite;
@@ -50,6 +49,7 @@ public class ActivityMenuView extends ResizeComposite implements ToolbarEnabledV
 		ScrollPanel scroll= new ScrollPanel();
 		scroll.add(absolutePanel);
 		initWidget(scroll);
+		scroll.setSize(width+"px", height+"px");
 				
 		absolutePanel.add(scheduleBtn, 61, 14);
 		scheduleBtn.addClickHandler(new ClickHandler(){

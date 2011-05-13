@@ -1,8 +1,6 @@
 package com.nitrous.iosched.client.view;
 
 import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.nitrous.iosched.client.toolbar.RefreshableActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
@@ -18,7 +16,7 @@ public abstract class AbstractIFrameView extends AbstractScrollableComposite imp
 		html = "<iframe id=\""+title+"-iframe"+"\" src=\"" + url + "\" width=\"100%\" height=\"100%\"></iframe>";
 		iframe = new HTML();
 		iframe.getElement().setId(title+"-html");
-		iframe.setSize("100%", height+"px");
+		iframe.setSize("100%", "100%");
 		
 		layout = new ScrollPanel();
 		layout.setSize("100%", "100%");

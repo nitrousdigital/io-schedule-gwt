@@ -62,7 +62,7 @@ public class SessionStore {
 		if (sessions.size() > 0 && reload == false) {
 			callback.onSuccess(sessions);
 		} else {
-			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, Configuration.SESSION_FEED_URL);
+			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, Configuration.getSessionFeed());
 			try {
 				builder.sendRequest(null, new RequestCallback(){
 					public void onResponseReceived(Request request, Response response) {

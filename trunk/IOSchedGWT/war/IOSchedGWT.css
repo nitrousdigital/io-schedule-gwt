@@ -32,10 +32,6 @@ h1 {
 #closeButton {
   margin: 15px 6px 6px;
 }
-.toolbar {
-	height: 44px;
-	marging:0px;
-}
 .colorbar {
 	height:6px;
 	margin:0px;
@@ -75,12 +71,21 @@ h1 {
     font-size: 13px;
     font-weight:bold;    
     color: #205aaf;
+    cursor: pointer;
 }
+.iconImage {
+    cursor: pointer;	
+}
+
 .toolbarText {
     font-family: 'Droid Sans',Arial,helvetica;
     font-size: 13px;
     font-weight:bold;    
     color: #205aaf;
+    cursor: default;	
+}
+.toolbarButton {
+    cursor: pointer;	
 }
 .toolbarFill {
 	background-image:url('images/toolbar_bg.png');
@@ -206,6 +211,10 @@ h1 {
     font-size: 12px;
     font-weight:plain;    
     color: #000000;
+}
+.colorBar {
+	background-image:url('images/colors.png');
+    background-repeat:repeat-x;
 }
 
 #Map-scrollpanel {

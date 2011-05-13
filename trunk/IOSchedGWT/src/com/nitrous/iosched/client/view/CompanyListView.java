@@ -67,7 +67,7 @@ public class CompanyListView extends AbstractScrollableComposite implements Tool
 	public void onRefresh() {
 		showMessage("Loading, Please wait...", false);
 		// load all sandbox data in JSON format
-		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, Configuration.SANDBOX_FEED_URL);
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, Configuration.getSandboxFeed());
 		try {
 			builder.sendRequest(null, new RequestCallback(){
 				public void onResponseReceived(Request request, Response response) {

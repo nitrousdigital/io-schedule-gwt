@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.DeckLayoutPanel;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.ResizeComposite;
-import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
 import com.nitrous.iosched.client.images.Images;
 import com.nitrous.iosched.client.model.CompanyPod;
 import com.nitrous.iosched.client.model.FeedEntry;
@@ -21,10 +21,10 @@ import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarController;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 import com.nitrous.iosched.client.view.ActivityController;
-import com.nitrous.iosched.client.view.ActivityMenuView;
 import com.nitrous.iosched.client.view.Bookmark;
 import com.nitrous.iosched.client.view.BulletinView;
 import com.nitrous.iosched.client.view.CompanyListView;
+import com.nitrous.iosched.client.view.HomeMenuView;
 import com.nitrous.iosched.client.view.MapView;
 import com.nitrous.iosched.client.view.NowPlayingView;
 import com.nitrous.iosched.client.view.RealtimeView;
@@ -40,7 +40,7 @@ import com.nitrous.iosched.client.view.StarredView;
 public class IOSchedGUI extends ResizeComposite implements ActivityController, ToolbarController {
 	private static final Images images = GWT.create(Images.class);
 	
-	private ActivityMenuView rootMenu;
+	private HomeMenuView rootMenu;
 	
 	// views
 	private ScheduleView scheduleView;
@@ -64,32 +64,42 @@ public class IOSchedGUI extends ResizeComposite implements ActivityController, T
 	private Toolbar currentToolbar;
 	private ToolbarEnabledView currentView;
 	
-	private static final int WIDTH = 316;
+	private static final int WIDTH = Window.getClientWidth();
+	private static final int HEIGHT = Window.getClientHeight();
+
 	private HorizontalPanel toolbarContainer;
 	
 	public IOSchedGUI() {		
 
-		VerticalPanel header = new VerticalPanel();
 		toolbarContainer = new HorizontalPanel();
+		toolbarContainer.getElement().setId("toolbar-container");
 		toolbarContainer.setHeight("45px");
 		toolbarContainer.setWidth("100%");
+		
+//		Image colorBar = new Image(images.colors());
+//		colorBar.setSize(WIDTH+"px", "6px");
+		HorizontalPanel colorBar = new HorizontalPanel();
+		colorBar.setWidth("100%");
+		colorBar.setStyleName("colorBar");
+		
+		DockLayoutPanel header = new DockLayoutPanel(Unit.PX);
+		header.setWidth(WIDTH+"px");
+		header.getElement().setId("header");
+		header.addSouth(colorBar, 6);
 		header.add(toolbarContainer);
-		Image colorBar = new Image(images.colors());
-		colorBar.setSize("100%", "6px");
-		header.add(colorBar);
+//		header.setHeight("51px");
 		
 		viewDeckPanel = new DeckLayoutPanel();
 		viewDeckPanel.setStyleName("deckPanel");
 		viewDeckPanel.setSize("100%", "100%");
 		
-		int clientHeight = 360;
 		// 0
-		rootMenu = new ActivityMenuView(WIDTH, clientHeight);
+		rootMenu = new HomeMenuView(WIDTH, HEIGHT-51);
 		rootMenu.setController(this);
 		viewDeckPanel.add(rootMenu);
 			
 		// 1
-		mapView = new MapView(WIDTH, clientHeight);
+		mapView = new MapView(WIDTH, HEIGHT-51);
 		viewDeckPanel.add(mapView);
 		
 		// 2
@@ -103,16 +113,16 @@ public class IOSchedGUI extends ResizeComposite implements ActivityController, T
 		viewDeckPanel.add(sessionTrackListView);
 
 		// 4
-		starredView = new StarredView(WIDTH, clientHeight);
+		starredView = new StarredView(WIDTH, HEIGHT-51);
 		viewDeckPanel.add(starredView);
 		
 		// 5
-		sandboxListView = new SandBoxListView(WIDTH, clientHeight);
+		sandboxListView = new SandBoxListView(WIDTH, HEIGHT-51);
 		sandboxListView.setController(this);
 		viewDeckPanel.add(sandboxListView);
 		
 		// 6
-		bulletinView = new BulletinView(WIDTH, clientHeight);
+		bulletinView = new BulletinView(WIDTH, HEIGHT-51);
 		viewDeckPanel.add(bulletinView);
 		
 		// 7 - displays sessions within the selected selection track
@@ -134,15 +144,27 @@ public class IOSchedGUI extends ResizeComposite implements ActivityController, T
 		viewDeckPanel.add(nowPlayingView);
 		
 		// 11 - realtime stream
-		realtimeStreamView = new RealtimeView(WIDTH, clientHeight);
+		realtimeStreamView = new RealtimeView(WIDTH, HEIGHT-51);
 		viewDeckPanel.add(realtimeStreamView);	
 
 		layout = new DockLayoutPanel(Unit.PX);
-		layout.setSize(WIDTH+"px", "450px");
-		layout.addNorth(toolbarContainer, 45);
+		//layout.setSize(WIDTH+"px", "450px");
+		layout.setSize(WIDTH+"px", HEIGHT+"px");
+		layout.addNorth(header, 50);
 		layout.add(viewDeckPanel);
+		
 		initWidget(layout);		
 	}
+	
+	public void onResize() {
+		super.onResize();
+		onResize(Window.getClientWidth(), Window.getClientHeight());
+	}
+	private void onResize(int width, int height) {
+		layout.setSize(width+"px", height+"px");
+		rootMenu.onResize(width, height-51);
+	}
+	
 	
 	public void navigateTo(Bookmark bookmark) {
 		if (bookmark == null) {
@@ -283,7 +305,9 @@ public class IOSchedGUI extends ResizeComposite implements ActivityController, T
 		currentToolbar = widget.getToolbar();
 		if (currentToolbar != null) {
 			currentToolbar.setController(this);
-			toolbarContainer.add(currentToolbar.getUI());
+			Widget toolbar = currentToolbar.getUI();
+			toolbar.setWidth("100%");
+			toolbarContainer.add(toolbar);
 		}
 	}
 	
