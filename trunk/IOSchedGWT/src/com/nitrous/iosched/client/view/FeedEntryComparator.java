@@ -4,13 +4,13 @@ import java.util.Comparator;
 import java.util.Date;
 
 import com.google.gwt.i18n.client.DateTimeFormat;
-import com.nitrous.iosched.client.model.FeedEntry;
+import com.nitrous.iosched.client.model.SessionFeedEntry;
 
-public class FeedEntryComparator  implements Comparator<FeedEntry> {
+public class FeedEntryComparator  implements Comparator<SessionFeedEntry> {
 	private static final DateTimeFormat format = DateTimeFormat.getFormat("EEEE MMMM dd hh:mmaa");
 	public FeedEntryComparator() {
 	}
-	public int compare(FeedEntry entry, FeedEntry other) {
+	public int compare(SessionFeedEntry entry, SessionFeedEntry other) {
 		// 1st sort by date/time
 		Date entryDate = getStartDateTime(entry);
 		Date otherDate = getStartDateTime(other);
@@ -25,7 +25,7 @@ public class FeedEntryComparator  implements Comparator<FeedEntry> {
 		}			
 		return result;
 	}
-	public static Date getStartDateTime(FeedEntry entry) {
+	public static Date getStartDateTime(SessionFeedEntry entry) {
 		Date startTime = entry.getStartDateTimeNative();
 		if (startTime == null) {
 			// Wednesday May 11
@@ -39,7 +39,7 @@ public class FeedEntryComparator  implements Comparator<FeedEntry> {
 		}
 		return startTime;
 	}
-	public static Date getEndDateTime(FeedEntry entry) {
+	public static Date getEndDateTime(SessionFeedEntry entry) {
 		Date endTime = entry.getEndDateTimeNative();
 		if (endTime == null) {
 			// Wednesday May 11

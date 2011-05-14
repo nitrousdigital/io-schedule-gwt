@@ -12,7 +12,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.nitrous.iosched.client.model.FeedEntry;
+import com.nitrous.iosched.client.model.SessionFeedEntry;
 import com.nitrous.iosched.client.model.SessionStore;
 import com.nitrous.iosched.client.model.SessionTrack;
 import com.nitrous.iosched.client.toolbar.RefreshableSubActivityToolbar;
@@ -98,7 +98,7 @@ public class SessionListView extends ResizeComposite implements ToolbarEnabledVi
 	}
 	public void onRefresh(boolean reload) {
 		showMessage("Loading, Please wait...", false);
-		SessionStore.get().getSessions(new AsyncCallback<TreeSet<FeedEntry>>(){
+		SessionStore.get().getSessions(new AsyncCallback<TreeSet<SessionFeedEntry>>(){
 			public void onFailure(Throwable caught) {
 				String message = caught.getMessage();
 				if (message != null && message.trim().length() > 0) {
@@ -108,18 +108,18 @@ public class SessionListView extends ResizeComposite implements ToolbarEnabledVi
 				}						
 
 			}
-			public void onSuccess(TreeSet<FeedEntry> result) {
+			public void onSuccess(TreeSet<SessionFeedEntry> result) {
 				loadSessionData(result);
 			}
 			
 		}, reload);
 	}
 	
-	private void loadSessionData(TreeSet<FeedEntry> sorted) {
+	private void loadSessionData(TreeSet<SessionFeedEntry> sorted) {
 		onClear();
 		// display
 		int displayedSessions = 0;
-		for (FeedEntry entry : sorted) {
+		for (SessionFeedEntry entry : sorted) {
 			if (start != null) {
 				// date range mode
 				Date sessionStart = FeedEntryComparator.getStartDateTime(entry);
@@ -143,7 +143,7 @@ public class SessionListView extends ResizeComposite implements ToolbarEnabledVi
 
 	
 	
-	private void showSessionDetail(FeedEntry entry) {
+	private void showSessionDetail(SessionFeedEntry entry) {
 		if (controller != null) {
 			if (this.start == null) {
 				controller.showSessionDetail(this.track, entry);
@@ -154,7 +154,7 @@ public class SessionListView extends ResizeComposite implements ToolbarEnabledVi
 	}
 	
 	private ArrayList<HandlerRegistration> sessionClickHandlers = new ArrayList<HandlerRegistration>();
-	private void addSession(final FeedEntry entry) {
+	private void addSession(final SessionFeedEntry entry) {
 		VerticalPanel row = new VerticalPanel();
 		row.setWidth(this.width+"px");
 		row.setStyleName("sessionRow");		
@@ -196,7 +196,7 @@ public class SessionListView extends ResizeComposite implements ToolbarEnabledVi
 		return toolbar;
 	}
 	
-	private static String getDateTimePlace(FeedEntry entry) {
+	private static String getDateTimePlace(SessionFeedEntry entry) {
 		StringBuilder buf = new StringBuilder();
 		buf.append(entry.getSessionTime());
 		buf.append(", ");

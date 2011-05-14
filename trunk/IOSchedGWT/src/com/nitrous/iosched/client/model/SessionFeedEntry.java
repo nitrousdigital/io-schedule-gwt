@@ -9,8 +9,8 @@ import com.google.gwt.core.client.JavaScriptObject;
  * @author Nick
  *
  */
-public final class FeedEntry extends JavaScriptObject {
-	protected FeedEntry() {
+public final class SessionFeedEntry extends JavaScriptObject {
+	protected SessionFeedEntry() {
 	}
 	
 	public native Date getStartDateTimeNative() /*-{

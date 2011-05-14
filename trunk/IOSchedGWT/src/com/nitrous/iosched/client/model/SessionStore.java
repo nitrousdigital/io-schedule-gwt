@@ -19,7 +19,7 @@ import com.nitrous.iosched.client.view.FeedEntryComparator;
 public class SessionStore {
 	private static SessionStore INSTANCE;
 	private static final FeedEntryComparator feedSorter = new FeedEntryComparator();
-	private TreeSet<FeedEntry> sessions = new TreeSet<FeedEntry>();
+	private TreeSet<SessionFeedEntry> sessions = new TreeSet<SessionFeedEntry>();
 	private SessionStore() {
 	}
 	public static SessionStore get() {
@@ -34,14 +34,14 @@ public class SessionStore {
 	 * @param sessionId The ID of the session
 	 * @param callback The callback
 	 */
-	public void getSession(final String sessionId, final AsyncCallback<FeedEntry> callback) {
-		getSessions(new AsyncCallback<TreeSet<FeedEntry>>(){
+	public void getSession(final String sessionId, final AsyncCallback<SessionFeedEntry> callback) {
+		getSessions(new AsyncCallback<TreeSet<SessionFeedEntry>>(){
 			public void onFailure(Throwable caught) {
 				callback.onFailure(caught);
 			}
-			public void onSuccess(TreeSet<FeedEntry> result) {
+			public void onSuccess(TreeSet<SessionFeedEntry> result) {
 				if (result != null) {
-					for (FeedEntry entry : result) {
+					for (SessionFeedEntry entry : result) {
 						if (entry.getId().equals(sessionId)) {
 							callback.onSuccess(entry);
 							return;
@@ -58,7 +58,7 @@ public class SessionStore {
 	 * @param callback The callback
 	 * @param reload True to force a reload from the server
 	 */
-	public void getSessions(final AsyncCallback<TreeSet<FeedEntry>> callback, boolean reload) {
+	public void getSessions(final AsyncCallback<TreeSet<SessionFeedEntry>> callback, boolean reload) {
 		if (sessions.size() > 0 && reload == false) {
 			callback.onSuccess(sessions);
 		} else {
@@ -83,14 +83,13 @@ public class SessionStore {
 								return;
 							}						
 						} else {
-							SessionData data = SessionData.eval(response.getText());
-							Feed feed = data.getFeed();
-							JsArray<FeedEntry> entries = feed.getEntries();
+							SessionFeed feed = SessionFeed.eval(response.getText());
+							JsArray<SessionFeedEntry> entries = feed.getEntries();
 							if (entries != null) {
 								// sort
-								TreeSet<FeedEntry> sorted = new TreeSet<FeedEntry>(feedSorter);			
+								TreeSet<SessionFeedEntry> sorted = new TreeSet<SessionFeedEntry>(feedSorter);			
 								for (int i = 0 ; i < entries.length(); i++) {				
-									FeedEntry entry = entries.get(i);
+									SessionFeedEntry entry = entries.get(i);
 									sorted.add(entry);
 								}
 								sessions = sorted;
