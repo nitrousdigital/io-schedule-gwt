@@ -10,6 +10,7 @@ import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.nitrous.iosched.client.model.CompanyPod;
@@ -25,7 +26,7 @@ import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
  * @author nick
  *
  */
-public class CompanyListView extends AbstractScrollableComposite implements ToolbarEnabledView, Refreshable {
+public class CompanyListView extends ResizeComposite implements ToolbarEnabledView, Refreshable {
 	private RefreshableSubActivityToolbar toolbar = new RefreshableSubActivityToolbar("Companies");
 	private CompanyPod companyPod;
 	private VerticalPanel layout;
@@ -40,7 +41,6 @@ public class CompanyListView extends AbstractScrollableComposite implements Tool
 		ScrollPanel scroll = new ScrollPanel();
 		scroll.add(layout);
 		initWidget(scroll);
-		setScrollable(scroll);
 	}
 	
 	/**
@@ -129,7 +129,6 @@ public class CompanyListView extends AbstractScrollableComposite implements Tool
 				}
 			}
 		}
-		refreshScroll();
 	}
 
 	private static final FeedEntryComparator feedSorter = new FeedEntryComparator();
@@ -159,7 +158,6 @@ public class CompanyListView extends AbstractScrollableComposite implements Tool
 	
 	private void onClear() {
 		this.layout.clear();
-		refreshScroll();
 	}
 	
 	public Toolbar getToolbar() {

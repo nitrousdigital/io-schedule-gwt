@@ -9,6 +9,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.nitrous.iosched.client.model.FeedEntry;
@@ -23,7 +24,7 @@ import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
  * @author Nick
  *
  */
-public class SessionListView extends AbstractScrollableComposite implements ToolbarEnabledView, Refreshable {
+public class SessionListView extends ResizeComposite implements ToolbarEnabledView, Refreshable {
 	private RefreshableSubActivityToolbar toolbar = new RefreshableSubActivityToolbar("Sessions");
 	
 	// track for session track mode
@@ -46,7 +47,6 @@ public class SessionListView extends AbstractScrollableComposite implements Tool
 		ScrollPanel scroll = new ScrollPanel();
 		scroll.add(layout);
 		initWidget(scroll);
-		setScrollable(layout);
 	}
 	
 	public void setController(ActivityController controller) {
@@ -91,7 +91,6 @@ public class SessionListView extends AbstractScrollableComposite implements Tool
 		Label msg = new Label(message);
 		msg.setStyleName(isError ? "sessionErrorMessage" : "sessionMessage");
 		layout.add(msg);
-		refreshScroll();
 	}
 	
 	public void onRefresh() {
@@ -139,8 +138,6 @@ public class SessionListView extends AbstractScrollableComposite implements Tool
 		}
 		if (displayedSessions == 0) {
 			showMessage("0 sessions found", false);
-		} else {
-			refreshScroll();
 		}
 	}
 
@@ -193,7 +190,6 @@ public class SessionListView extends AbstractScrollableComposite implements Tool
 		}
 		sessionClickHandlers.clear();
 		this.layout.clear();	
-		refreshScroll();
 	}
 	
 	public Toolbar getToolbar() {

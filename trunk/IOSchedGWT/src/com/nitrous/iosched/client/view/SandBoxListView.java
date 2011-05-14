@@ -9,6 +9,7 @@ import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.nitrous.iosched.client.images.Images;
 import com.nitrous.iosched.client.model.CompanyPod;
@@ -16,7 +17,7 @@ import com.nitrous.iosched.client.toolbar.ActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 
-public class SandBoxListView extends AbstractScrollableComposite implements ToolbarEnabledView {
+public class SandBoxListView extends ResizeComposite implements ToolbarEnabledView {
 	private static final Images images = GWT.create(Images.class);
 	private ActivityToolbar toolbar = new ActivityToolbar("Sandbox pods");
 	private ActivityController controller;
@@ -75,7 +76,6 @@ public class SandBoxListView extends AbstractScrollableComposite implements Tool
 		ScrollPanel scroll = new ScrollPanel();
 		scroll.add(grid);
 		initWidget(scroll);
-		setScrollable(scroll);
 	}
 	
 	private Image getImage(CompanyPod pod) {

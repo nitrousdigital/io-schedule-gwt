@@ -11,6 +11,7 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.nitrous.iosched.client.model.FeedEntry;
@@ -24,7 +25,7 @@ import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
  * @author Nick
  *
  */
-public class NowPlayingView extends AbstractScrollableComposite implements ToolbarEnabledView, Refreshable {
+public class NowPlayingView extends ResizeComposite implements ToolbarEnabledView, Refreshable {
 	private RefreshableActivityToolbar toolbar = new RefreshableActivityToolbar("Now Playing");
 	private VerticalPanel layout;
 	private int width;
@@ -39,7 +40,6 @@ public class NowPlayingView extends AbstractScrollableComposite implements Toolb
 		ScrollPanel scroll = new ScrollPanel();
 		scroll.add(layout);
 		initWidget(scroll);
-		setScrollable(scroll);
 	}
 	
 	public void setController(ActivityController controller) {
@@ -50,9 +50,7 @@ public class NowPlayingView extends AbstractScrollableComposite implements Toolb
 		onClear();
 		Label msg = new Label(message);
 		msg.setStyleName(isError ? "sessionErrorMessage" : "sessionMessage");
-		layout.add(msg);
-		refreshScroll();
-	}
+		layout.add(msg);	}
 	
 	public void onRefresh() {
 		onRefresh(true);
@@ -117,8 +115,6 @@ public class NowPlayingView extends AbstractScrollableComposite implements Toolb
 		if (!foundSession) {
 			GWT.log("0 sessions found at "+format.format(new Date(now)));
 			showMessage("No sessions are currently playing", false);
-		} else {			
-			refreshScroll();
 		}
 	}
 
@@ -167,7 +163,6 @@ public class NowPlayingView extends AbstractScrollableComposite implements Toolb
 		}
 		sessionClickHandlers.clear();
 		this.layout.clear();	
-		refreshScroll();
 	}
 	
 	public Toolbar getToolbar() {

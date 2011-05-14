@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.nitrous.iosched.client.model.SessionCell;
@@ -20,7 +21,7 @@ import com.nitrous.iosched.client.toolbar.ActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 
-public class ScheduleView extends AbstractScrollableComposite implements ToolbarEnabledView {
+public class ScheduleView extends ResizeComposite implements ToolbarEnabledView {
 	private ActivityToolbar toolbar = new ActivityToolbar("Schedule");
 	private Label tuesday;
 	private Label wednesday;
@@ -93,8 +94,6 @@ public class ScheduleView extends AbstractScrollableComposite implements Toolbar
 		
 		layout.getElement().setId("ScheduleView-scrollpanel");
 		navLeft();
-		
-		setScrollable(layout);
 	}
 	
 	public void setController(ActivityController controller) {
@@ -186,8 +185,6 @@ public class ScheduleView extends AbstractScrollableComposite implements Toolbar
 		// workaround for bug where FlexTable inserts unwanted empty cells due to parallel rowspans.
 		calendarGrid.removeCell(20, 1);
 		calendarGrid.removeCell(22, 1);
-		
-		refreshScroll();
 	}
 	
 	private void navLeft() {
@@ -220,8 +217,6 @@ public class ScheduleView extends AbstractScrollableComposite implements Toolbar
 		calendarGrid.removeCell(20, 2);
 		calendarGrid.removeCell(20, 1);
 		calendarGrid.removeCell(32, 2);
-		
-		refreshScroll();
 	}
 		
 	private void addBlueBox(String text, String startTime, String endTime) {
