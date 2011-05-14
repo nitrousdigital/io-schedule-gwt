@@ -3,6 +3,7 @@ package com.nitrous.iosched.client.view;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.nitrous.iosched.client.model.FeedEntry;
 import com.nitrous.iosched.client.model.SessionTrack;
@@ -10,7 +11,7 @@ import com.nitrous.iosched.client.toolbar.RefreshableSubActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 
-public class SessionDetailView extends AbstractScrollableComposite implements ToolbarEnabledView {
+public class SessionDetailView extends ResizeComposite implements ToolbarEnabledView {
 	private RefreshableSubActivityToolbar toolbar = new RefreshableSubActivityToolbar("Session Detail");
 	private Bookmark bookmark = new Bookmark(BookmarkCategory.SESSIONS);
 	
@@ -62,7 +63,6 @@ public class SessionDetailView extends AbstractScrollableComposite implements To
 		
 		
 		layout.getElement().setId("SessionDetailView-scrollpanel");
-		setScrollable(layout);
 	}
 	
 	
@@ -107,7 +107,6 @@ public class SessionDetailView extends AbstractScrollableComposite implements To
 		sessionRoom.setHTML(entry.getSessionRoom());
 		sessionSpeakers.setHTML(entry.getSessionSpeakers());
 		sessionAbstract.setHTML(entry.getSessionAbstract());
-		refreshScroll();
 		
 		bookmark.clearStateTokens();
 		if (track != null) {
