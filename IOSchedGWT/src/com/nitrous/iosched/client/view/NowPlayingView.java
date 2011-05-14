@@ -14,7 +14,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.nitrous.iosched.client.model.FeedEntry;
+import com.nitrous.iosched.client.model.SessionFeedEntry;
 import com.nitrous.iosched.client.model.SessionStore;
 import com.nitrous.iosched.client.toolbar.RefreshableActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
@@ -57,7 +57,7 @@ public class NowPlayingView extends ResizeComposite implements ToolbarEnabledVie
 	}
 	public void onRefresh(boolean reload) {
 		showMessage("Loading, Please wait...", false);
-		SessionStore.get().getSessions(new AsyncCallback<TreeSet<FeedEntry>>(){
+		SessionStore.get().getSessions(new AsyncCallback<TreeSet<SessionFeedEntry>>(){
 			public void onFailure(Throwable caught) {
 				String message = caught.getMessage();
 				if (message != null && message.trim().length() > 0) {
@@ -67,7 +67,7 @@ public class NowPlayingView extends ResizeComposite implements ToolbarEnabledVie
 				}						
 
 			}
-			public void onSuccess(TreeSet<FeedEntry> result) {
+			public void onSuccess(TreeSet<SessionFeedEntry> result) {
 				loadSessionData(result);
 			}
 			
@@ -75,12 +75,12 @@ public class NowPlayingView extends ResizeComposite implements ToolbarEnabledVie
 	}
 	
 	private static final DateTimeFormat format = DateTimeFormat.getFormat("EEEE MMMM dd hh:mmaa ZZZ");
-	private void loadSessionData(TreeSet<FeedEntry> sorted) {
+	private void loadSessionData(TreeSet<SessionFeedEntry> sorted) {
 		onClear();
 		// display
 		long now = System.currentTimeMillis();
 		boolean foundSession = false;
-		for (FeedEntry entry : sorted) {
+		for (SessionFeedEntry entry : sorted) {
 			boolean curMatch = false;
 			Date start = FeedEntryComparator.getStartDateTime(entry);
 			Date end = FeedEntryComparator.getEndDateTime(entry);
@@ -120,14 +120,14 @@ public class NowPlayingView extends ResizeComposite implements ToolbarEnabledVie
 
 	
 	
-	private void showSessionDetail(FeedEntry entry) {
+	private void showSessionDetail(SessionFeedEntry entry) {
 		if (controller != null) {
 			controller.showCurrentSessionDetail(entry);
 		}
 	}
 	
 	private ArrayList<HandlerRegistration> sessionClickHandlers = new ArrayList<HandlerRegistration>();
-	private void addSession(final FeedEntry entry) {
+	private void addSession(final SessionFeedEntry entry) {
 		VerticalPanel row = new VerticalPanel();
 		row.setWidth(this.width+"px");
 		row.setStyleName("sessionRow");		
@@ -169,7 +169,7 @@ public class NowPlayingView extends ResizeComposite implements ToolbarEnabledVie
 		return toolbar;
 	}
 	
-	private static String getDateTimePlace(FeedEntry entry) {
+	private static String getDateTimePlace(SessionFeedEntry entry) {
 		StringBuilder buf = new StringBuilder();
 		buf.append(entry.getSessionTime());
 		buf.append(", ");

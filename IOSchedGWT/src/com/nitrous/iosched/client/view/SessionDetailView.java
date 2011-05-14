@@ -5,7 +5,7 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.ScrollPanel;
-import com.nitrous.iosched.client.model.FeedEntry;
+import com.nitrous.iosched.client.model.SessionFeedEntry;
 import com.nitrous.iosched.client.model.SessionTrack;
 import com.nitrous.iosched.client.toolbar.RefreshableSubActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
@@ -70,7 +70,7 @@ public class SessionDetailView extends ResizeComposite implements ToolbarEnabled
 	 * Show the details of a session selected from the now-showing view
 	 * @param entry The session to show
 	 */
-	public void showSessionDetail(FeedEntry entry) {
+	public void showSessionDetail(SessionFeedEntry entry) {
 		showSessionDetail(null, entry, null, null);
 	}
 	/**
@@ -79,7 +79,7 @@ public class SessionDetailView extends ResizeComposite implements ToolbarEnabled
 	 * @param blockStartTime The start of the time range from which the session was selected
 	 * @param blockEndTime The end of the time range from which the session was selected
 	 */
-	public void showSessionDetail(FeedEntry entry, long blockStartTime, long blockEndTime) {
+	public void showSessionDetail(SessionFeedEntry entry, long blockStartTime, long blockEndTime) {
 		showSessionDetail(null, entry, blockStartTime, blockEndTime);
 	}
 	/**
@@ -87,7 +87,7 @@ public class SessionDetailView extends ResizeComposite implements ToolbarEnabled
 	 * @param track The track from which the session was selected
 	 * @param entry The session to show
 	 */
-	public void showSessionDetail(SessionTrack track, FeedEntry entry) {
+	public void showSessionDetail(SessionTrack track, SessionFeedEntry entry) {
 		showSessionDetail(track, entry, null, null);
 	}
 	/**
@@ -97,7 +97,7 @@ public class SessionDetailView extends ResizeComposite implements ToolbarEnabled
 	 * @param blockStartTime The beginning of the selected time range from which the session was selected or null
 	 * @param blockEndTime The end of the selected time range from which the session was selected or null
 	 */
-	private void showSessionDetail(SessionTrack track, FeedEntry entry, Long blockStartTime, Long blockEndTime) {
+	private void showSessionDetail(SessionTrack track, SessionFeedEntry entry, Long blockStartTime, Long blockEndTime) {
 		this.referringTrack = track;
 		this.referringBlockStartTime = blockStartTime;
 		this.referringBlockEndTime = blockEndTime;

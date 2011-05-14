@@ -14,7 +14,7 @@ import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.Widget;
 import com.nitrous.iosched.client.images.Images;
 import com.nitrous.iosched.client.model.CompanyPod;
-import com.nitrous.iosched.client.model.FeedEntry;
+import com.nitrous.iosched.client.model.SessionFeedEntry;
 import com.nitrous.iosched.client.model.SessionStore;
 import com.nitrous.iosched.client.model.SessionTrack;
 import com.nitrous.iosched.client.toolbar.Toolbar;
@@ -204,13 +204,13 @@ public class IOSchedGUI extends ResizeComposite implements ActivityController, T
 			if (bookmark.hasState()) {
 				final ArrayList<String> state = bookmark.getState();
 				if (state.size() == 1) {
-					SessionStore.get().getSession(state.get(0), new AsyncCallback<FeedEntry>(){
+					SessionStore.get().getSession(state.get(0), new AsyncCallback<SessionFeedEntry>(){
 						public void onFailure(Throwable caught) {
 							GWT.log("Failed to load session info for ID: "+state.get(1));
 							showNowPlaying();
 						}
 
-						public void onSuccess(FeedEntry result) {
+						public void onSuccess(SessionFeedEntry result) {
 							showCurrentSessionDetail(result);
 						}						
 					});
@@ -248,13 +248,13 @@ public class IOSchedGUI extends ResizeComposite implements ActivityController, T
 					showSessionTrack(track);
 				} else if (state.size() == 2) {
 					final SessionTrack track = SessionTrack.parseHistoryToken(state.get(0));
-					SessionStore.get().getSession(state.get(1), new AsyncCallback<FeedEntry>(){
+					SessionStore.get().getSession(state.get(1), new AsyncCallback<SessionFeedEntry>(){
 						public void onFailure(Throwable caught) {
 							GWT.log("Failed to load session info for ID: "+state.get(1));
 							showSessionTrack(track);
 						}
 
-						public void onSuccess(FeedEntry result) {
+						public void onSuccess(SessionFeedEntry result) {
 							sessionListView.setTrack(track);
 							showSessionDetail(track, result);
 						}						
@@ -377,7 +377,7 @@ public class IOSchedGUI extends ResizeComposite implements ActivityController, T
 		onViewDisplayed(sessionListView);
 	}
 
-	public void showSessionDetail(SessionTrack track, FeedEntry entry) {
+	public void showSessionDetail(SessionTrack track, SessionFeedEntry entry) {
 		sessionDetailView.showSessionDetail(track, entry);
 		viewDeckPanel.showWidget(9);
 		onViewDisplayed(sessionDetailView);
@@ -388,13 +388,13 @@ public class IOSchedGUI extends ResizeComposite implements ActivityController, T
 	 * @param blockStartTime The start of the time range from which the session was selected
 	 * @param blockEndTime The end of the time range from which the session was selected
 	 */
-	public void showSessionDetail(FeedEntry entry, long blockStartTime, long blockEndTime) {
+	public void showSessionDetail(SessionFeedEntry entry, long blockStartTime, long blockEndTime) {
 		sessionDetailView.showSessionDetail(entry, blockStartTime, blockEndTime);
 		viewDeckPanel.showWidget(9);
 		onViewDisplayed(sessionDetailView);
 	}
 	
-	public void showCurrentSessionDetail(FeedEntry entry) {
+	public void showCurrentSessionDetail(SessionFeedEntry entry) {
 		sessionDetailView.showSessionDetail(entry);
 		viewDeckPanel.showWidget(9);
 		onViewDisplayed(sessionDetailView);
