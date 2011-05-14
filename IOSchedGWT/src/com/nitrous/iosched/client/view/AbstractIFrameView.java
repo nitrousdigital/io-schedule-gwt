@@ -1,6 +1,6 @@
 package com.nitrous.iosched.client.view;
 
-import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Frame;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.nitrous.iosched.client.toolbar.RefreshableActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
@@ -8,27 +8,30 @@ import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 
 public abstract class AbstractIFrameView extends AbstractScrollableComposite implements ToolbarEnabledView, Refreshable {
 	private RefreshableActivityToolbar toolbar;
-	private HTML iframe;
-	private String html;
+	private Frame iframe;
+	private String url;
 	private ScrollPanel layout;
 	public AbstractIFrameView(String title, String url, int width, int height) {
+		this.url = url;
 		toolbar = new RefreshableActivityToolbar(title);
-		html = "<iframe id=\""+title+"-iframe"+"\" src=\"" + url + "\" width=\"100%\" height=\"100%\"></iframe>";
-		iframe = new HTML();
+		iframe = new Frame(url);		
 		iframe.getElement().setId(title+"-html");
-		iframe.setSize("100%", "100%");
 		
 		layout = new ScrollPanel();
-		layout.setSize("100%", "100%");
 		layout.add(iframe);
 		layout.getElement().setId(title+"-scrollpanel");
 		initWidget(layout);
+		onResize(width, height);
 		setScrollable(layout);
-		onRefresh();
+	}
+	
+	public void onResize(int width, int height) {
+		layout.setSize("100%", height+"px");
+		iframe.setSize((width-10)+"px", (height-10)+"px");
 	}
 	
 	public void onRefresh() {
-		iframe.setHTML(html);
+		iframe.setUrl(url);
 		refreshScroll();
 	}
 

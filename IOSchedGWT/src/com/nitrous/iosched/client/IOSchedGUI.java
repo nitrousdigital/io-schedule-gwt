@@ -163,6 +163,9 @@ public class IOSchedGUI extends ResizeComposite implements ActivityController, T
 	private void onResize(int width, int height) {
 		layout.setSize(width+"px", height+"px");
 		rootMenu.onResize(width, height-51);
+		mapView.onResize(width, height-51);
+		bulletinView.onResize(width, height-51);
+		realtimeStreamView.onResize(width, height-51);
 	}
 	
 	
