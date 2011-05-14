@@ -3,13 +3,13 @@ package com.nitrous.iosched.client.view;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
 import com.nitrous.iosched.client.images.Images;
 import com.nitrous.iosched.client.model.SessionTrack;
 import com.nitrous.iosched.client.toolbar.ActivityToolbar;
@@ -23,20 +23,27 @@ public class SessionTrackListView extends AbstractScrollableComposite implements
 	private Bookmark bookmark = new Bookmark(BookmarkCategory.SESSIONS);
 	public SessionTrackListView(int width) {
 		width -= 20;
-		VerticalPanel layout = new VerticalPanel();
-		layout.getElement().setId("SessionTrackSelectionView-scrollpanel");
-		layout.setWidth("100%");
-
-		for (SessionTrack track : SessionTrack.values()) {
-			HorizontalPanel row = new HorizontalPanel();
-			row.setWidth(width+"px");
-			row.setStyleName("sessionTrackRow");
-			row.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
-			row.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
-			Label label = new Label(track.toString());
+		
+		SessionTrack[] tracks = SessionTrack.values();
+		Grid grid = new Grid(tracks.length, 2);
+		grid.setCellPadding(0);
+		grid.setCellSpacing(0);
+		grid.getElement().setId("SessionTrackListView");
+		grid.setWidth("100%");
+		
+		for (int row = 0; row < tracks.length; row++) {
+			grid.getCellFormatter().setStyleName(row, 0, "sessionTrackCell");
+			grid.getCellFormatter().setStyleName(row, 1, "sessionTrackCell");
+			grid.getCellFormatter().setVerticalAlignment(row, 0, HasVerticalAlignment.ALIGN_MIDDLE);
+			grid.getCellFormatter().setVerticalAlignment(row, 1, HasVerticalAlignment.ALIGN_MIDDLE);
+			grid.getCellFormatter().setHorizontalAlignment(row, 0, HasHorizontalAlignment.ALIGN_LEFT);
+			grid.getCellFormatter().setHorizontalAlignment(row, 1, HasHorizontalAlignment.ALIGN_LEFT);
+			
+			Label label = new Label(tracks[row].toString());
 			label.setStyleName("sessionTrackText");
-			label.setWidth((width - 40)+"px");
-			final SessionTrack clickedTrack = track;
+			label.setWidth("100%");
+			
+			final SessionTrack clickedTrack = tracks[row];
 			label.addClickHandler(new ClickHandler(){
 				public void onClick(ClickEvent event) {
 					if (controller != null) {
@@ -44,10 +51,9 @@ public class SessionTrackListView extends AbstractScrollableComposite implements
 					}
 				}
 			});
-			row.add(label);
-			row.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);			
-			row.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
-			Image img = getImage(track);
+			grid.setWidget(row, 0, label);
+			
+			Image img = getImage(tracks[row]);
 			if (img != null) {
 				img.setStyleName("sessionTrackSwatch");
 				img.addClickHandler(new ClickHandler(){
@@ -57,18 +63,17 @@ public class SessionTrackListView extends AbstractScrollableComposite implements
 						}
 					}
 				});
-				row.add(img);
+				grid.setWidget(row, 1, img);
 			} else {
 				HorizontalPanel fill = new HorizontalPanel();
 				fill.setSize("40px", "40px");
-				row.add(fill);
+				grid.setWidget(row, 1, fill);
 			}
-			layout.add(row);
 		}
 		
 		ScrollPanel scroll = new ScrollPanel();
-		scroll.add(layout);
-		initWidget(scroll);	
+		scroll.add(grid);
+		initWidget(scroll);
 		setScrollable(scroll);
 	}
 

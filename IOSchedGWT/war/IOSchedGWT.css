@@ -48,11 +48,11 @@ h1 {
 .sessionTrackSwatch {
     cursor: pointer;
 }
-.sessionTrackRow {
+.sessionTrackCell {
 	border-bottom-style:solid;
     border-bottom-width:1px;	
 }
-.sandboxSelectionRow {
+.sandboxSelectionCell {
     border-bottom-style:solid;
     border-bottom-width:1px;    
 }
