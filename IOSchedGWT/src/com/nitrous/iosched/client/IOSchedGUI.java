@@ -83,7 +83,8 @@ public class IOSchedGUI extends ResizeComposite implements ActivityController, T
 		colorBar.setStyleName("colorBar");
 		
 		DockLayoutPanel header = new DockLayoutPanel(Unit.PX);
-		header.setWidth(WIDTH+"px");
+		header.setStyleName("toolbarFill");
+		header.setWidth("100%");
 		header.getElement().setId("header");
 		header.addSouth(colorBar, 6);
 		header.add(toolbarContainer);
