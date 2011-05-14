@@ -14,7 +14,7 @@ public abstract class AbstractIFrameView extends AbstractScrollableComposite imp
 	public AbstractIFrameView(String title, String url, int width, int height) {
 		this.url = url;
 		toolbar = new RefreshableActivityToolbar(title);
-		iframe = new Frame(url);		
+		iframe = new Frame();		
 		iframe.getElement().setId(title+"-html");
 		
 		layout = new ScrollPanel();

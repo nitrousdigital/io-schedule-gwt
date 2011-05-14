@@ -215,6 +215,7 @@ h1 {
 .colorBar {
 	background-image:url('images/colors.png');
     background-repeat:repeat-x;
+    height:6px;
 }
 
 #Map-scrollpanel {
