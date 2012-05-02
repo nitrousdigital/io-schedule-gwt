@@ -1,0 +1,241 @@
+/** Add css rules here for your application. */
+
+
+/** Example rules used by the template application (remove for your app) */
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  color: #777777;
+  margin: 40px 0px 70px;
+  text-align: center;
+}
+
+.sendButton {
+  display: block;
+  font-size: 16pt;
+}
+
+/** Most GWT widgets already have a style name defined */
+.gwt-DialogBox {
+  width: 400px;
+}
+
+.dialogVPanel {
+  margin: 5px;
+}
+
+.serverResponseLabelError {
+  color: red;
+}
+
+/** Set ids using widget.getElement().setId("idOfElement") */
+#closeButton {
+  margin: 15px 6px 6px;
+}
+.colorbar {
+	height:6px;
+	margin:0px;
+}
+.icongrid {
+	margin:0px;
+}
+.sessionTrackText {
+    font-family: 'Droid Sans',Arial,helvetica;
+    font-size: 16px;
+    color: #000000;
+    cursor: pointer;
+}
+.sessionTrackSwatch {
+    cursor: pointer;
+}
+.sessionTrackCell {
+	border-bottom-style:solid;
+    border-bottom-width:1px;	
+}
+.sandboxSelectionCell {
+    border-bottom-style:solid;
+    border-bottom-width:1px;    
+}
+.sandboxSelectionRowText {
+    font-family: 'Droid Sans',Arial,helvetica;
+    font-size: 16px;
+    color: #000000;
+    cursor: pointer;
+}
+.sandboxSelectionSwatch {
+    cursor: pointer;
+}
+
+.iconText {
+    font-family: 'Droid Sans',Arial,helvetica;
+    font-size: 13px;
+    font-weight:bold;    
+    color: #205aaf;
+    cursor: pointer;
+}
+.iconImage {
+    cursor: pointer;	
+}
+
+.toolbarText {
+    font-family: 'Droid Sans',Arial,helvetica;
+    font-size: 13px;
+    font-weight:bold;    
+    color: #205aaf;
+    cursor: default;	
+}
+.toolbarButton {
+    cursor: pointer;	
+}
+.toolbarFill {
+	background-image:url('images/toolbar_bg.png');
+    background-repeat:repeat-x;
+    /* old browsers
+    background: #EFEFEF;
+    */
+     
+    /* firefox */
+    background: -moz-linear-gradient(top, #EFEFEF 0%, #d6d7d6 100%);
+    
+    /* webkit */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#EFEFEF), color-stop(100%,#d6d7d6));    
+}
+.iconBackground {
+    background-image:url('images/noise.png');
+    background-repeat:repeat-x repeat-y;
+}
+.deckPanel {
+	overflow-y: auto;
+}
+.sessionTitle {
+    font-family: 'Droid Sans',Arial,helvetica;
+    font-size: 12px;
+    font-weight:bold;    
+    color: #000000;
+    cursor: pointer;    
+}
+.sessionLocation {
+    font-family: 'Droid Sans',Arial,helvetica;
+    font-size: 10px;
+    color: #A7A7A7;
+    cursor: pointer;    
+}
+.sessionErrorMessage {
+    font-family: 'Droid Sans',Arial,helvetica;
+    font-size: 12px;
+    color: #d72525;
+}
+.sessionMessage {
+    font-family: 'Droid Sans',Arial,helvetica;
+    font-size: 12px;
+    color: #295599;
+}
+.sessionRow {
+    border-bottom-style:solid;
+    border-bottom-width:1px;    
+}
+.scheduleViewDateLabel {
+    font-family: 'Droid Sans',Arial,helvetica;
+    font-size: 10px;
+    color: #000000;
+    font-weight:bold;    
+}
+.scheduleViewDateNavLabel {
+    font-family: 'Droid Sans',Arial,helvetica;
+    font-size: 10px;
+    color: #000000;
+    font-weight:bold;    
+    cursor:pointer;
+}
+.scheduleViewHourLabel {
+    font-family: 'Droid Sans',Arial,helvetica;
+    font-size: 10px;
+    color: #000000;
+    font-weight:bold;    
+}
+.blueScheduleBox {
+    background-color: #3c95c3;
+    cursor: default;
+}
+.redScheduleBoxDisabled {
+    background-color: #ff9292;
+    cursor: default;
+}
+.redScheduleBox {
+    background-color: #ff0000;
+    cursor: pointer;
+}
+.greenScheduleBox {
+    background-color: #2c833a;
+    cursor: pointer;
+}
+.greenScheduleBoxDisabled  {
+    background-color: #2c833a;
+    cursor: default;
+}
+
+.scheduleBoxTextDisabled {
+    font-family: 'Droid Sans',Arial,helvetica;
+    font-size: 10px;
+    color: #ffffff;
+    font-weight:bold;    
+    cursor: default;
+}
+.scheduleBoxText {
+    font-family: 'Droid Sans',Arial,helvetica;
+    font-size: 10px;
+    color: #ffffff;
+    font-weight:bold;    
+    cursor: pointer;
+}
+.sandboxCompanySelectionRow {
+    border-bottom-style:solid;
+    border-bottom-width:1px;    
+    cursor: pointer;
+}
+.sandboxCompanySelectionTitle {
+    font-family: 'Droid Sans',Arial,helvetica;
+    font-size: 12px;
+    font-weight:bold;    
+    color: #000000;
+    cursor: pointer;
+}
+.sessionDetailGridHeaderLabel {
+    font-family: 'Droid Sans',Arial,helvetica;
+    font-size: 12px;
+    font-weight:bold;    
+    color: #000000;
+}
+.sessionDetailGridText {
+    font-family: 'Droid Sans',Arial,helvetica;
+    font-size: 12px;
+    font-weight:plain;    
+    color: #000000;
+}
+.colorBar {
+	background-image:url('images/colors.png');
+    background-repeat:repeat-x;
+    height:6px;
+}
+
+#Map-scrollpanel {
+	overflow:auto;
+}
+#Bulletin-scrollpanel {
+	overflow:auto;
+}
+#SandBoxCompanySelectionView-scrollpanel {
+	overflow:auto;
+}
+#SandBoxSelectionView-scrollpanel {
+	overflow:auto;
+}
+#ScheduleView-scrollpanel {
+	overflow:auto;
+}
+#SessionTrackSelectionView-scrollpanel {
+	overflow:auto;
+}
+#SessionTrackView-scrollpanel {
+	overflow:auto;
+}
