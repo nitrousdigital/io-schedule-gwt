@@ -105,6 +105,8 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget {
 		};
 		
 		paintEntry(ScheduleCategory.DINING, entry, 0);
+		paintEntry(ScheduleCategory.SESSION, entry, 1);
+		paintEntry(ScheduleCategory.OFFICE_HOURS, entry, 2);
 	}
 	private void paintEntry(ScheduleCategory category, ScheduleEntry entry, int column) {
 		int startHour = entry.getStartHour();
@@ -122,6 +124,10 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget {
 			// start gradient
 			CanvasGradient grd = context.createLinearGradient(left, top, left, top + QTR_HOUR_PERIOD_HEIGHT);
 			switch (category) {
+			case OFFICE_HOURS:
+				grd.addColorStop(0, "rgba(255,255,255,1)");			
+				grd.addColorStop(1, "rgba(0,255,0,1)");
+				break;
 			case DINING:
 				grd.addColorStop(0, "rgba(255,255,255,1)");			
 				grd.addColorStop(1, "rgba(0,255,255,1)");
@@ -136,6 +142,9 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget {
 			
 			// fill center
 			switch (category) {
+			case OFFICE_HOURS:
+				context.setFillStyle(CssColor.make("rgba(0,255,0,1)"));
+				break;
 			case DINING:
 				context.setFillStyle(CssColor.make("rgba(0,255,255,1)"));
 				break;
@@ -148,6 +157,10 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget {
 			// end gradient
 			CanvasGradient fadeOut = context.createLinearGradient(left, bottom + 1 - QTR_HOUR_PERIOD_HEIGHT, left, bottom);
 			switch (category) {
+			case OFFICE_HOURS:
+				fadeOut.addColorStop(0, "rgba(0,255,0,1)");
+				fadeOut.addColorStop(1, "rgba(255,255,255,1)");			
+				break;
 			case DINING:
 				fadeOut.addColorStop(0, "rgba(0,255,255,1)");
 				fadeOut.addColorStop(1, "rgba(255,255,255,1)");			
