@@ -79,7 +79,7 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget {
 
 			@Override
 			public String getTitle() {
-				return "lunch";
+				return "lunch abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz";
 			}
 
 			@Override
@@ -117,7 +117,6 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget {
 		int top = ((startHour - MIN_HOUR) * HOUR_PERIOD_HEIGHT) + ((startMinute / 15) * QTR_HOUR_PERIOD_HEIGHT);
 		int bottom = ((endHour - MIN_HOUR) * HOUR_PERIOD_HEIGHT) + ((endMinute / 15)  * QTR_HOUR_PERIOD_HEIGHT);
 		int left = HOUR_BAR_WIDTH + (column * columnWidth) + (column * columnSpace);
-		int right = left + columnWidth;
 		context.save();
 		if (durationMins >= 30) {
 			// start gradient
@@ -192,7 +191,7 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget {
 		context.setFillStyle("black");
 		context.setFont("12pt Calibri");
 		context.setTextAlign(TextAlign.CENTER);
-		context.fillText(entry.getTitle(), left + (columnWidth / 2), ((bottom - top) / 2) + top, columnWidth);
+		context.fillText(entry.getTitle(), 5 + (left + ((columnWidth-10) / 2)), ((bottom - top) / 2) + top, columnWidth-10);
 		
 		context.restore();
 	}
