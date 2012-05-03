@@ -30,6 +30,7 @@ import com.nitrous.iosched.client.view.NowPlayingView;
 import com.nitrous.iosched.client.view.RealtimeView;
 import com.nitrous.iosched.client.view.Refreshable;
 import com.nitrous.iosched.client.view.SandBoxListView;
+import com.nitrous.iosched.client.view.ScheduleCanvasView;
 import com.nitrous.iosched.client.view.ScheduleView;
 import com.nitrous.iosched.client.view.ScrollableView;
 import com.nitrous.iosched.client.view.SessionDetailView;
@@ -43,7 +44,7 @@ public class IOSchedGUI extends ResizeComposite implements ActivityController, T
 	private HomeMenuView rootMenu;
 	
 	// views
-	private ScheduleView scheduleView;
+	private ScheduleCanvasView scheduleView;
 	private MapView mapView;
 	private RealtimeView realtimeStreamView;
 	
@@ -104,7 +105,7 @@ public class IOSchedGUI extends ResizeComposite implements ActivityController, T
 		viewDeckPanel.add(mapView);
 		
 		// 2
-		scheduleView = new ScheduleView(WIDTH);
+		scheduleView = new ScheduleCanvasView(WIDTH);
 		scheduleView.setController(this);
 		viewDeckPanel.add(scheduleView);
 		
