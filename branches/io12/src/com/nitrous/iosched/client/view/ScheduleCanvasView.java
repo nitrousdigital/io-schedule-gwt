@@ -111,20 +111,56 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget {
 		int startMinute = entry.getStartMinute();
 		int endHour = entry.getEndHour();
 		int endMinute = entry.getEndMinute();
+		int durationMins = ((endHour * 60) + endMinute) - ((startHour * 60) + startMinute);
+		
 		int top = ((startHour - MIN_HOUR) * HOUR_PERIOD_HEIGHT) + ((startMinute / 15) * QTR_HOUR_PERIOD_HEIGHT);
 		int bottom = ((endHour - MIN_HOUR) * HOUR_PERIOD_HEIGHT) + ((endMinute / 15)  * QTR_HOUR_PERIOD_HEIGHT);
 		int left = HOUR_BAR_WIDTH + (column * columnWidth) + (column * columnSpace);
 		int right = left + columnWidth;
 		context.save();
-		CanvasGradient grd = context.createLinearGradient(left,  top, left, top + QTR_HOUR_PERIOD_HEIGHT);
-		switch (category) {
-		case DINING:
-			grd.addColorStop(0, "rgba(255,255,255,1)");			
-			grd.addColorStop(1, "rgba(255,0,0,1)");
-			break;
+		if (durationMins >= 30) {
+			// start gradient
+			CanvasGradient grd = context.createLinearGradient(left, top, left, top + QTR_HOUR_PERIOD_HEIGHT);
+			switch (category) {
+			case DINING:
+				grd.addColorStop(0, "rgba(255,255,255,1)");			
+				grd.addColorStop(1, "rgba(0,255,255,1)");
+				break;
+			case SESSION:
+				grd.addColorStop(0, "rgba(255,255,255,1)");			
+				grd.addColorStop(1, "rgba(255,0,0,1)");
+				break;
+			}
+			context.setFillStyle(grd);
+			context.fillRect(left,  top, columnWidth, QTR_HOUR_PERIOD_HEIGHT);
+			
+			// fill center
+			switch (category) {
+			case DINING:
+				context.setFillStyle(CssColor.make("rgba(0,255,255,1)"));
+				break;
+			case SESSION:
+				context.setFillStyle(CssColor.make("rgba(255,0,0,1)"));
+				break;
+			}
+			context.fillRect(left, top + QTR_HOUR_PERIOD_HEIGHT, columnWidth, 1 + bottom - (top + (QTR_HOUR_PERIOD_HEIGHT * 2)));
+			
+			// end gradient
+			CanvasGradient fadeOut = context.createLinearGradient(left, bottom + 1 - QTR_HOUR_PERIOD_HEIGHT, left, bottom);
+			switch (category) {
+			case DINING:
+				fadeOut.addColorStop(0, "rgba(0,255,255,1)");
+				fadeOut.addColorStop(1, "rgba(255,255,255,1)");			
+				break;
+			case SESSION:
+				fadeOut.addColorStop(0, "rgba(255,0,0,1)");
+				fadeOut.addColorStop(1, "rgba(255,255,255,1)");			
+				break;
+			}
+			context.setFillStyle(fadeOut);
+			context.fillRect(left, bottom + 1 - QTR_HOUR_PERIOD_HEIGHT, columnWidth, QTR_HOUR_PERIOD_HEIGHT);
+		} else {
 		}
-		context.setFillStyle(grd);
-		context.fillRect(left,  top, columnWidth, QTR_HOUR_PERIOD_HEIGHT);
 		context.restore();
 	}
 	
