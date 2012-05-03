@@ -48,8 +48,8 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget {
 		} 
 		
 		this.widget = new ScrollPanel(canvas);
-		this.width = 1000;
-		this.columnWidth = width / 3;
+		this.width = width;
+		this.columnWidth = (width-(HOUR_BAR_WIDTH + (columnSpace * 3))) / 3;
 		this.height = (HOUR_PERIOD_HEIGHT * ((MAX_HOUR - MIN_HOUR) + 1)) + 10;
 		
 		this.canvas.setPixelSize(width, height);
