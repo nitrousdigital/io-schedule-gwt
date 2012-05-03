@@ -1,7 +1,5 @@
 package com.nitrous.iosched.client.view;
 
-import java.util.List;
-
 import com.google.gwt.canvas.client.Canvas;
 import com.google.gwt.canvas.dom.client.CanvasGradient;
 import com.google.gwt.canvas.dom.client.Context2d;
@@ -24,6 +22,7 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget {
 	private static final int MIN_HOUR = 7;
 	private static final int MAX_HOUR = 22;
 	private static final int HOUR_BAR_WIDTH = 70;
+	private static final double GRADIENT_LEN = 0.5D;
 	
 	private ActivityToolbar toolbar = new ActivityToolbar("Schedule");
 	private Bookmark bookmark = new Bookmark(BookmarkCategory.SCHEDULE);
@@ -125,16 +124,16 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget {
 			CanvasGradient grd = context.createLinearGradient(left, top, left, top + QTR_HOUR_PERIOD_HEIGHT);
 			switch (category) {
 			case OFFICE_HOURS:
-				grd.addColorStop(0, "rgba(255,255,255,1)");			
-				grd.addColorStop(1, "rgba(0,255,0,1)");
+				grd.addColorStop(0, "rgba(0,128,0,1)");			
+				grd.addColorStop(GRADIENT_LEN, "rgba(0,255,0,1)");
 				break;
 			case DINING:
-				grd.addColorStop(0, "rgba(255,255,255,1)");			
-				grd.addColorStop(1, "rgba(0,255,255,1)");
+				grd.addColorStop(0, "rgba(0,128,128,1)");			
+				grd.addColorStop(GRADIENT_LEN, "rgba(0,255,255,1)");
 				break;
 			case SESSION:
-				grd.addColorStop(0, "rgba(255,255,255,1)");			
-				grd.addColorStop(1, "rgba(255,0,0,1)");
+				grd.addColorStop(0, "rgba(128,0,0,1)");			
+				grd.addColorStop(GRADIENT_LEN, "rgba(255,0,0,1)");
 				break;
 			}
 			context.setFillStyle(grd);
@@ -158,22 +157,43 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget {
 			CanvasGradient fadeOut = context.createLinearGradient(left, bottom + 1 - QTR_HOUR_PERIOD_HEIGHT, left, bottom);
 			switch (category) {
 			case OFFICE_HOURS:
-				fadeOut.addColorStop(0, "rgba(0,255,0,1)");
-				fadeOut.addColorStop(1, "rgba(255,255,255,1)");			
+				fadeOut.addColorStop(GRADIENT_LEN, "rgba(0,255,0,1)");
+				fadeOut.addColorStop(1, "rgba(0,128,0,1)");			
 				break;
 			case DINING:
-				fadeOut.addColorStop(0, "rgba(0,255,255,1)");
-				fadeOut.addColorStop(1, "rgba(255,255,255,1)");			
+				fadeOut.addColorStop(GRADIENT_LEN, "rgba(0,255,255,1)");
+				fadeOut.addColorStop(1, "rgba(0,128,128,1)");			
 				break;
 			case SESSION:
-				fadeOut.addColorStop(0, "rgba(255,0,0,1)");
-				fadeOut.addColorStop(1, "rgba(255,255,255,1)");			
+				fadeOut.addColorStop(GRADIENT_LEN, "rgba(255,0,0,1)");
+				fadeOut.addColorStop(1, "rgba(128,0,0,1)");			
 				break;
 			}
 			context.setFillStyle(fadeOut);
-			context.fillRect(left, bottom + 1 - QTR_HOUR_PERIOD_HEIGHT, columnWidth, QTR_HOUR_PERIOD_HEIGHT);
+			context.fillRect(left, bottom + 1 - QTR_HOUR_PERIOD_HEIGHT, columnWidth, QTR_HOUR_PERIOD_HEIGHT - 1);
+			
 		} else {
+			// fill center
+			switch (category) {
+			case OFFICE_HOURS:
+				context.setFillStyle(CssColor.make("rgba(0,255,0,1)"));
+				break;
+			case DINING:
+				context.setFillStyle(CssColor.make("rgba(0,255,255,1)"));
+				break;
+			case SESSION:
+				context.setFillStyle(CssColor.make("rgba(255,0,0,1)"));
+				break;
+			}
+			context.fillRect(left, top, columnWidth, bottom - top);
 		}
+		
+		// content label
+		context.setFillStyle("black");
+		context.setFont("12pt Calibri");
+		context.setTextAlign(TextAlign.CENTER);
+		context.fillText(entry.getTitle(), left + (columnWidth / 2), ((bottom - top) / 2) + top, columnWidth);
+		
 		context.restore();
 	}
 	
