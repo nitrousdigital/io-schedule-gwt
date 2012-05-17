@@ -1,4 +1,4 @@
-package com.nitrous.iosched.client.model;
+package com.nitrous.iosched.client.io2011.model;
 
 /**
  * A bean that is used to describe a block in the schedule view that can be used to map mouse clicks to a time range.

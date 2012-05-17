@@ -1,4 +1,4 @@
-package com.nitrous.iosched.client.model;
+package com.nitrous.iosched.client.io2011.model;
 
 import com.google.gwt.core.client.JavaScriptObject;
 

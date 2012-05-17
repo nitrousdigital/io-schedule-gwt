@@ -7,18 +7,21 @@ import com.google.gwt.canvas.dom.client.CanvasGradient;
 import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.canvas.dom.client.Context2d.TextAlign;
 import com.google.gwt.canvas.dom.client.CssColor;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.Widget;
-import com.nitrous.iosched.client.model.schedule.Schedule;
+import com.nitrous.iosched.client.model.schedule.ConferenceSchedule;
+import com.nitrous.iosched.client.model.schedule.DailySchedule;
 import com.nitrous.iosched.client.model.schedule.ScheduleCategory;
 import com.nitrous.iosched.client.model.schedule.ScheduleEntry;
+import com.nitrous.iosched.client.model.store.SessionStore;
 import com.nitrous.iosched.client.toolbar.ActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 
-public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget {
+public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refreshable {
 	private static final int QTR_HOUR_PERIOD_HEIGHT = 20;
 	private static final int HOUR_PERIOD_HEIGHT = QTR_HOUR_PERIOD_HEIGHT * 4;
 	private static final int MIN_HOUR = 7;
@@ -38,7 +41,7 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget {
 	private int width;
 	private int height;
 	
-	private Schedule schedule;
+	private DailySchedule schedule;
 	private int columnWidth;
 	private int columnSpace = 5;
 	public ScheduleCanvasView(int width) {
@@ -60,8 +63,22 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget {
 		repaint();
 	}
 	
-	private void repaint() {
+	private void onClear() {
 		context.clearRect(0,  0, width, height);
+	}
+	
+	private void showMessage(String message, boolean isError) {
+		onClear();
+		context.save();
+		context.setFont("12pt Calibri");
+		context.setTextAlign(TextAlign.LEFT);
+		context.setFillStyle(isError ? CssColor.make("red") : CssColor.make("blue"));
+		context.fillText(message, 10, 20);
+		context.restore();
+	}
+	
+	private void repaint() {
+		onClear();
 		paintTimeline();
 		paintData();
 		paintCurrentTimeMarker();
@@ -89,7 +106,7 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget {
 	}
 	
 	
-	public void setSchedule(Schedule schedule) {
+	public void setSchedule(DailySchedule schedule) {
 		this.schedule = schedule;
 	}
 	private void paintData() {
@@ -297,4 +314,28 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget {
 		this.controller = controller;
 	}
 
+	@Override
+	public void onRefresh() {
+		onRefresh(true);
+	}
+	public void onRefresh(boolean reload) {
+		showMessage("Loading, Please wait...", false);
+		SessionStore.get().getSessions(new AsyncCallback<ConferenceSchedule>(){
+			public void onFailure(Throwable caught) {
+				String message = caught.getMessage();
+				if (message != null && message.trim().length() > 0) {
+					showMessage("Failed to load session data: "+message, true);
+				} else {
+					showMessage("Failed to load session data", true);
+				}						
+			}
+			public void onSuccess(ConferenceSchedule result) {
+				loadSessionData(result);
+			}
+			
+		}, reload);
+	}
+
+	private void loadSessionData(ConferenceSchedule schedule) {
+	}
 }

@@ -5,7 +5,7 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.ScrollPanel;
-import com.nitrous.iosched.client.model.SessionFeedEntry;
+import com.nitrous.iosched.client.io2011.model.SessionFeedEntry;
 import com.nitrous.iosched.client.model.SessionTrack;
 import com.nitrous.iosched.client.toolbar.RefreshableSubActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;

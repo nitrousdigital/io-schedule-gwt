@@ -1,4 +1,4 @@
-package com.nitrous.iosched.client.view;
+package com.nitrous.iosched.client.io2011.view;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,10 +16,13 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.nitrous.iosched.client.model.SessionCell;
+import com.nitrous.iosched.client.io2011.model.SessionCell;
 import com.nitrous.iosched.client.toolbar.ActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
+import com.nitrous.iosched.client.view.ActivityController;
+import com.nitrous.iosched.client.view.Bookmark;
+import com.nitrous.iosched.client.view.BookmarkCategory;
 
 public class ScheduleView extends ResizeComposite implements ToolbarEnabledView {
 	private ActivityToolbar toolbar = new ActivityToolbar("Schedule");

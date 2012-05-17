@@ -1,7 +1,7 @@
 package com.nitrous.iosched.client.view;
 
+import com.nitrous.iosched.client.io2011.model.SessionFeedEntry;
 import com.nitrous.iosched.client.model.CompanyPod;
-import com.nitrous.iosched.client.model.SessionFeedEntry;
 import com.nitrous.iosched.client.model.SessionTrack;
 
 public interface ActivityController {

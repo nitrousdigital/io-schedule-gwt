@@ -3,14 +3,17 @@ package com.nitrous.iosched.client.model;
 public enum SessionTrack {
 	All("(All sessions)", "all"),
 	Android("Android", "android"),
-	AppEngine("App Engine", "appengine"),
-	Chrome("Chrome", "chrome"),
+	Chrome("Chrome", "chrome"),	
+	CloudPlatform("Cloud Platform", "cloudplatform"),
 	Commerce("Commerce", "commerce"),
-	DevTools("Developer Tools", "devtools"),
-	Geo("Geo", "geo"),			
+	Entrepreneurship("Entrepreneurship", "entrepreneurship"),
 	GoogleAPIs("Google APIs", "googleapis"),
-	GoogleApps("Google Apps", "googleapps"),
-	TechTalk("Tech Talk", "techtalk");
+	GoogleDrive("Google Drive", "googledrive"),
+	GoogleMaps("Google Maps", "googlemaps"),
+	GoogleTv("Google TV", "googletv"),
+	GooglePlus("Google+", "googleplus"),
+	TechTalk("Tech Talk", "techtalk"),
+	YouTube("YouTube", "youtube");
 	
 	private String label;
 	private String historyToken;
@@ -27,13 +30,28 @@ public enum SessionTrack {
 	public String getHistoryToken() {
 		return historyToken;
 	}
+	
+	public static SessionTrack parseTrackName(String name) {
+		if (name == null) {
+			return null;
+		}
+		name = name.trim();
+		for (SessionTrack track : values()) {
+			if (track.label.equalsIgnoreCase(name)) {
+				return track;
+			}
+		}
+		return null;
+	}
+	
 	public static SessionTrack parseHistoryToken(String token) {
 		if (token == null || token.trim().length() == 0) {
 			return All;
 		}
-		for (SessionTrack pod : values()) {
-			if (pod.historyToken != null && pod.historyToken.equalsIgnoreCase(token)) {
-				return pod;
+		
+		for (SessionTrack track : values()) {
+			if (track.historyToken != null && track.historyToken.equalsIgnoreCase(token)) {
+				return track;
 			}
 		}
 		return All;
