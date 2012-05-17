@@ -1,27 +1,29 @@
-package com.nitrous.iosched.client.model;
-
-import java.util.TreeSet;
+package com.nitrous.iosched.client.model.store;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.JsArray;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.nitrous.iosched.client.view.FeedEntryComparator;
+import com.nitrous.iosched.client.model.Configuration;
+import com.nitrous.iosched.client.model.data.SessionData;
+import com.nitrous.iosched.client.model.data.SessionFeedQueryResult;
+import com.nitrous.iosched.client.model.schedule.ConferenceSchedule;
 
 /**
- * The cache of the most recently loaded list of session data
+ * The cache of most recently loaded session data
  * @author nick
  *
  */
 public class SessionStore {
 	private static SessionStore INSTANCE;
-	private static final FeedEntryComparator feedSorter = new FeedEntryComparator();
-	private TreeSet<SessionFeedEntry> sessions = new TreeSet<SessionFeedEntry>();
+
+	private ConferenceSchedule conferenceSchedule;
+	
 	private SessionStore() {
 	}
+	
 	public static SessionStore get() {
 		if (INSTANCE == null) {
 			INSTANCE = new SessionStore();
@@ -30,38 +32,12 @@ public class SessionStore {
 	}
 	
 	/**
-	 * Retrieve the FeedEntry for the specified session ID
-	 * @param sessionId The ID of the session
-	 * @param callback The callback
-	 */
-	public void getSession(final String sessionId, final AsyncCallback<SessionFeedEntry> callback) {
-		getSessions(new AsyncCallback<TreeSet<SessionFeedEntry>>(){
-			public void onFailure(Throwable caught) {
-				callback.onFailure(caught);
-			}
-			public void onSuccess(TreeSet<SessionFeedEntry> result) {
-				if (result != null) {
-					for (SessionFeedEntry entry : result) {
-						if (entry.getId().equals(sessionId)) {
-							callback.onSuccess(entry);
-							return;
-						}
-					}
-				}
-				callback.onFailure(new Exception("Session not found"));
-			}
-		}, false);
-	}
-	
-	/**
-	 * Retrieve the session list
+	 * Retrieve the conference schedule
 	 * @param callback The callback
 	 * @param reload True to force a reload from the server
 	 */
-	public void getSessions(final AsyncCallback<TreeSet<SessionFeedEntry>> callback, boolean reload) {
-		if (sessions.size() > 0 && reload == false) {
-			callback.onSuccess(sessions);
-		} else {
+	public void getSessions(final AsyncCallback<ConferenceSchedule> callback, boolean reload) {
+		if (conferenceSchedule == null || reload) {
 			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, Configuration.getSessionFeed());
 			try {
 				builder.sendRequest(null, new RequestCallback(){
@@ -83,18 +59,17 @@ public class SessionStore {
 								return;
 							}						
 						} else {
-							SessionFeed feed = SessionFeed.eval(response.getText());
-							JsArray<SessionFeedEntry> entries = feed.getEntries();
-							if (entries != null) {
-								// sort
-								TreeSet<SessionFeedEntry> sorted = new TreeSet<SessionFeedEntry>(feedSorter);			
-								for (int i = 0 ; i < entries.length(); i++) {				
-									SessionFeedEntry entry = entries.get(i);
-									sorted.add(entry);
-								}
-								sessions = sorted;
-								callback.onSuccess(sorted);
+							SessionFeedQueryResult result = SessionFeedQueryResult.eval(response.getText());
+							if (!result.getSuccess()) {
+								GWT.log("Result indicated failure");
+								callback.onFailure(new Exception("Unexpected response from server"));
+								return;
 							}
+							
+							SessionData data = result.getResult();
+							
+							conferenceSchedule = new ConferenceSchedule(data); 						
+							callback.onSuccess(conferenceSchedule);
 						}
 					}
 					public void onError(Request request, Throwable exception) {
@@ -115,7 +90,10 @@ public class SessionStore {
 				} else {
 					callback.onFailure(new Exception("Unexpected response from server"));
 				}
-			}		
+			}
+		} else {
+			callback.onSuccess(conferenceSchedule);
 		}
+
 	}
 }

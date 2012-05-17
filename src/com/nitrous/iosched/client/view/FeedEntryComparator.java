@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.Date;
 
 import com.google.gwt.i18n.client.DateTimeFormat;
-import com.nitrous.iosched.client.model.SessionFeedEntry;
+import com.nitrous.iosched.client.io2011.model.SessionFeedEntry;
 
 public class FeedEntryComparator  implements Comparator<SessionFeedEntry> {
 	private static final DateTimeFormat format = DateTimeFormat.getFormat("EEEE MMMM dd hh:mmaa");

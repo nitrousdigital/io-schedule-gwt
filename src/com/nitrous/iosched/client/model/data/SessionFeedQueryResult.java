@@ -1,4 +1,4 @@
-package com.nitrous.iosched.client.data;
+package com.nitrous.iosched.client.model.data;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
@@ -21,7 +21,7 @@ public final class SessionFeedQueryResult extends JavaScriptObject {
 		return this.success;
 	}-*/;
 
-	public static native SessionData eval(String json) /*-{
+	public static native SessionFeedQueryResult eval(String json) /*-{
 		var ret = eval('(' + json + ')');
 		return ret;
 	}-*/;
