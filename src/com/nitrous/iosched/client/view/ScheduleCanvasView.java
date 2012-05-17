@@ -1,5 +1,7 @@
 package com.nitrous.iosched.client.view;
 
+import java.util.Date;
+
 import com.google.gwt.canvas.client.Canvas;
 import com.google.gwt.canvas.dom.client.CanvasGradient;
 import com.google.gwt.canvas.dom.client.Context2d;
@@ -62,7 +64,30 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget {
 		context.clearRect(0,  0, width, height);
 		paintTimeline();
 		paintData();
+		paintCurrentTimeMarker();
 	}
+	
+	private void paintCurrentTimeMarker() {
+		Date now = new Date();
+		boolean isCurrentDateShowing = false;
+		if (schedule != null) {
+			Date schedDate = schedule.getDate();
+			isCurrentDateShowing = now.getYear() == schedDate.getYear() 
+					&& now.getMonth() == schedDate.getMonth()
+					&& now.getDate() == schedDate.getDate();									
+		}
+		
+		if (!isCurrentDateShowing) {
+			return;
+		}
+				
+		context.save();
+		int curHour = now.getHours();
+		int curMin = now.getMinutes();
+		
+		context.restore();
+	}
+	
 	
 	public void setSchedule(Schedule schedule) {
 		this.schedule = schedule;
