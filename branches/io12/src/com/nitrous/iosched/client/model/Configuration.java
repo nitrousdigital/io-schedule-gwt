@@ -7,6 +7,18 @@ import com.google.gwt.user.client.Window;
 public class Configuration {
 	private Configuration() {
 	}
+	// 2012 FEEDS
+	private static final String LIVE_IO_CODE_LAB_FEED_2012 = "https://developers.google.com/events/io/conference/codelab";
+	private static final String OFFLINE_IO_CODE_LAB_FEED_2012 = GWT.getHostPageBaseURL() + "/staticfeeds/codelab2012.json";
+	
+	private static final String LIVE_IO_SESSION_FEED_2012 = "https://developers.google.com/events/io/conference/session";
+	private static final String OFFLINE_IO_SESSION_FEED_2012 = GWT.getHostPageBaseURL() + "/staticfeeds/session2012.json";
+	
+	// example for session ID 204
+	private static final String SESSION_DETAIL_2012 = "https://developers.google.com/events/io/session-details/gooio2012/204/";
+	private static final String OFFLINE_SESSION_DETAIL_2012 = GWT.getHostPageBaseURL() + "/staticfeeds/session_details_204.json";
+	
+	
 	// LIVE FEEDS
 	private static final String LIVE_SESSION_FEED_URL = "http://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od6/public/values?alt=json";
 	private static final String LIVE_SANDBOX_FEED_URL = "http://spreadsheets.google.com/feeds/list/tmaLiaNqIWYYtuuhmIyG0uQ/od4/public/values?alt=json";

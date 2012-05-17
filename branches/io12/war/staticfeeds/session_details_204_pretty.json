@@ -1,0 +1,55 @@
+{
+   "result":{
+      "attending":0,
+      "speakers":[
+         {
+            "bio":null,
+            "first_name":"Eric",
+            "last_name":"Bidelman",
+            "display_name":"Eric Bidelman",
+            "plusone_url":"https://plus.google.com/118075919496626375791",
+            "thumbnail_url":"https://lh5.googleusercontent.com/-kgFnix5akCc/AAAAAAAAAAI/AAAAAAAAAAA/VExR-A6RA4s/photo.jpg?sz=50",
+            "current_location":null,
+            "about":"<span>Eric is a Senior Developer Programs Engineer on the Google Chrome team. His focus is to spread HTML5 goodness around the globe. He is the author of the book &quot;Using the HTML5 Filesystem API&quot;. Prior to Google, Eric worked as a software engineer at the University of Michigan where he designed rich web applications and APIs for the university&#39;s 19 libraries.</span>",
+            "email":"ebidel@gmail.com"
+         }
+      ],
+      "session_id":"gooio2012/204/",
+      "session_data":[
+         {
+            "event_slots":[
+               {
+                  "date":"2012-06-27",
+                  "slot1":[
+                     "11:15",
+                     "12:15"
+                  ]
+               }
+            ],
+            "event_type":"session",
+            "events":[
+               {
+                  "start_time":"11:15",
+                  "room":"4",
+                  "end_date":"2012-06-27",
+                  "level":"Intermediate",
+                  "track":[
+                     "Chrome"
+                  ],
+                  "abstract":"The web is changing so quickly that it's hard to keep up with what's new in the platform. HTML5's new capabilities allow developers to build a whole new suite of applications - things that were once impossible to do, are now a reality.\n\nThis session will walk you down the bleeding edge of HTML5 for 2012 by focusing on in-depth techniques, which solve real world challenges. We'll cover media capture, file I/O, advanced usage of websockets, media streaming, device input, multimedia, and modern css design.",
+                  "title":"The Web Can Do That!?",
+                  "start_date":"2012-06-27",
+                  "attending":"N",
+                  "has_streaming":"Y",
+                  "end_time":"12:15",
+                  "livestream_url":"TBD",
+                  "type":"session",
+                  "id":"gooio2012/204/",
+                  "tags":"HTML5,performance,web apps,websockets,file,multimedia,graphics"
+               }
+            ]
+         }
+      ]
+   },
+   "success":true
+}
