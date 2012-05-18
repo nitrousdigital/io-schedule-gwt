@@ -35,24 +35,32 @@ public interface Images extends ClientBundle {
 	ImageResource starred();
 	
 	// track swatches
-	@Source("android_track.png")
-	ImageResource trackAndroid();
+	@Source("google_apps_track.png")
+	ImageResource trackGoogleApps();
+	@Source("dev_tools_track.png")
+	ImageResource trackDevTools();
 	@Source("app_engine_track.png")
 	ImageResource trackAppEngine();
+	@Source("android_track.png")
+	ImageResource trackAndroid();
+	@Source("cloud_platform_track.png")
+	ImageResource trackCloudPlatform();
 	@Source("chrome_track.png")
 	ImageResource trackChrome();
 	@Source("commerce_track.png")
 	ImageResource trackCommerce();
-	@Source("dev_tools_track.png")
-	ImageResource trackDevTools();
+	@Source("google_drive_track.png")
+	ImageResource trackGoogleDrive();
 	@Source("geo_track.png")
 	ImageResource trackGeo();
 	@Source("google_api_track.png")
 	ImageResource trackGoogleAPIs();
-	@Source("google_apps_track.png")
-	ImageResource trackGoogleApps();
+	@Source("entrepreneurship_track.png")
+	ImageResource trackEntrepreneurship();
 	@Source("tech_talk_track.png")
 	ImageResource trackTechTalk();
+	@Source("google_tv_track.png")
+	ImageResource trackGoogleTv();
 	
 	// sandbox swatches
 	@Source("accessibility_sandbox.png")

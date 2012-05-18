@@ -81,13 +81,13 @@ public class SessionTrackListView extends ResizeComposite implements ToolbarEnab
 		switch (track) {
 		case All: return null;
 		case Android: return new Image(images.trackAndroid());
-		case AppEngine: return new Image(images.trackAppEngine());
 		case Chrome: return new Image(images.trackChrome());
+		case CloudPlatform: return new Image(images.trackCloudPlatform());
 		case Commerce: return new Image(images.trackCommerce());
-		case DevTools: return new Image(images.trackDevTools());
-		case Geo: return new Image(images.trackGeo());
+		case Entrepreneurship: return new Image(images.trackEntrepreneurship());
 		case GoogleAPIs: return new Image(images.trackGoogleAPIs());
-		case GoogleApps: return new Image(images.trackGoogleApps());
+		case GoogleDrive: return new Image(images.trackGoogleDrive());
+		case GoogleMaps: return new Image(images.trackGeo());
 		case TechTalk: return new Image(images.trackTechTalk());
 		}
 		return null;
