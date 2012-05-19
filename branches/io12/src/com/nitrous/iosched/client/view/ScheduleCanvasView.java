@@ -10,7 +10,15 @@ import com.google.gwt.canvas.dom.client.CanvasGradient;
 import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.canvas.dom.client.Context2d.TextAlign;
 import com.google.gwt.canvas.dom.client.CssColor;
+import com.google.gwt.dom.client.Style.Overflow;
+import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.dom.client.ScrollEvent;
+import com.google.gwt.event.logical.shared.ResizeEvent;
+import com.google.gwt.event.logical.shared.ResizeHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.DockLayoutPanel;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
@@ -39,14 +47,18 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 	private ActivityToolbar toolbar = new ActivityToolbar("Schedule");
 	private Bookmark bookmark = new Bookmark(BookmarkCategory.SCHEDULE);
 
-	private Canvas canvas;
-	private Context2d context;
+	private Canvas sessionCanvas;
+	private Context2d sessionContext;
+	
+	private Canvas timelineCanvas;
+	private Context2d timelineContext;
+	
 	private ActivityController controller;
 
-	private Widget widget;
+	private DockLayoutPanel layout;
 
-	private int width;
-	private int height;
+	private int sessionCanvasWidth;
+	private int sessionCanvasHeight;
 	
 	private ConferenceSchedule schedule;
 	private Date selectedDate;
@@ -54,43 +66,91 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 	private int columnWidth;
 	private int columnSpace = 5;
 	
-	public ScheduleCanvasView(int width) {
-		canvas = Canvas.createIfSupported();
-		if (canvas == null) {
-			this.widget = new Label("Sorry, your browser is not supported");
+	private ScrollPanel sessionScroll;
+	
+	public ScheduleCanvasView() {
+		layout = new DockLayoutPanel(Unit.PX);
+		
+		this.sessionCanvas = Canvas.createIfSupported();
+		if (this.sessionCanvas == null) {
+			this.layout.add(new Label("Sorry, your browser is not supported"));
 			return;
 		} 
+		this.sessionContext = sessionCanvas.getContext2d();
+		this.timelineCanvas = Canvas.createIfSupported();
+		this.timelineContext = timelineCanvas.getContext2d();
+				
+		this.sessionScroll = new ScrollPanel(sessionCanvas);
+		this.sessionScroll.addScrollHandler(new com.google.gwt.event.dom.client.ScrollHandler(){
+			@Override
+			public void onScroll(ScrollEvent event) {
+				onSessionScroll();
+			}
+		});
 		
-		this.widget = new ScrollPanel(canvas);
-		this.width = width;
-		this.columnWidth = (width-(HOUR_BAR_WIDTH + (columnSpace * 3))) / 3;
-		this.height = (HOUR_PERIOD_HEIGHT * ((MAX_HOUR - MIN_HOUR) + 1)) + 10;
-		
-		this.canvas.setPixelSize(width, height);
-		this.canvas.setCoordinateSpaceWidth(width);
-		this.canvas.setCoordinateSpaceHeight(height);
-		this.context = canvas.getContext2d();
-		repaint();
+		layout.addWest(timelineCanvas, HOUR_BAR_WIDTH);
+		layout.add(sessionScroll);
+
+		onResize();
 		onRefresh();
+		Window.addResizeHandler(new ResizeHandler(){
+			@Override
+			public void onResize(ResizeEvent event) {
+				ScheduleCanvasView.this.onResize();
+			}
+		});
+	}
+		
+	private void onSessionScroll() {
+		// account for current session scroll vertical position
+		int vpos = sessionScroll.getVerticalScrollPosition();
+		if (vpos != this.timelineVPos) {
+			this.timelineVPos = vpos;
+			repaintTimeline();
+		}		
+	}
+	
+	private void onResize() {
+		int winWidth = Window.getClientWidth();
+		int winHeight = Window.getClientHeight();
+		this.layout.setPixelSize(winWidth, winHeight);
+		
+		int trackColCount = getTrackColCount();
+		
+		this.columnWidth = (winWidth-(HOUR_BAR_WIDTH + (columnSpace * 3))) / 3;
+		this.sessionCanvasWidth = (trackColCount * columnWidth) + (columnSpace * (trackColCount > 0 ? trackColCount - 1 : 0));
+		this.sessionCanvasHeight = (HOUR_PERIOD_HEIGHT * ((MAX_HOUR - MIN_HOUR) + 1)) + 10;
+		
+		
+		this.sessionCanvas.setPixelSize(sessionCanvasWidth, sessionCanvasHeight);
+		this.sessionCanvas.setCoordinateSpaceWidth(sessionCanvasWidth);
+		this.sessionCanvas.setCoordinateSpaceHeight(sessionCanvasHeight);
+		
+		this.timelineCanvas.setPixelSize(HOUR_BAR_WIDTH, sessionCanvasHeight);
+		this.timelineCanvas.setCoordinateSpaceWidth(HOUR_BAR_WIDTH);
+		this.timelineCanvas.setCoordinateSpaceHeight(sessionCanvasHeight);
+		repaint();
 	}
 	
 	private void onClear() {
-		context.clearRect(0,  0, width, height);
+		sessionContext.clearRect(0,  0, sessionCanvasWidth, sessionCanvasHeight);
+		timelineContext.clearRect(0,  0, HOUR_BAR_WIDTH, sessionCanvasHeight);
 	}
 	
 	private void showMessage(String message, boolean isError) {
 		onClear();
-		context.save();
-		context.setFont("12pt Calibri");
-		context.setTextAlign(TextAlign.LEFT);
-		context.setFillStyle(isError ? CssColor.make("red") : CssColor.make("blue"));
-		context.fillText(message, 10, 20);
-		context.restore();
+		sessionContext.save();
+		sessionContext.setFont("12pt Calibri");
+		sessionContext.setTextAlign(TextAlign.LEFT);
+		sessionContext.setFillStyle(isError ? CssColor.make("red") : CssColor.make("blue"));
+		sessionContext.fillText(message, 10, 20);
+		sessionContext.restore();
 	}
 	
 	private void repaint() {
 		onClear();
 		paintTimeline();
+		paintSessionHourLines();
 		paintData();
 		paintCurrentTimeMarker();
 	}
@@ -108,11 +168,11 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 			return;
 		}
 				
-		context.save();
+		sessionContext.save();
 		int curHour = now.getHours();
 		int curMin = now.getMinutes();
 		//TODO: paint time marker
-		context.restore();
+		sessionContext.restore();
 	}
 		
 	private void paintData() {
@@ -162,11 +222,11 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 		int durationMins = ((endHour * 60) + endMinute) - ((startHour * 60) + startMinute);
 		int top = ((startHour - MIN_HOUR) * HOUR_PERIOD_HEIGHT) + ((startMinute / 15) * QTR_HOUR_PERIOD_HEIGHT);
 		int bottom = ((endHour - MIN_HOUR) * HOUR_PERIOD_HEIGHT) + ((endMinute / 15)  * QTR_HOUR_PERIOD_HEIGHT);
-		int left = HOUR_BAR_WIDTH + (column * columnWidth) + (column * columnSpace);
-		context.save();
+		int left = (column * columnWidth) + (column * columnSpace);
+		sessionContext.save();
 		if (durationMins >= 30) {
 			// start gradient
-			CanvasGradient grd = context.createLinearGradient(left, top, left, top + QTR_HOUR_PERIOD_HEIGHT);
+			CanvasGradient grd = sessionContext.createLinearGradient(left, top, left, top + QTR_HOUR_PERIOD_HEIGHT);
 			switch (category) {
 			case OFFICE_HOURS:
 				grd.addColorStop(0, "rgba(0,128,0,1)");			
@@ -181,25 +241,25 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 				grd.addColorStop(GRADIENT_LEN, "rgba(255,0,0,1)");
 				break;
 			}
-			context.setFillStyle(grd);
-			context.fillRect(left,  top, columnWidth, QTR_HOUR_PERIOD_HEIGHT);
+			sessionContext.setFillStyle(grd);
+			sessionContext.fillRect(left,  top, columnWidth, QTR_HOUR_PERIOD_HEIGHT);
 			
 			// fill center
 			switch (category) {
 			case OFFICE_HOURS:
-				context.setFillStyle(CssColor.make("rgba(0,255,0,1)"));
+				sessionContext.setFillStyle(CssColor.make("rgba(0,255,0,1)"));
 				break;
 			case DINING:
-				context.setFillStyle(CssColor.make("rgba(0,255,255,1)"));
+				sessionContext.setFillStyle(CssColor.make("rgba(0,255,255,1)"));
 				break;
 			case SESSION:
-				context.setFillStyle(CssColor.make("rgba(255,0,0,1)"));
+				sessionContext.setFillStyle(CssColor.make("rgba(255,0,0,1)"));
 				break;
 			}
-			context.fillRect(left, top + QTR_HOUR_PERIOD_HEIGHT, columnWidth, 1 + bottom - (top + (QTR_HOUR_PERIOD_HEIGHT * 2)));
+			sessionContext.fillRect(left, top + QTR_HOUR_PERIOD_HEIGHT, columnWidth, 1 + bottom - (top + (QTR_HOUR_PERIOD_HEIGHT * 2)));
 			
 			// end gradient
-			CanvasGradient fadeOut = context.createLinearGradient(left, bottom + 1 - QTR_HOUR_PERIOD_HEIGHT, left, bottom);
+			CanvasGradient fadeOut = sessionContext.createLinearGradient(left, bottom + 1 - QTR_HOUR_PERIOD_HEIGHT, left, bottom);
 			switch (category) {
 			case OFFICE_HOURS:
 				fadeOut.addColorStop(GRADIENT_LEN, "rgba(0,255,0,1)");
@@ -214,66 +274,89 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 				fadeOut.addColorStop(1, "rgba(128,0,0,1)");			
 				break;
 			}
-			context.setFillStyle(fadeOut);
-			context.fillRect(left, bottom + 1 - QTR_HOUR_PERIOD_HEIGHT, columnWidth, QTR_HOUR_PERIOD_HEIGHT - 1);
+			sessionContext.setFillStyle(fadeOut);
+			sessionContext.fillRect(left, bottom + 1 - QTR_HOUR_PERIOD_HEIGHT, columnWidth, QTR_HOUR_PERIOD_HEIGHT - 1);
 			
 		} else {
 			// fill center
 			switch (category) {
 			case OFFICE_HOURS:
-				context.setFillStyle(CssColor.make("rgba(0,255,0,1)"));
+				sessionContext.setFillStyle(CssColor.make("rgba(0,255,0,1)"));
 				break;
 			case DINING:
-				context.setFillStyle(CssColor.make("rgba(0,255,255,1)"));
+				sessionContext.setFillStyle(CssColor.make("rgba(0,255,255,1)"));
 				break;
 			case SESSION:
-				context.setFillStyle(CssColor.make("rgba(255,0,0,1)"));
+				sessionContext.setFillStyle(CssColor.make("rgba(255,0,0,1)"));
 				break;
 			}
-			context.fillRect(left, top, columnWidth, bottom - top);
+			sessionContext.fillRect(left, top, columnWidth, bottom - top);
 		}
 		
 		// content label
-		context.setFillStyle("black");
-		context.setFont("12pt Calibri");
-		context.setTextAlign(TextAlign.CENTER);
-		context.fillText(title, 5 + (left + ((columnWidth-10) / 2)), ((bottom - top) / 2) + top, columnWidth-10);
+		sessionContext.setFillStyle("black");
+		sessionContext.setFont("12pt Calibri");
+		sessionContext.setTextAlign(TextAlign.CENTER);
+		sessionContext.fillText(title, 5 + (left + ((columnWidth-10) / 2)), ((bottom - top) / 2) + top, columnWidth-10);
 		
-		context.restore();
+		sessionContext.restore();
 	}
 	
+	private void repaintTimeline() {
+		timelineContext.clearRect(0,  0, HOUR_BAR_WIDTH, sessionCanvasHeight);
+		paintTimeline();
+	}
+		
+	private void paintSessionHourLines() {
+		sessionContext.save();		
+		int y = 0;
+		for (int hour = MIN_HOUR; hour <= MAX_HOUR; hour++) {
+			y = ((hour - MIN_HOUR) * HOUR_PERIOD_HEIGHT) + HOUR_PERIOD_HEIGHT;
+			sessionContext.setStrokeStyle(CssColor.make("rgba(128,128,128,0.5)"));
+			sessionContext.beginPath();
+			sessionContext.moveTo(0, y);// + (QTR_HOUR_PERIOD_HEIGHT / 4));
+			sessionContext.lineTo(sessionCanvasWidth, y);// + (QTR_HOUR_PERIOD_HEIGHT / 4));
+			sessionContext.closePath();
+			sessionContext.stroke();
+		}
+		sessionContext.restore();
+	}
+	
+	private int timelineVPos = 0;
 	private void paintTimeline() {
+		
 		// hour markers
-		context.save();
+		timelineContext.save();
+		
+		// offset to match vertical scroll of session area
+		timelineContext.translate(0, -timelineVPos);
 		
 		// hour bar background
-		context.setFillStyle(CssColor.make("rgba(128,128,128,0.25)"));
-		context.fillRect(0,  0, HOUR_BAR_WIDTH, height);
+		timelineContext.setFillStyle(CssColor.make("rgba(128,128,128,0.25)"));
+		timelineContext.fillRect(0,  0, HOUR_BAR_WIDTH, sessionCanvasHeight);
 		
 		// time line
-		context.setFillStyle("black");
-		context.setFont("12pt Calibri");
-		context.setTextAlign(TextAlign.RIGHT);
+		timelineContext.setFillStyle("black");
+		timelineContext.setFont("12pt Calibri");
+		timelineContext.setTextAlign(TextAlign.RIGHT);
 		int y = 0;
 		int textX = HOUR_BAR_WIDTH - 5;
 		for (int hour = MIN_HOUR; hour <= MAX_HOUR; hour++) {
 			int minute = 0;
-//			for (int minute = 0; minute < 60; minute+= 15) {
-				y = ((hour - MIN_HOUR) * HOUR_PERIOD_HEIGHT) + ((minute / 15) + 1) * QTR_HOUR_PERIOD_HEIGHT;
-				String timeStr = toTimeStr(hour, minute);
-				context.fillText(timeStr, textX, y);
-				y = ((hour - MIN_HOUR) * HOUR_PERIOD_HEIGHT) + HOUR_PERIOD_HEIGHT;
-//			}
+			y = ((hour - MIN_HOUR) * HOUR_PERIOD_HEIGHT) + ((minute / 15) + 1) * QTR_HOUR_PERIOD_HEIGHT;
+			String timeStr = toTimeStr(hour, minute);
+			timelineContext.fillText(timeStr, textX, y);
+			y = ((hour - MIN_HOUR) * HOUR_PERIOD_HEIGHT) + HOUR_PERIOD_HEIGHT;
 				
 			// hour lines
-			context.setStrokeStyle(CssColor.make("rgba(128,128,128,0.5)"));
-			context.beginPath();
-			context.moveTo(0, y);// + (QTR_HOUR_PERIOD_HEIGHT / 4));
-			context.lineTo(width, y);// + (QTR_HOUR_PERIOD_HEIGHT / 4));
-			context.closePath();
-			context.stroke();
+			timelineContext.setStrokeStyle(CssColor.make("rgba(128,128,128,0.5)"));
+			timelineContext.beginPath();
+			timelineContext.moveTo(0, y);// + (QTR_HOUR_PERIOD_HEIGHT / 4));
+			timelineContext.lineTo(HOUR_BAR_WIDTH, y);// + (QTR_HOUR_PERIOD_HEIGHT / 4));
+			timelineContext.closePath();
+			timelineContext.stroke();			
 		}
-		context.restore();
+		timelineContext.restore();
 	}
 	
 	private static String toTimeStr(int hour, int minute) {
@@ -311,7 +394,7 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 
 	@Override
 	public Widget asWidget() {
-		return widget;
+		return layout;
 	}
 	
 	public void setController(ActivityController controller) {
@@ -340,6 +423,22 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 		}, reload);
 	}
 
+	/**
+	 * 
+	 * @return The number of columns to be rendered
+	 */
+	private int getTrackColCount() {
+		int count = 0;
+		if (schedule != null && selectedDate != null) {
+			DailySchedule daily = schedule.getDailySchedule(selectedDate);
+			Map<SessionTrack, ArrayList<TrackSchedule>> scheds = daily.getTrackSchedules();
+			for (Map.Entry<SessionTrack, ArrayList<TrackSchedule>> entry : scheds.entrySet()) {
+				count += entry.getValue().size();
+			}
+		}
+		return count;
+	}
+	
 	private void loadSessionData(ConferenceSchedule schedule) {
 		this.schedule = schedule;
 		if (this.selectedDate == null) {
@@ -352,6 +451,7 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 			showMessage("No data available", false);
 			return;
 		}
+		onResize();
 		repaint();
 	}
 }
