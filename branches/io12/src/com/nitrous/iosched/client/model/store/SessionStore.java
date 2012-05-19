@@ -38,28 +38,33 @@ public class SessionStore {
 	 */
 	public void getSessions(final AsyncCallback<ConferenceSchedule> callback, boolean reload) {
 		if (conferenceSchedule == null || reload) {
-			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, Configuration.getSessionFeed());
+			String url = Configuration.getSessionFeed();
+			GWT.log("Loading session feed from: "+url);
+			RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, url);
 			try {
 				builder.sendRequest(null, new RequestCallback(){
 					public void onResponseReceived(Request request, Response response) {
-						if (response.getStatusCode() != Response.SC_OK) {
-							String body = null;
+						int code = response.getStatusCode();
+						String body = response.getText();
+						GWT.log("response code="+code+" body="+body);
+						if (code != Response.SC_OK) {
+							String status = null;
 							try {
-								body = response.getStatusText();
+								status = response.getStatusText();
 							} catch (Throwable t) {
 								GWT.log("Failed to load session data", t);
 								callback.onFailure(t);
 								return;
 							}
-							if (body != null && body.trim().length() > 0) {
-								callback.onFailure(new Exception(body));
+							if (status != null && status.trim().length() > 0) {
+								callback.onFailure(new Exception(status));
 								return;
 							} else {
-								callback.onFailure(new Exception("Unexpected response from server"));
+								callback.onFailure(new Exception("Unexpected response from server: code="+code));
 								return;
 							}						
 						} else {
-							SessionFeedQueryResult result = SessionFeedQueryResult.eval(response.getText());
+							SessionFeedQueryResult result = SessionFeedQueryResult.eval(body);
 							if (!result.getSuccess()) {
 								GWT.log("Result indicated failure");
 								callback.onFailure(new Exception("Unexpected response from server"));
