@@ -103,7 +103,7 @@ public final class EventData extends JavaScriptObject {
 	 * @return The HTML description of this event. May contain escaped unicode characters e.g. \u2019
 	 */
 	public native String getAbstract() /*-{
-		return this.abstract;
+		return eval('this.abstract');
 	}-*/;
 	
 	/**

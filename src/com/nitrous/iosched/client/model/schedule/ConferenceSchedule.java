@@ -3,6 +3,7 @@ package com.nitrous.iosched.client.model.schedule;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeSet;
 
 import com.google.gwt.core.client.JsArray;
 import com.nitrous.iosched.client.model.data.EventData;
@@ -16,6 +17,16 @@ import com.nitrous.iosched.client.model.data.SessionData;
  */
 public class ConferenceSchedule {
 	private Map<Date, DailySchedule> dailySchedules;
+	
+	public TreeSet<Date> getDates() {
+		TreeSet<Date> dates = new TreeSet<Date>();
+		dates.addAll(dailySchedules.keySet());
+		return dates;
+	}
+	
+	public DailySchedule getDailySchedule(Date date) {
+		return dailySchedules.get(date);
+	}
 	
 	public ConferenceSchedule(SessionData data) {
 		dailySchedules = new HashMap<Date, DailySchedule>();
