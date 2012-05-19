@@ -1,6 +1,9 @@
 package com.nitrous.iosched.client.view;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
+import java.util.TreeSet;
 
 import com.google.gwt.canvas.client.Canvas;
 import com.google.gwt.canvas.dom.client.CanvasGradient;
@@ -12,10 +15,14 @@ import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.nitrous.iosched.client.model.SessionTrack;
+import com.nitrous.iosched.client.model.data.EventDataWrapper;
 import com.nitrous.iosched.client.model.schedule.ConferenceSchedule;
 import com.nitrous.iosched.client.model.schedule.DailySchedule;
 import com.nitrous.iosched.client.model.schedule.ScheduleCategory;
 import com.nitrous.iosched.client.model.schedule.ScheduleEntry;
+import com.nitrous.iosched.client.model.schedule.TimeSlot;
+import com.nitrous.iosched.client.model.schedule.TrackSchedule;
 import com.nitrous.iosched.client.model.store.SessionStore;
 import com.nitrous.iosched.client.toolbar.ActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
@@ -41,9 +48,12 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 	private int width;
 	private int height;
 	
-	private DailySchedule schedule;
+	private ConferenceSchedule schedule;
+	private Date selectedDate;
+	
 	private int columnWidth;
 	private int columnSpace = 5;
+	
 	public ScheduleCanvasView(int width) {
 		canvas = Canvas.createIfSupported();
 		if (canvas == null) {
@@ -61,6 +71,7 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 		this.canvas.setCoordinateSpaceHeight(height);
 		this.context = canvas.getContext2d();
 		repaint();
+		onRefresh();
 	}
 	
 	private void onClear() {
@@ -87,11 +98,10 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 	private void paintCurrentTimeMarker() {
 		Date now = new Date();
 		boolean isCurrentDateShowing = false;
-		if (schedule != null) {
-			Date schedDate = schedule.getDate();
-			isCurrentDateShowing = now.getYear() == schedDate.getYear() 
-					&& now.getMonth() == schedDate.getMonth()
-					&& now.getDate() == schedDate.getDate();									
+		if (this.selectedDate != null) {
+			isCurrentDateShowing = now.getYear() == selectedDate.getYear() 
+					&& now.getMonth() == selectedDate.getMonth()
+					&& now.getDate() == selectedDate.getDate();									
 		}
 		
 		if (!isCurrentDateShowing) {
@@ -101,61 +111,55 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 		context.save();
 		int curHour = now.getHours();
 		int curMin = now.getMinutes();
-		
+		//TODO: paint time marker
 		context.restore();
 	}
-	
-	
-	public void setSchedule(DailySchedule schedule) {
-		this.schedule = schedule;
-	}
-	private void paintData() {
-//		if (schedule == null) {
-//			return;
-//		}
-//		List<ScheduleEntry> entries = schedule.getEntries(ScheduleCategory.DINING);
-//		for (ScheduleEntry entry : entries) {
-//			paintEntry(ScheduleCategory.DINING, entry, 0);
-//		}
-		ScheduleEntry entry = new ScheduleEntry() {
-
-			@Override
-			public String getTitle() {
-				return "lunch abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz";
-			}
-
-			@Override
-			public int getStartHour() {
-				return 13;
-			}
-
-			@Override
-			public int getStartMinute() {
-				return 0;
-			}
-
-			@Override
-			public int getEndHour() {
-				return 14;
-			}
-
-			@Override
-			public int getEndMinute() {
-				return 0;
-			}
-		};
 		
-		paintEntry(ScheduleCategory.DINING, entry, 0);
-		paintEntry(ScheduleCategory.SESSION, entry, 1);
-		paintEntry(ScheduleCategory.OFFICE_HOURS, entry, 2);
+	private void paintData() {
+		if (this.selectedDate == null || this.schedule == null) {
+			return;
+		}
+		DailySchedule daily = schedule.getDailySchedule(selectedDate);
+		if (daily == null) {
+			return;
+		}
+		
+		int column = 0;
+		//paintEntry(ScheduleCategory.DINING, entry, column++);
+		
+		Map<SessionTrack, ArrayList<TrackSchedule>> trackScheds = daily.getTrackSchedules();
+		for (Map.Entry<SessionTrack, ArrayList<TrackSchedule>> entry : trackScheds.entrySet()) {
+			ArrayList<TrackSchedule> sched = entry.getValue();
+			for (TrackSchedule s2 : sched) {
+				ArrayList<EventDataWrapper> events = s2.getEvents();
+				if (events.size() > 0) {
+					for (EventDataWrapper event : events) {
+						paintEntry(event, column);
+					}
+					column++;
+				}
+			}
+		}
+		
+		//paintEntry(ScheduleCategory.OFFICE_HOURS, entry, column++);
 	}
+	
+	private void paintEntry(EventDataWrapper event, int column) {
+		TimeSlot slot = event.getSlot();
+		paintEntry(ScheduleCategory.SESSION, slot.getStartHour(), slot.getStartMinute(), slot.getEndHour(), slot.getEndMinute(), event.getData().getTitle(), column); 
+	}
+	
 	private void paintEntry(ScheduleCategory category, ScheduleEntry entry, int column) {
 		int startHour = entry.getStartHour();
 		int startMinute = entry.getStartMinute();
 		int endHour = entry.getEndHour();
 		int endMinute = entry.getEndMinute();
+		String title = entry.getTitle();
+		paintEntry(category, startHour, startMinute, endHour, endMinute, title, column); 				
+	}
+	
+	private void paintEntry(ScheduleCategory  category, int startHour, int startMinute, int endHour, int endMinute, String title, int column) {
 		int durationMins = ((endHour * 60) + endMinute) - ((startHour * 60) + startMinute);
-		
 		int top = ((startHour - MIN_HOUR) * HOUR_PERIOD_HEIGHT) + ((startMinute / 15) * QTR_HOUR_PERIOD_HEIGHT);
 		int bottom = ((endHour - MIN_HOUR) * HOUR_PERIOD_HEIGHT) + ((endMinute / 15)  * QTR_HOUR_PERIOD_HEIGHT);
 		int left = HOUR_BAR_WIDTH + (column * columnWidth) + (column * columnSpace);
@@ -233,7 +237,7 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 		context.setFillStyle("black");
 		context.setFont("12pt Calibri");
 		context.setTextAlign(TextAlign.CENTER);
-		context.fillText(entry.getTitle(), 5 + (left + ((columnWidth-10) / 2)), ((bottom - top) / 2) + top, columnWidth-10);
+		context.fillText(title, 5 + (left + ((columnWidth-10) / 2)), ((bottom - top) / 2) + top, columnWidth-10);
 		
 		context.restore();
 	}
@@ -337,5 +341,17 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 	}
 
 	private void loadSessionData(ConferenceSchedule schedule) {
+		this.schedule = schedule;
+		if (this.selectedDate == null) {
+			TreeSet<Date> dates = schedule.getDates();
+			if (dates != null && dates.size() > 0) {
+				this.selectedDate = dates.iterator().next();
+			}
+		}
+		if (this.selectedDate == null) {
+			showMessage("No data available", false);
+			return;
+		}
+		repaint();
 	}
 }
