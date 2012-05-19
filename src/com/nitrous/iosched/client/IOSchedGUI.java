@@ -105,7 +105,7 @@ public class IOSchedGUI extends ResizeComposite implements ActivityController, T
 		viewDeckPanel.add(mapView);
 		
 		// 2
-		scheduleView = new ScheduleCanvasView(WIDTH);
+		scheduleView = new ScheduleCanvasView();
 		scheduleView.setController(this);
 		viewDeckPanel.add(scheduleView);
 		
