@@ -88,7 +88,10 @@ public class SessionTrackListView extends ResizeComposite implements ToolbarEnab
 		case GoogleAPIs: return new Image(images.trackGoogleAPIs());
 		case GoogleDrive: return new Image(images.trackGoogleDrive());
 		case GoogleMaps: return new Image(images.trackGeo());
+		case GooglePlus: return new Image(images.trackGooglePlus());
+		case GoogleTv: return new Image(images.trackGoogleTv());
 		case TechTalk: return new Image(images.trackTechTalk());
+		case YouTube: return new Image(images.trackYouTube());
 		}
 		return null;
 	}

@@ -53,6 +53,8 @@ public interface Images extends ClientBundle {
 	ImageResource trackGoogleDrive();
 	@Source("geo_track.png")
 	ImageResource trackGeo();
+	@Source("googleplus_track.png")
+	ImageResource trackGooglePlus();
 	@Source("google_api_track.png")
 	ImageResource trackGoogleAPIs();
 	@Source("entrepreneurship_track.png")
@@ -61,6 +63,8 @@ public interface Images extends ClientBundle {
 	ImageResource trackTechTalk();
 	@Source("google_tv_track.png")
 	ImageResource trackGoogleTv();
+	@Source("youtube_track.png")
+	ImageResource trackYouTube();
 	
 	// sandbox swatches
 	@Source("accessibility_sandbox.png")

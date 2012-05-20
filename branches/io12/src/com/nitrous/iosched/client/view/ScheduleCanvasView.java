@@ -117,7 +117,8 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 		
 		int trackColCount = getTrackColCount();
 		
-		this.columnWidth = (winWidth-(HOUR_BAR_WIDTH + (columnSpace * 3))) / 3;
+		this.columnWidth = (winWidth-(HOUR_BAR_WIDTH + (columnSpace * 2))) / 2;
+		this.columnWidth = Math.min(columnWidth, 300);
 		this.sessionCanvasWidth = (trackColCount * columnWidth) + (columnSpace * (trackColCount > 0 ? trackColCount - 1 : 0));
 		this.sessionCanvasHeight = (HOUR_PERIOD_HEIGHT * ((MAX_HOUR - MIN_HOUR) + 1)) + 10;
 		
@@ -191,10 +192,11 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 		for (Map.Entry<SessionTrack, ArrayList<TrackSchedule>> entry : trackScheds.entrySet()) {
 			ArrayList<TrackSchedule> sched = entry.getValue();
 			for (TrackSchedule s2 : sched) {
+				SessionTrack track = s2.getTrack();
 				ArrayList<EventDataWrapper> events = s2.getEvents();
 				if (events.size() > 0) {
 					for (EventDataWrapper event : events) {
-						paintEntry(event, column);
+						paintEntry(track, event, column);
 					}
 					column++;
 				}
@@ -204,10 +206,59 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 		//paintEntry(ScheduleCategory.OFFICE_HOURS, entry, column++);
 	}
 	
-	private void paintEntry(EventDataWrapper event, int column) {
+	private void paintEntry(SessionTrack track, EventDataWrapper event, int column) {
 		TimeSlot slot = event.getSlot();
-		paintEntry(ScheduleCategory.SESSION, slot.getStartHour(), slot.getStartMinute(), slot.getEndHour(), slot.getEndMinute(), event.getData().getTitle(), column); 
+		paintEntry(track, 
+				slot.getStartHour(), 
+				slot.getStartMinute(), 
+				slot.getEndHour(), 
+				slot.getEndMinute(), 
+				event.getData().getTitle(), 
+				column); 
 	}
+	
+	private void paintEntry(SessionTrack track, int startHour, int startMinute, int endHour, int endMinute, String title, int column) {
+		int durationMins = ((endHour * 60) + endMinute) - ((startHour * 60) + startMinute);
+		int top = ((startHour - MIN_HOUR) * HOUR_PERIOD_HEIGHT) + ((startMinute / 15) * QTR_HOUR_PERIOD_HEIGHT);
+		int bottom = ((endHour - MIN_HOUR) * HOUR_PERIOD_HEIGHT) + ((endMinute / 15)  * QTR_HOUR_PERIOD_HEIGHT);
+		int left = (column * columnWidth) + (column * columnSpace);
+		sessionContext.save();
+		String startColor = SessionFillStyle.getStartGradientColor(track);
+		String endColor = SessionFillStyle.getEndGradientColor(track);
+		String textColor = SessionFillStyle.getTextColor(track);
+		if (durationMins >= 30) {
+			// start gradient
+			CanvasGradient grd = sessionContext.createLinearGradient(left, top, left, top + QTR_HOUR_PERIOD_HEIGHT);
+			grd.addColorStop(0, startColor);			
+			grd.addColorStop(GRADIENT_LEN, endColor);
+			sessionContext.setFillStyle(grd);
+			sessionContext.fillRect(left,  top, columnWidth, QTR_HOUR_PERIOD_HEIGHT);
+			
+			// fill center
+			sessionContext.setFillStyle(endColor);
+			sessionContext.fillRect(left, top + QTR_HOUR_PERIOD_HEIGHT, columnWidth, 1 + bottom - (top + (QTR_HOUR_PERIOD_HEIGHT * 2)));
+			
+			// end gradient
+			CanvasGradient fadeOut = sessionContext.createLinearGradient(left, bottom + 1 - QTR_HOUR_PERIOD_HEIGHT, left, bottom);
+			fadeOut.addColorStop(GRADIENT_LEN, endColor);
+			fadeOut.addColorStop(1, startColor);			
+			sessionContext.setFillStyle(fadeOut);
+			sessionContext.fillRect(left, bottom + 1 - QTR_HOUR_PERIOD_HEIGHT, columnWidth, QTR_HOUR_PERIOD_HEIGHT - 1);
+			
+		} else {
+			// fill center
+			sessionContext.setFillStyle(endColor);
+			sessionContext.fillRect(left, top, columnWidth, bottom - top);
+		}
+		
+		// content label
+		sessionContext.setFillStyle(textColor);
+		sessionContext.setFont("12pt Calibri");
+		sessionContext.setTextAlign(TextAlign.CENTER);
+		sessionContext.fillText(title, 5 + (left + ((columnWidth-10) / 2)), ((bottom - top) / 2) + top, columnWidth-10);
+		
+		sessionContext.restore();
+	}	
 	
 	private void paintEntry(ScheduleCategory category, ScheduleEntry entry, int column) {
 		int startHour = entry.getStartHour();
