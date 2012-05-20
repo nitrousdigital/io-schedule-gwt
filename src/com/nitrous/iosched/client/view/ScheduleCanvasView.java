@@ -10,7 +10,6 @@ import com.google.gwt.canvas.dom.client.CanvasGradient;
 import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.canvas.dom.client.Context2d.TextAlign;
 import com.google.gwt.canvas.dom.client.CssColor;
-import com.google.gwt.dom.client.Style.Overflow;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ScrollEvent;
 import com.google.gwt.event.logical.shared.ResizeEvent;
@@ -18,7 +17,6 @@ import com.google.gwt.event.logical.shared.ResizeHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
-import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
@@ -43,6 +41,12 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 	private static final int MAX_HOUR = 22;
 	private static final int HOUR_BAR_WIDTH = 70;
 	private static final double GRADIENT_LEN = 0.5D;
+	
+	/** Text & space height in pixels */
+	private static final int TEXT_LINE_HEIGHT = 20;
+	
+	/** Maximum characters in a line before text is wrapped */
+	private int LINE_LEN = 30;
 	
 	private ActivityToolbar toolbar = new ActivityToolbar("Schedule");
 	private Bookmark bookmark = new Bookmark(BookmarkCategory.SCHEDULE);
@@ -117,8 +121,8 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 		
 		int trackColCount = getTrackColCount();
 		
-		this.columnWidth = (winWidth-(HOUR_BAR_WIDTH + (columnSpace * 2))) / 2;
-		this.columnWidth = Math.min(columnWidth, 300);
+		this.columnWidth = ( winWidth - (HOUR_BAR_WIDTH + columnSpace) );
+		this.columnWidth = Math.min(columnWidth, 600);
 		this.sessionCanvasWidth = (trackColCount * columnWidth) + (columnSpace * (trackColCount > 0 ? trackColCount - 1 : 0));
 		this.sessionCanvasHeight = (HOUR_PERIOD_HEIGHT * ((MAX_HOUR - MIN_HOUR) + 1)) + 10;
 		
@@ -254,11 +258,49 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 		// content label
 		sessionContext.setFillStyle(textColor);
 		sessionContext.setFont("12pt Calibri");
-		sessionContext.setTextAlign(TextAlign.CENTER);
-		sessionContext.fillText(title, 5 + (left + ((columnWidth-10) / 2)), ((bottom - top) / 2) + top, columnWidth-10);
+		String[] lines = wrap(title);
+		if (lines.length == 1) {
+			sessionContext.setTextAlign(TextAlign.CENTER);
+			sessionContext.fillText(lines[0], 5 + (left + ((columnWidth-10) / 2)), ((bottom - top) / 2) + top, columnWidth-10);
+		} else {
+			sessionContext.setTextAlign(TextAlign.LEFT);
+			double x = 5 + left;
+			double y = top + (((bottom - top) / 2) - (((lines.length - 1) * TEXT_LINE_HEIGHT) / 2));
+			for (String line : lines) {
+				sessionContext.fillText(line, x, y, columnWidth-10);
+				y += TEXT_LINE_HEIGHT;
+			}
+		}
 		
 		sessionContext.restore();
-	}	
+	}
+	private String[] wrap(String text) {
+		text = text.trim();
+		if (text.length() <= LINE_LEN) {
+			return new String[]{text};
+		}
+		
+		ArrayList<String> lines = new ArrayList<String>();
+		String[] words = text.split(" ");
+		StringBuffer line = new StringBuffer();
+		for (String word : words) {
+			if (line.length() + word.length() + 1 > LINE_LEN) {
+				if (line.length() > 0) {
+					lines.add(line.toString());
+				}
+				line = new StringBuffer(word);
+			} else {
+				if (line.length() > 0) {
+					line.append(" ");
+				}
+				line.append(word);
+			}
+		}
+		if (line.length() > 0) {
+			lines.add(line.toString());
+		}
+		return lines.toArray(new String[lines.size()]);
+	}
 	
 	private void paintEntry(ScheduleCategory category, ScheduleEntry entry, int column) {
 		int startHour = entry.getStartHour();
