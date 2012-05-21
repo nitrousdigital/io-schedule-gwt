@@ -24,7 +24,7 @@ public class Configuration {
 	private static final String REALTIME_URL = "http://www.google.com/search?tbs=mbl:1&hl=en&source=hp&biw=1170&bih=668&q=#io2011&btnG=Search";
 	private static final String MAP_URL = "http://www.google.com/events/io/2011/embed.html#level1";
 	
-	private static boolean isOffline() {
+	public static boolean isOffline() {
 		return Window.Location.getParameterMap().containsKey("offline");
 	}
 	public static String getSessionFeed() {
