@@ -4,6 +4,10 @@ import com.nitrous.iosched.client.model.SessionTrack;
 
 public class SessionFillStyle {
 	public static String getTextColor(SessionTrack track) {
+		if (true) {
+			return "white";
+		}
+		
 		switch (track) {
 		case GooglePlus:
 			return "white";
@@ -12,6 +16,9 @@ public class SessionFillStyle {
 		}
 	}
 	public static String getStartGradientColor(SessionTrack track) {
+		if (true) {
+			return "rgba(0,0,0,1)";
+		}
 		switch (track) {
 		case Android:
 			return "8caa31";
@@ -42,6 +49,9 @@ public class SessionFillStyle {
 		}
 	}
 	public static String getEndGradientColor(SessionTrack track) {
+		if (true) {
+			return "rgba(0,0,0,1)";
+		}
 		switch (track) {
 		case Android:
 			return "a5c739";

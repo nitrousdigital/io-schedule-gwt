@@ -6,7 +6,34 @@
 <web-app>
   
   <!-- Servlets -->
-  
+	<servlet>
+		<servlet-name>SessionFeedServlet</servlet-name>
+		<servlet-class>com.nitrous.iosched.server.ScheduleFeedServiceImpl</servlet-class>
+		<!-- 
+        <init-param>
+            <param-name>jdbc.connection.driver</param-name>
+            <param-value>org.hsqldb.jdbc.JDBCDriver</param-value>
+        </init-param>
+		<init-param>
+			<param-name>jdbc.connection.url</param-name>
+			<param-value>jdbc:hsqldb:mem:MeetOpDb</param-value>
+		</init-param>
+        <init-param>
+            <param-name>jdbc.connection.user</param-name>
+            <param-value>SA</param-value>
+        </init-param>
+        <init-param>
+            <param-name>jdbc.connection.password</param-name>
+            <param-value></param-value>
+        </init-param>
+         -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SessionFeedServlet</servlet-name>
+		<url-pattern>/ioschedgwt/sessions</url-pattern>
+	</servlet-mapping>
+	
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>IOSchedGWT.html</welcome-file>
