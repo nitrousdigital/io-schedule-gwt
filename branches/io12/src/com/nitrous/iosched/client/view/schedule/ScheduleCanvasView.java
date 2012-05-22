@@ -134,8 +134,8 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 		
 		this.categoryHeader.onResize(sessionCanvasWidth);
 		
-		repaint();
 		onSessionScroll();
+		repaint();
 	}
 	
 	private void onClear() {
@@ -513,6 +513,5 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 			return;
 		}
 		onResize();
-		repaint();
 	}
 }

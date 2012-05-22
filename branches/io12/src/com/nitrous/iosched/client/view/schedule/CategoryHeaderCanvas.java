@@ -41,10 +41,10 @@ public class CategoryHeaderCanvas implements IsWidget, ScheduleViewConfig {
 		this.cornerFillCanvas.getElement().getStyle().setZIndex(100);
 		
 		this.headerCanvas = Canvas.createIfSupported();
-		this.headerCanvas.getElement().getStyle().setZIndex(90);
-		this.headerCanvas.getElement().getStyle().setLeft(HOUR_BAR_WIDTH - hpos, Unit.PX);
 		this.context = headerCanvas.getContext2d();
 		this.container.add(headerCanvas, 0, 0);
+		this.headerCanvas.getElement().getStyle().setZIndex(90);
+		this.headerCanvas.getElement().getStyle().setLeft(HOUR_BAR_WIDTH - hpos, Unit.PX);
 	}
 	
 	public void onSessionScroll(int hpos) {
@@ -56,6 +56,7 @@ public class CategoryHeaderCanvas implements IsWidget, ScheduleViewConfig {
 	
 	public void setColumnWidth(int columnWidth) {
 		this.columnWidth = columnWidth;
+		repaint();
 	}
 	
 	public void onResize(int sessionCanvasWidth) {
