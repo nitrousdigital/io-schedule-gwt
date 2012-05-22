@@ -2,8 +2,8 @@ package com.nitrous.iosched.client.model.schedule;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JsArrayString;
@@ -18,14 +18,14 @@ import com.nitrous.iosched.client.model.data.EventDataWrapper;
  */
 public class DailySchedule {
 	private Date date;
-	private Map<SessionTrack, ArrayList<TrackSchedule>> schedules;
+	private TreeMap<SessionTrack, ArrayList<TrackSchedule>> schedules;
 	/**
 	 * Constructor
 	 * @param date
 	 */
 	public DailySchedule(Date date) {
 		this.date = date;
-		this.schedules = new HashMap<SessionTrack, ArrayList<TrackSchedule>>();
+		this.schedules = new TreeMap<SessionTrack, ArrayList<TrackSchedule>>();
 	}
 		
 	/**

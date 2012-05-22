@@ -192,13 +192,14 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 		int column = 0;
 		//paintEntry(ScheduleCategory.DINING, entry, column++);
 		
-		Map<SessionTrack, ArrayList<TrackSchedule>> trackScheds = daily.getTrackSchedules();
+		Map<SessionTrack, ArrayList<TrackSchedule>> trackScheds = daily.getTrackSchedules();		
 		for (Map.Entry<SessionTrack, ArrayList<TrackSchedule>> entry : trackScheds.entrySet()) {
 			ArrayList<TrackSchedule> sched = entry.getValue();
 			for (TrackSchedule s2 : sched) {
 				SessionTrack track = s2.getTrack();
 				ArrayList<EventDataWrapper> events = s2.getEvents();
 				if (events.size() > 0) {
+					paintColumnBackground(track, column);
 					for (EventDataWrapper event : events) {
 						paintEntry(track, event, column);
 					}
@@ -219,6 +220,18 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 				slot.getEndMinute(), 
 				event.getData().getTitle(), 
 				column); 
+	}
+	
+	private void paintColumnBackground(SessionTrack track, int column) {
+		double left = (column * columnWidth) + ( ( column - 1.0D ) * columnSpace) + (columnSpace / 2.0D);
+		double top = 0D;
+		double width = columnWidth + columnSpace;
+		double height = sessionCanvasHeight;
+		String color = SessionFillStyle.getBackgroundColor(track);
+		sessionContext.save();
+		sessionContext.setFillStyle(color);
+		sessionContext.fillRect(left,  top, width, height);
+		sessionContext.restore();
 	}
 	
 	private void paintEntry(SessionTrack track, int startHour, int startMinute, int endHour, int endMinute, String title, int column) {
