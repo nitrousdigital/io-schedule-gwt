@@ -10,7 +10,9 @@ import com.google.gwt.canvas.client.Canvas;
 import com.google.gwt.canvas.dom.client.CanvasGradient;
 import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.canvas.dom.client.Context2d.TextAlign;
+import com.google.gwt.canvas.dom.client.Context2d.TextBaseline;
 import com.google.gwt.canvas.dom.client.CssColor;
+import com.google.gwt.canvas.dom.client.TextMetrics;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ScrollEvent;
 import com.google.gwt.event.logical.shared.ResizeEvent;
@@ -268,26 +270,37 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 		
 		// content label
 		sessionContext.setFillStyle(textColor);
+		sessionContext.setTextBaseline(TextBaseline.MIDDLE);
 		sessionContext.setFont("12pt Calibri");
 		String[] lines = wrap(title);
-		if (lines.length == 1) {
-			sessionContext.setTextAlign(TextAlign.CENTER);
-			sessionContext.fillText(lines[0], 5 + (left + ((columnWidth-10) / 2)), ((bottom - top) / 2) + top, columnWidth-10);
-		} else {
+//		if (lines.length == 1) {
+//			sessionContext.setTextAlign(TextAlign.CENTER);
+//			sessionContext.fillText(lines[0], 5 + (left + ((columnWidth-10) / 2)), ((bottom - top) / 2) + top, columnWidth-10);
+//		} else {
 			sessionContext.setTextAlign(TextAlign.LEFT);
-			double x = 5 + left;
+			
+			double paraWidth = 0D;
+			for (String line : lines) {
+				TextMetrics metrics = sessionContext.measureText(line);
+				paraWidth = Math.max(metrics.getWidth(), paraWidth);
+			}
+			
+			double x = left + (columnWidth / 2) - (paraWidth / 2);
 			double y = top + (((bottom - top) / 2) - (((lines.length - 1) * TEXT_LINE_HEIGHT) / 2));
 			for (String line : lines) {
 				sessionContext.fillText(line, x, y, columnWidth-10);
 				y += TEXT_LINE_HEIGHT;
 			}
-		}
+//		}
 		
 		sessionContext.restore();
 	}
 	private String[] wrap(String text) {
 		text = text.trim();
-		if (text.length() <= LINE_LEN) {
+		int maxLineLen = columnWidth - 10;
+		
+		TextMetrics metrics = sessionContext.measureText(text);
+		if (metrics.getWidth() <= maxLineLen) {
 			return new String[]{text};
 		}
 		
@@ -295,17 +308,26 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 		String[] words = text.split(" ");
 		StringBuffer line = new StringBuffer();
 		for (String word : words) {
-			if (line.length() + word.length() + 1 > LINE_LEN) {
+			StringBuffer tempLine = new StringBuffer();
+			if (line.length() > 0) {
+				tempLine.append(line);
+				tempLine.append(" ");
+			}			
+			tempLine.append(word);			
+			metrics = sessionContext.measureText(tempLine.toString());
+			if (metrics.getWidth() > maxLineLen) {
+				// word doesnt fit on current line to add so complete current line and add to next line
 				if (line.length() > 0) {
 					lines.add(line.toString());
 				}
 				line = new StringBuffer(word);
 			} else {
+				// add to current line as it fits
 				if (line.length() > 0) {
 					line.append(" ");
 				}
 				line.append(word);
-			}
+			}			
 		}
 		if (line.length() > 0) {
 			lines.add(line.toString());
