@@ -73,6 +73,38 @@ public class SessionFillStyle {
 		}
 	}
 	
+	public static String getHeaderBackgroundColor(SessionTrack track) {
+		switch (track) {
+		case Android:
+			return "rgba(165,199,57,0.5)";
+		case Chrome:
+			return "rgba(8,170,255,0.5)";
+		case CloudPlatform:
+			return "rgba(255,207,82,0.5)";
+		case Commerce:
+			return "rgba(206,0,49,0.5)";
+		case Entrepreneurship:
+			return "rgba(247,174,24,0.5)";
+		case GoogleAPIs:
+			return "rgba(0,101,140,0.5)";
+		case GoogleDrive:
+			return "rgba(0,154,57,0.5)";
+		case GoogleMaps:
+			return "rgba(0,125,90,0.5)";
+		case GooglePlus:
+			return "rgba(63,0,116,0.5)";
+		case GoogleTv:
+			return "rgba(0,101,140,0.5)";
+		case TechTalk:
+			return "rgba(156,154,156,0.5)";
+		case YouTube:
+			return "rgba(255,48,49,0.5)";
+		default:
+			return "rgba(128,128,128,0.5)";
+			
+		}
+	}
+	
 	public static String getEndGradientColor(SessionTrack track) {
 		switch (track) {
 		case Android:
