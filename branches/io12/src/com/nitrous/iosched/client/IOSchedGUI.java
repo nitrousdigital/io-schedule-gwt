@@ -31,12 +31,12 @@ import com.nitrous.iosched.client.view.NowPlayingView;
 import com.nitrous.iosched.client.view.RealtimeView;
 import com.nitrous.iosched.client.view.Refreshable;
 import com.nitrous.iosched.client.view.SandBoxListView;
-import com.nitrous.iosched.client.view.ScheduleCanvasView;
 import com.nitrous.iosched.client.view.ScrollableView;
 import com.nitrous.iosched.client.view.SessionDetailView;
 import com.nitrous.iosched.client.view.SessionListView;
 import com.nitrous.iosched.client.view.SessionTrackListView;
 import com.nitrous.iosched.client.view.StarredView;
+import com.nitrous.iosched.client.view.schedule.ScheduleCanvasView;
 
 public class IOSchedGUI extends ResizeComposite implements ActivityController, ToolbarController {
 	private static final Images images = GWT.create(Images.class);
