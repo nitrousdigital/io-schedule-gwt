@@ -16,6 +16,7 @@ import com.google.gwt.event.logical.shared.ResizeEvent;
 import com.google.gwt.event.logical.shared.ResizeHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
@@ -39,6 +40,7 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 	private static final int HOUR_PERIOD_HEIGHT = QTR_HOUR_PERIOD_HEIGHT * 4;
 	private static final int MIN_HOUR = 7;
 	private static final int MAX_HOUR = 22;
+	private static final int TIMELINE_CANVAS_HEIGHT = (HOUR_PERIOD_HEIGHT * ((MAX_HOUR - MIN_HOUR) + 1)) + 10;
 	private static final int HOUR_BAR_WIDTH = 70;
 	private static final double GRADIENT_LEN = 0.5D;
 	
@@ -54,6 +56,7 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 	private Canvas sessionCanvas;
 	private Context2d sessionContext;
 	
+	private AbsolutePanel timelineContainer;
 	private Canvas timelineCanvas;
 	private Context2d timelineContext;
 	
@@ -62,8 +65,7 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 	private DockLayoutPanel layout;
 
 	private int sessionCanvasWidth;
-	private int sessionCanvasHeight;
-	
+
 	private ConferenceSchedule schedule;
 	private Date selectedDate;
 	
@@ -83,6 +85,14 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 		this.sessionContext = sessionCanvas.getContext2d();
 		this.timelineCanvas = Canvas.createIfSupported();
 		this.timelineContext = timelineCanvas.getContext2d();
+		this.timelineContainer = new AbsolutePanel();
+		this.timelineContainer.setPixelSize(HOUR_BAR_WIDTH, TIMELINE_CANVAS_HEIGHT);
+		this.timelineCanvas.setPixelSize(HOUR_BAR_WIDTH, TIMELINE_CANVAS_HEIGHT);
+		this.timelineCanvas.setCoordinateSpaceWidth(HOUR_BAR_WIDTH);
+		this.timelineCanvas.setCoordinateSpaceHeight(TIMELINE_CANVAS_HEIGHT);
+		this.timelineContainer.add(timelineCanvas, 0, 0);
+		this.layout.addWest(timelineContainer, HOUR_BAR_WIDTH);
+		paintTimeline();
 				
 		this.sessionScroll = new ScrollPanel(sessionCanvas);
 		this.sessionScroll.addScrollHandler(new com.google.gwt.event.dom.client.ScrollHandler(){
@@ -92,7 +102,6 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 			}
 		});
 		
-		layout.addWest(timelineCanvas, HOUR_BAR_WIDTH);
 		layout.add(sessionScroll);
 
 		onResize();
@@ -110,7 +119,7 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 		int vpos = sessionScroll.getVerticalScrollPosition();
 		if (vpos != this.timelineVPos) {
 			this.timelineVPos = vpos;
-			repaintTimeline();
+			this.timelineCanvas.getElement().getStyle().setTop(-timelineVPos, Unit.PX);
 		}		
 	}
 	
@@ -124,22 +133,19 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 		this.columnWidth = ( winWidth - (HOUR_BAR_WIDTH + columnSpace) );
 		this.columnWidth = Math.min(columnWidth, 600);
 		this.sessionCanvasWidth = (trackColCount * columnWidth) + (columnSpace * (trackColCount > 0 ? trackColCount - 1 : 0));
-		this.sessionCanvasHeight = (HOUR_PERIOD_HEIGHT * ((MAX_HOUR - MIN_HOUR) + 1)) + 10;
 		
 		
-		this.sessionCanvas.setPixelSize(sessionCanvasWidth, sessionCanvasHeight);
+		this.sessionCanvas.setPixelSize(sessionCanvasWidth, TIMELINE_CANVAS_HEIGHT);
 		this.sessionCanvas.setCoordinateSpaceWidth(sessionCanvasWidth);
-		this.sessionCanvas.setCoordinateSpaceHeight(sessionCanvasHeight);
+		this.sessionCanvas.setCoordinateSpaceHeight(TIMELINE_CANVAS_HEIGHT);
 		
-		this.timelineCanvas.setPixelSize(HOUR_BAR_WIDTH, sessionCanvasHeight);
-		this.timelineCanvas.setCoordinateSpaceWidth(HOUR_BAR_WIDTH);
-		this.timelineCanvas.setCoordinateSpaceHeight(sessionCanvasHeight);
 		repaint();
+		onSessionScroll();
 	}
 	
 	private void onClear() {
-		sessionContext.clearRect(0,  0, sessionCanvasWidth, sessionCanvasHeight);
-		timelineContext.clearRect(0,  0, HOUR_BAR_WIDTH, sessionCanvasHeight);
+		sessionContext.clearRect(0,  0, sessionCanvasWidth, TIMELINE_CANVAS_HEIGHT);
+//		timelineContext.clearRect(0,  0, HOUR_BAR_WIDTH, TIMELINE_CANVAS_HEIGHT);
 	}
 	
 	private void showMessage(String message, boolean isError) {
@@ -154,7 +160,7 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 	
 	private void repaint() {
 		onClear();
-		paintTimeline();
+//		paintTimeline();
 		paintSessionHourLines();
 		paintData();
 		paintCurrentTimeMarker();
@@ -224,13 +230,11 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 	
 	private void paintColumnBackground(SessionTrack track, int column) {
 		double left = (column * columnWidth) + ( ( column - 1.0D ) * columnSpace) + (columnSpace / 2.0D);
-		double top = 0D;
 		double width = columnWidth + columnSpace;
-		double height = sessionCanvasHeight;
 		String color = SessionFillStyle.getBackgroundColor(track);
 		sessionContext.save();
 		sessionContext.setFillStyle(color);
-		sessionContext.fillRect(left,  top, width, height);
+		sessionContext.fillRect(left, 0, width, TIMELINE_CANVAS_HEIGHT);
 		sessionContext.restore();
 	}
 	
@@ -408,10 +412,10 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 		sessionContext.restore();
 	}
 	
-	private void repaintTimeline() {
-		timelineContext.clearRect(0,  0, HOUR_BAR_WIDTH, sessionCanvasHeight);
-		paintTimeline();
-	}
+//	private void repaintTimeline() {
+//		timelineContext.clearRect(0,  0, HOUR_BAR_WIDTH, TIMELINE_CANVAS_HEIGHT);
+//		paintTimeline();
+//	}
 		
 	private void paintSessionHourLines() {
 		sessionContext.save();		
@@ -435,11 +439,11 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 		timelineContext.save();
 		
 		// offset to match vertical scroll of session area
-		timelineContext.translate(0, -timelineVPos);
+		//timelineContext.translate(0, -timelineVPos);
 		
 		// hour bar background
 		timelineContext.setFillStyle(CssColor.make("rgba(128,128,128,0.25)"));
-		timelineContext.fillRect(0,  0, HOUR_BAR_WIDTH, sessionCanvasHeight);
+		timelineContext.fillRect(0,  0, HOUR_BAR_WIDTH, TIMELINE_CANVAS_HEIGHT);
 		
 		// time line
 		timelineContext.setFillStyle("black");
