@@ -5,6 +5,7 @@ import java.util.Map;
 import com.google.gwt.canvas.client.Canvas;
 import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.canvas.dom.client.Context2d.TextAlign;
+import com.google.gwt.canvas.dom.client.Context2d.TextBaseline;
 import com.google.gwt.canvas.dom.client.CssColor;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.AbsolutePanel;
@@ -91,7 +92,8 @@ public class CategoryHeaderCanvas implements IsWidget, ScheduleViewConfig {
 			context.setFillStyle(SessionFillStyle.getTextColor(track));
 			context.setFont("14pt Calibri");
 			context.setTextAlign(TextAlign.CENTER);
-			context.fillText(track.toString(), 5 + (left + ((columnWidth-10) / 2)), (CATEGORY_HEADER_HEIGHT - 7), columnWidth-10);
+			context.setTextBaseline(TextBaseline.MIDDLE);
+			context.fillText(track.toString(), 5 + (left + ((columnWidth-10) / 2)), (CATEGORY_HEADER_HEIGHT / 2), columnWidth-10);
 			context.restore();
 		}
 	}

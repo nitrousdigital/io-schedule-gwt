@@ -16,9 +16,5 @@ public interface ScheduleViewConfig {
 	static final int COLUMN_SPACE = 5;
 
 	/** Text & space height in pixels */
-	static final int TEXT_LINE_HEIGHT = 20;
-	
-	/** Maximum characters in a line before text is wrapped */
-	static final int LINE_LEN = 30;
-
+	static final int TEXT_LINE_HEIGHT = 20;	
 }
