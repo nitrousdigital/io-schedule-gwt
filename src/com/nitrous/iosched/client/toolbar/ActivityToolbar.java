@@ -1,6 +1,5 @@
 package com.nitrous.iosched.client.toolbar;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -17,20 +16,23 @@ import com.nitrous.iosched.client.images.Images;
  */
 public class ActivityToolbar extends Composite implements Toolbar {
 	
-	private static Images images = GWT.create(Images.class);
 	private ToolbarController toolbarController;
 	protected ToolbarText toolbarTitle;
-	
+	private Widget[] widgets;
 	public ActivityToolbar(String label) {
 		HorizontalPanel toolbar = new HorizontalPanel();
 		toolbar.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		toolbar.setStyleName("toolbarFill");
 		initWidget(toolbar);
 		
-		Widget[] widgets = initWidgets(label);
+		this.widgets = initWidgets(label);
 		for (Widget w : widgets) {
 			toolbar.add(w);
 		}
+	}
+	
+	protected Widget[] getWidgets() {
+		return widgets;
 	}
 	
 	/**
@@ -47,7 +49,7 @@ public class ActivityToolbar extends Composite implements Toolbar {
 	}
 	
 	protected Widget initHomeButton() {
-		Image homeBtn = new Image(images.home());
+		Image homeBtn = new Image(Images.INSTANCE.home());
 		homeBtn.setStyleName("toolbarButton");
 		homeBtn.addClickHandler(new com.google.gwt.event.dom.client.ClickHandler(){
 			public void onClick(ClickEvent event) {
@@ -60,7 +62,7 @@ public class ActivityToolbar extends Composite implements Toolbar {
 	}
 
 	protected Widget initBackButton() {
-		Image backBtn = new Image(images.back());
+		Image backBtn = new Image(Images.INSTANCE.back());
 		backBtn.setStyleName("toolbarButton");
 		backBtn.addClickHandler(new com.google.gwt.event.dom.client.ClickHandler(){
 			public void onClick(ClickEvent event) {
@@ -90,7 +92,7 @@ public class ActivityToolbar extends Composite implements Toolbar {
 	}
 
 	protected Widget initRefreshButton() {		
-		Image refreshBtn = new Image(images.refresh());
+		Image refreshBtn = new Image(Images.INSTANCE.refresh());
 		refreshBtn.setStyleName("toolbarButton");
 		refreshBtn.addClickHandler(new com.google.gwt.event.dom.client.ClickHandler(){
 			public void onClick(ClickEvent event) {
