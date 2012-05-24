@@ -15,6 +15,7 @@ import com.google.gwt.canvas.dom.client.Context2d.TextAlign;
 import com.google.gwt.canvas.dom.client.Context2d.TextBaseline;
 import com.google.gwt.canvas.dom.client.CssColor;
 import com.google.gwt.canvas.dom.client.TextMetrics;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ScrollEvent;
 import com.google.gwt.event.logical.shared.ResizeEvent;
@@ -116,7 +117,7 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 			return;
 		}
 		
-		// find next date
+		// find previous date
 		Set<Date> dates = this.schedule.getDates();
 		if (dates != null && dates.size() > 0) {
 			if (this.selectedDate == null) {
@@ -162,12 +163,62 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 	}
 	
 	private void showDate(Date date) {
+		this.toolbar.setDate(date);
 		this.selectedDate = date;
+		this.toolbar.setCanNavigateBackward(canNavigateBack());
+		this.toolbar.setCanNavigateForward(canNavigateForward());
 		this.sessionScroll.scrollToTop();
 		this.sessionScroll.scrollToLeft();
 		onResize();
 	}
 	
+	private boolean canNavigateBack() {
+		if (schedule != null) {
+			// find previous date
+			Set<Date> dates = this.schedule.getDates();
+			if (dates != null && dates.size() > 0) {
+				if (this.selectedDate == null) {
+					GWT.log("canNavigateBack() == true - no date selected");
+					return true;
+				} else {
+					Date[] arr = dates.toArray(new Date[dates.size()]);
+					if (arr[0] == selectedDate) {
+						// first date already selected
+						GWT.log("canNavigateBack() == false - first date already selected");
+						return false;
+					}
+					
+					GWT.log("canNavigateBack() == true. First date is not the selected date");
+					return true;
+				}
+			}
+		}
+		GWT.log("canNavigateBack() == false - schedule is null");
+		return false;
+	}
+	
+	private boolean canNavigateForward() {
+		if (schedule != null) {
+			// find next date
+			Set<Date> dates = this.schedule.getDates();
+			if (dates != null && dates.size() > 0) {
+				if (this.selectedDate == null) {
+					// dates exist and none is selected
+					return true;
+				} else {					
+					for (Iterator<Date> i = dates.iterator(); i.hasNext(); ) {
+						Date d = i.next();
+						if (d == selectedDate) {
+							// date found and not last date
+							return i.hasNext();
+						}
+					}
+				}
+			}
+		}
+		// no dates available
+		return false;
+	}
 	
 	private void onSessionScroll() {
 		// account for current session scroll vertical position
@@ -575,6 +626,6 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 			showMessage("No data available", false);
 			return;
 		}
-		onResize();
+		showDate(selectedDate);
 	}
 }

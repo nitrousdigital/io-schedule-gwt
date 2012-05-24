@@ -38,13 +38,18 @@ public class ScheduleToolbar extends ActivityToolbar {
 		label.setDate(date);
 	}
 	
+	public void setCanNavigateBackward(boolean enabled) {
+		Image img = (Image)getWidgets()[2];
+		img.setResource(enabled ? Images.INSTANCE.back() : Images.INSTANCE.backDisabled());
+	}
+	
+	public void setCanNavigateForward(boolean enabled) {
+		Image img = (Image)getWidgets()[4];
+		img.setResource(enabled ? Images.INSTANCE.forward() : Images.INSTANCE.forwardDisabled());
+	}	
+	
 	private DateToolbarLabel getDateLabel() {
-		for (Widget w : getWidgets()) {
-			if (w instanceof DateToolbarLabel) {
-				return (DateToolbarLabel)w;
-			}
-		}
-		return null;
+		return (DateToolbarLabel)getWidgets()[3];
 	}
 		
 	protected Widget initDateLabel() {

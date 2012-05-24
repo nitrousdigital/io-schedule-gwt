@@ -20,6 +20,10 @@ public interface Images extends ClientBundle {
 	ImageResource back();
 	@Source("forward.png")
 	ImageResource forward();
+	@Source("back_disabled.png")
+	ImageResource backDisabled();
+	@Source("forward_disabled.png")
+	ImageResource forwardDisabled();
 	
 	// color bar
 	@Source("colors.png")
