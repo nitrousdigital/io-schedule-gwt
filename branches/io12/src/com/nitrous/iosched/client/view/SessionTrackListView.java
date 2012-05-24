@@ -1,6 +1,5 @@
 package com.nitrous.iosched.client.view;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Grid;
@@ -18,7 +17,6 @@ import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 
 public class SessionTrackListView extends ResizeComposite implements ToolbarEnabledView {
-	private static final Images images = GWT.create(Images.class);
 	private ActivityToolbar toolbar = new ActivityToolbar("Session Tracks");
 	private ActivityController controller;
 	private Bookmark bookmark = new Bookmark(BookmarkCategory.SESSIONS);
@@ -80,18 +78,18 @@ public class SessionTrackListView extends ResizeComposite implements ToolbarEnab
 	private Image getImage(SessionTrack track) {
 		switch (track) {
 		case All: return null;
-		case Android: return new Image(images.trackAndroid());
-		case Chrome: return new Image(images.trackChrome());
-		case CloudPlatform: return new Image(images.trackCloudPlatform());
-		case Commerce: return new Image(images.trackCommerce());
-		case Entrepreneurship: return new Image(images.trackEntrepreneurship());
-		case GoogleAPIs: return new Image(images.trackGoogleAPIs());
-		case GoogleDrive: return new Image(images.trackGoogleDrive());
-		case GoogleMaps: return new Image(images.trackGeo());
-		case GooglePlus: return new Image(images.trackGooglePlus());
-		case GoogleTv: return new Image(images.trackGoogleTv());
-		case TechTalk: return new Image(images.trackTechTalk());
-		case YouTube: return new Image(images.trackYouTube());
+		case Android: return new Image(Images.INSTANCE.trackAndroid());
+		case Chrome: return new Image(Images.INSTANCE.trackChrome());
+		case CloudPlatform: return new Image(Images.INSTANCE.trackCloudPlatform());
+		case Commerce: return new Image(Images.INSTANCE.trackCommerce());
+		case Entrepreneurship: return new Image(Images.INSTANCE.trackEntrepreneurship());
+		case GoogleAPIs: return new Image(Images.INSTANCE.trackGoogleAPIs());
+		case GoogleDrive: return new Image(Images.INSTANCE.trackGoogleDrive());
+		case GoogleMaps: return new Image(Images.INSTANCE.trackGeo());
+		case GooglePlus: return new Image(Images.INSTANCE.trackGooglePlus());
+		case GoogleTv: return new Image(Images.INSTANCE.trackGoogleTv());
+		case TechTalk: return new Image(Images.INSTANCE.trackTechTalk());
+		case YouTube: return new Image(Images.INSTANCE.trackYouTube());
 		}
 		return null;
 	}

@@ -3,7 +3,9 @@ package com.nitrous.iosched.client.view.schedule;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeSet;
 
 import com.google.gwt.canvas.client.Canvas;
@@ -33,7 +35,6 @@ import com.nitrous.iosched.client.model.schedule.ScheduleEntry;
 import com.nitrous.iosched.client.model.schedule.TimeSlot;
 import com.nitrous.iosched.client.model.schedule.TrackSchedule;
 import com.nitrous.iosched.client.model.store.SessionStore;
-import com.nitrous.iosched.client.toolbar.ActivityToolbar;
 import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 import com.nitrous.iosched.client.view.ActivityController;
@@ -42,9 +43,9 @@ import com.nitrous.iosched.client.view.BookmarkCategory;
 import com.nitrous.iosched.client.view.Refreshable;
 import com.nitrous.iosched.client.view.SessionFillStyle;
 
-public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refreshable, ScheduleViewConfig {
+public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refreshable, ScheduleViewConfig, ScheduleToolbarController {
 	
-	private ActivityToolbar toolbar = new ActivityToolbar("Schedule");
+	private ScheduleToolbar toolbar;
 	private Bookmark bookmark = new Bookmark(BookmarkCategory.SCHEDULE);
 
 	private Canvas sessionCanvas;
@@ -96,6 +97,9 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 		this.layout.addWest(timeline, HOUR_BAR_WIDTH);
 		this.layout.add(sessionScroll);
 		
+		this.toolbar = new ScheduleToolbar();
+		this.toolbar.setScheduleController(this);
+		
 		onResize();
 		onRefresh();
 		Window.addResizeHandler(new ResizeHandler(){
@@ -105,7 +109,66 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 			}
 		});
 	}
+	
+	@Override
+	public void navPrevDate() {
+		if (schedule == null) {
+			return;
+		}
 		
+		// find next date
+		Set<Date> dates = this.schedule.getDates();
+		if (dates != null && dates.size() > 0) {
+			if (this.selectedDate == null) {
+				showDate(dates.iterator().next());
+			} else {
+				Date[] arr = dates.toArray(new Date[dates.size()]);
+				if (arr[0] == selectedDate) {
+					// first date already selected
+					return;
+				}
+				for (int i = 1; i < arr.length; i++) {
+					if (arr[i] == selectedDate) {
+						showDate(arr[i-1]);
+						return;
+					}
+				}
+			}
+		}
+	}
+
+	@Override
+	public void navNextDate() {
+		if (schedule == null) {
+			return;
+		}
+		// find next date
+		Set<Date> dates = this.schedule.getDates();
+		if (dates != null && dates.size() > 0) {
+			if (this.selectedDate == null) {
+				showDate(dates.iterator().next());
+			} else {
+				for (Iterator<Date> i = dates.iterator(); i.hasNext(); ) {
+					Date d = i.next();
+					if (d == selectedDate) {
+						if (i.hasNext()) {
+							showDate(i.next());
+						}
+						return;
+					}
+				}
+			}
+		}
+	}
+	
+	private void showDate(Date date) {
+		this.selectedDate = date;
+		this.sessionScroll.scrollToTop();
+		this.sessionScroll.scrollToLeft();
+		onResize();
+	}
+	
+	
 	private void onSessionScroll() {
 		// account for current session scroll vertical position
 		int vpos = sessionScroll.getVerticalScrollPosition();

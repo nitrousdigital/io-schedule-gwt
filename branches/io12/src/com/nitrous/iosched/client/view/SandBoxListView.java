@@ -1,6 +1,5 @@
 package com.nitrous.iosched.client.view;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Grid;
@@ -18,7 +17,6 @@ import com.nitrous.iosched.client.toolbar.Toolbar;
 import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
 
 public class SandBoxListView extends ResizeComposite implements ToolbarEnabledView {
-	private static final Images images = GWT.create(Images.class);
 	private ActivityToolbar toolbar = new ActivityToolbar("Sandbox pods");
 	private ActivityController controller;
 	private Grid grid;
@@ -81,17 +79,17 @@ public class SandBoxListView extends ResizeComposite implements ToolbarEnabledVi
 	private Image getImage(CompanyPod pod) {
 		switch (pod) {
 			case All: return null;
-			case Android: return new Image(images.trackAndroid());
-			case AppEngine: return new Image(images.trackAppEngine());
-			case Chrome: return new Image(images.trackChrome());
-			case Commerce: return new Image(images.trackCommerce());
-			case DevTools: return new Image(images.trackDevTools());
-			case Geo: return new Image(images.trackGeo());
-			case GoogleApps: return new Image(images.trackGoogleApps());
-			case Accessibility: return new Image(images.sandboxAccessibility()); 
-			case GameDev:return new Image(images.sandboxGameDev());
-			case GoogleTv:return new Image(images.sandboxGoogleTv());
-			case YouTube:return new Image(images.sandboxYouTube());
+			case Android: return new Image(Images.INSTANCE.trackAndroid());
+			case AppEngine: return new Image(Images.INSTANCE.trackAppEngine());
+			case Chrome: return new Image(Images.INSTANCE.trackChrome());
+			case Commerce: return new Image(Images.INSTANCE.trackCommerce());
+			case DevTools: return new Image(Images.INSTANCE.trackDevTools());
+			case Geo: return new Image(Images.INSTANCE.trackGeo());
+			case GoogleApps: return new Image(Images.INSTANCE.trackGoogleApps());
+			case Accessibility: return new Image(Images.INSTANCE.sandboxAccessibility()); 
+			case GameDev:return new Image(Images.INSTANCE.sandboxGameDev());
+			case GoogleTv:return new Image(Images.INSTANCE.sandboxGoogleTv());
+			case YouTube:return new Image(Images.INSTANCE.sandboxYouTube());
 		}
 		return null;
 	}

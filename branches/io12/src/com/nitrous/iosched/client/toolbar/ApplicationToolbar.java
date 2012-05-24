@@ -1,6 +1,5 @@
 package com.nitrous.iosched.client.toolbar;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -11,9 +10,8 @@ import com.nitrous.iosched.client.images.Images;
 
 public class ApplicationToolbar extends Composite implements Toolbar {
 	
-	private static final Images images = GWT.create(Images.class);
-	private static final Image logo = new Image(images.logo());
-	private static final Image searchBtn = new Image(images.search());
+	private static final Image logo = new Image(Images.INSTANCE.logo());
+	private static final Image searchBtn = new Image(Images.INSTANCE.search());
 
 	private ToolbarController toolbarController;
 	

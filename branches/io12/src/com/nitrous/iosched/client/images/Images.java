@@ -1,9 +1,12 @@
 package com.nitrous.iosched.client.images;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.ImageResource;
 
 public interface Images extends ClientBundle {
+	public static final Images INSTANCE = GWT.create(Images.class);
+	
 	// toolbar icons
 	@Source("logo.png")
 	ImageResource logo();
@@ -15,6 +18,8 @@ public interface Images extends ClientBundle {
 	ImageResource search();
 	@Source("back.png")
 	ImageResource back();
+	@Source("forward.png")
+	ImageResource forward();
 	
 	// color bar
 	@Source("colors.png")

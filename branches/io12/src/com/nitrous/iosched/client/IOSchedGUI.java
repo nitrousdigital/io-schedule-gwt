@@ -39,7 +39,6 @@ import com.nitrous.iosched.client.view.StarredView;
 import com.nitrous.iosched.client.view.schedule.ScheduleCanvasView;
 
 public class IOSchedGUI extends ResizeComposite implements ActivityController, ToolbarController {
-	private static final Images images = GWT.create(Images.class);
 	
 	private HomeMenuView rootMenu;
 	

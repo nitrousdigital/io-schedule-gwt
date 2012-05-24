@@ -1,6 +1,5 @@
 package com.nitrous.iosched.client.view;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -27,13 +26,12 @@ import com.nitrous.iosched.client.toolbar.ToolbarEnabledView;
  *
  */
 public class HomeMenuView extends ResizeComposite implements ToolbarEnabledView {
-	private static final Images images = GWT.create(Images.class);
 	
-	private static final Image bulletinBtn = new Image(images.bulletin());
-	private static final Image mapBtn = new Image(images.map());
-	private static final Image sandboxBtn = new Image(images.sandbox());
-	private static final Image scheduleBtn = new Image(images.schedule());
-	private static final Image sessionsBtn = new Image(images.sessions());
+	private static final Image bulletinBtn = new Image(Images.INSTANCE.bulletin());
+	private static final Image mapBtn = new Image(Images.INSTANCE.map());
+	private static final Image sandboxBtn = new Image(Images.INSTANCE.sandbox());
+	private static final Image scheduleBtn = new Image(Images.INSTANCE.schedule());
+	private static final Image sessionsBtn = new Image(Images.INSTANCE.sessions());
 //	private static final Image starredBtn = new Image(images.starred());
 	
 	private VerticalPanel scheduleCell;
