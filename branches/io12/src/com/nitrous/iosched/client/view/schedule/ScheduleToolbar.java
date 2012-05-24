@@ -26,7 +26,7 @@ public class ScheduleToolbar extends ActivityToolbar {
 	protected Widget[] initWidgets(String toolbarLabel) {
 		return new Widget[]{
 				initHomeButton(),
-				initToolbarLabel(toolbarLabel),
+				initToolbarLabel(toolbarLabel, 85),
 				initNavBackButton(),
 				initDateLabel(),
 				initNavForwardButton()
