@@ -1,6 +1,7 @@
 package com.nitrous.iosched.client;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
@@ -197,6 +198,16 @@ public class IOSchedGUI extends ResizeComposite implements ActivityController, T
 			break;
 			
 		case SCHEDULE:
+			if (bookmark.hasState()) {
+				final ArrayList<String> state = bookmark.getState();
+				if (state.size() > 0) {
+					try {
+						Long l = Long.parseLong(state.get(0));
+						scheduleView.showDate(new Date(l.longValue()));
+					} catch (Exception ex) {
+					}
+				}						
+			}
 			showSchedule();
 			break;
 			
@@ -412,7 +423,7 @@ public class IOSchedGUI extends ResizeComposite implements ActivityController, T
 		viewDeckPanel.showWidget(6);
 		onViewDisplayed(bulletinView);
 	}
-	private void setHistoryToken(String token) {
+	public static void setHistoryToken(String token) {
 		String old = History.getToken();
 		if (old != null && !old.equals(token)) {
 			History.newItem(token, false);
