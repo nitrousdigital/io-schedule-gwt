@@ -27,6 +27,7 @@ import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.nitrous.iosched.client.IOSchedGUI;
 import com.nitrous.iosched.client.model.SessionTrack;
 import com.nitrous.iosched.client.model.data.EventDataWrapper;
 import com.nitrous.iosched.client.model.schedule.ConferenceSchedule;
@@ -124,12 +125,12 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 				showDate(dates.iterator().next());
 			} else {
 				Date[] arr = dates.toArray(new Date[dates.size()]);
-				if (arr[0] == selectedDate) {
+				if (arr[0].getTime() == selectedDate.getTime()) {
 					// first date already selected
 					return;
 				}
 				for (int i = 1; i < arr.length; i++) {
-					if (arr[i] == selectedDate) {
+					if (arr[i].getTime() == selectedDate.getTime()) {
 						showDate(arr[i-1]);
 						return;
 					}
@@ -151,7 +152,7 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 			} else {
 				for (Iterator<Date> i = dates.iterator(); i.hasNext(); ) {
 					Date d = i.next();
-					if (d == selectedDate) {
+					if (d.getTime() == selectedDate.getTime()) {
 						if (i.hasNext()) {
 							showDate(i.next());
 						}
@@ -162,7 +163,13 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 		}
 	}
 	
-	private void showDate(Date date) {
+	public void showDate(Date date) {
+		bookmark.clearStateTokens();
+		if (date != null) {
+			bookmark.addStateToken(String.valueOf(date.getTime()));
+		}
+		IOSchedGUI.setHistoryToken(getHistoryToken());
+		
 		this.toolbar.setDate(date);
 		this.selectedDate = date;
 		this.toolbar.setCanNavigateBackward(canNavigateBack());
@@ -182,7 +189,7 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 					return true;
 				} else {
 					Date[] arr = dates.toArray(new Date[dates.size()]);
-					if (arr[0] == selectedDate) {
+					if (arr[0].getTime() == selectedDate.getTime()) {
 						// first date already selected
 						GWT.log("canNavigateBack() == false - first date already selected");
 						return false;
@@ -208,7 +215,7 @@ public class ScheduleCanvasView implements ToolbarEnabledView, IsWidget, Refresh
 				} else {					
 					for (Iterator<Date> i = dates.iterator(); i.hasNext(); ) {
 						Date d = i.next();
-						if (d == selectedDate) {
+						if (d.getTime() == selectedDate.getTime()) {
 							// date found and not last date
 							return i.hasNext();
 						}
