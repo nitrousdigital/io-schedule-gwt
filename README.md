@@ -5,3 +5,6 @@ I decided to re-implement the application using GWT so that I could access the s
 This application makes use of the same live data feeds that drive the Google I/O Android application.
 
 A live instance of this application can be found [here](http://io2011schedule.appspot.com/#home).
+
+![iPhone screenshot](http://i.imgur.com/z5SYu.jpg)
+
