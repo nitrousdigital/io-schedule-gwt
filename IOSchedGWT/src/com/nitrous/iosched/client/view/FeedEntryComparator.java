@@ -7,9 +7,10 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.nitrous.iosched.client.model.SessionFeedEntry;
 
 public class FeedEntryComparator  implements Comparator<SessionFeedEntry> {
-	private static final DateTimeFormat format = DateTimeFormat.getFormat("EEEE MMMM dd hh:mmaa");
+	private static final DateTimeFormat format = DateTimeFormat.getFormat("EEEE MMMM dd hh:mmaa yyyy");
 	public FeedEntryComparator() {
 	}
+	@Override
 	public int compare(SessionFeedEntry entry, SessionFeedEntry other) {
 		// 1st sort by date/time
 		Date entryDate = getStartDateTime(entry);
@@ -34,7 +35,7 @@ public class FeedEntryComparator  implements Comparator<SessionFeedEntry> {
 			String time = entry.getSessionTime();
 			String dateTime = date + " " + time;
 			dateTime = dateTime.substring(0, dateTime.indexOf("-"));
-			startTime = format.parse(dateTime);
+			startTime = format.parse(dateTime + " 2011");
 			entry.setStartDateTimeNative(startTime);
 		}
 		return startTime;
@@ -47,7 +48,7 @@ public class FeedEntryComparator  implements Comparator<SessionFeedEntry> {
 			// 4:15pm-5:15pm
 			String time = entry.getSessionTime();
 			String dateTime = date + " " + time.substring(time.indexOf("-")+1).trim();
-			endTime = format.parse(dateTime);
+			endTime = format.parse(dateTime + " 2011");
 			entry.setEndDateTimeNative(endTime);
 		}
 		return endTime;
